@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+我想開發一個園遊會(school fairs)的 App，現在需要輸出高保真的原型圖，依照規幫我完成所有界面的原型設計，並確保這些原型界面可以直接用於開發
+
+## App目標與使用者
+    此App為一場園遊會、市集、家庭日所設計，因此使用者會分成遊客方、攤位方、主辦方，每方都有各自的頁面需求，請參考##目標。
+
+
+## 目標
+    -依照 ##開發規範、##介面設計規範、##任務檢查，使用 HTML + Tailwind4.0 + JavaScript生成每一個高保真介面原型圖代碼，頁面需求如下:
+    1.遊客端頁面需求 [guest.mdc](mdc:.cursor/rules/guest.mdc)
+        ### 首頁活動頁 (guest/guestHome.html)
+        ### 攤位頁 (guest/guestBooth.html)
+        ### 任務頁 (guest/guestGame.html)
+        ### 支付頁 (guest/guestPayment.html)
+        ### 個人中心 (guest/guestAccount.html)
+        
+    2.商家端頁面需求 [booth.mdc](mdc:.cursor/rules/booth.mdc)
+        ### 收款頁 (booth/boothReceive.html)
+        ### 收款紀錄 (booth/boothGame.html)
+        ### 攤販管理 (booth/boothSetting.html)
+        ### 攤位個人帳號中心 (booth/boothAccount.html)
+
+    3.主辦端頁面需求 [org.mdc](mdc:.cursor/rules/org.mdc)
+        ### 活動設定頁面 (org/eventAdmin.html)
+        ### 攤位設定頁面 (org/boothAdmin.html)
+        ### 點數管理頁面 (org/paymentAdmin.html)
+        ### 遊客管理頁面 (org/userAdmin.html)
+        ### 任務管理頁面 (org/gameAdmin.html)
+
+    -將所有需要完成的頁面撰寫成todolist至 '/pageTodoList.md'中，在一個頁面完成後紀錄進度。
+
+## 開發規範
+
+-使用 HTML + Tailwind4.0 + JavaScript生成所有原型界面。
+-完全依照給予的頁面需求進行原型圖開發
+-每個界面都獨立的 HTML 文件存放，例如 Home.html、Map.html、Event.html、CouponWallet.html、Profile.html
+-**-index.html** 作為主入口。詳細規則 [html_integration.mdc](mdc:.cursor/rules/html_integration.mdc)
+-不需要有CSS檔案，因此每個元素樣式皆使用Tailwind CSS
+-使用真實的 UI 圖片，而非白色的簡單圖標（可從 Unsplash、Pexels、Apple 官方 UI 資源中選擇）。
+-所有互動效果(model、tab)將JavaScript使用<script> 方式引入在同一HTML文件
+-若一個檔案內容太多，可以分批寫入
+
+## 介面設計規範
+
+-使用大量留白，黑灰為主色，採用簡單的線條設計
+-採用 Apple Human Interface 指南的設計風格，整體界面精緻、圓角設計、使用柔和對比與一致的間距，提升使用者的沉浸感與直覺性。
+-以mobile first原則設計樣式
+
+
+## 任務檢查
+-按照以上要求生成完整的 HTML 代碼，並確保其可用於實際開發。
+-完成所有 [pageTodoList.md](mdc:pageTodoList.md) 中的頁面。

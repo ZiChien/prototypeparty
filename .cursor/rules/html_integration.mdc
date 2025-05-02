@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# HTML 文件整合指南
+
+## 架構概述
+
+[index.html](mdc:index.html) 是主要顯示頁面，通過 iframe 引入其他 HTML 頁面作為原型展示。
+
+## 頁面整合方法
+
+在 [index.html](mdc:index.html) 中使用以下結構引入其他 HTML 頁面：
+
+```html
+<div>
+    <div class="page-title">頁面標題 (Page Title)</div>
+    <div class="phone-container">
+        <div class="screen">
+            <iframe src="PageName.html"></iframe>
+        </div>
+    </div>
+</div>
+```
+
+## 添加新頁面步驟
+
+1. 創建新的 HTML 頁面文件
+2. 在 [index.html](mdc:index.html) 中的適當 `devices-container` 區塊下添加新的 iframe 結構
+3. 確保新頁面使用正確的樣式和導航設計，與現有頁面保持一致
+

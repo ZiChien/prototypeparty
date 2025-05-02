@@ -1,0 +1,28 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 商家端頁面需求
+## 使用者:園遊會的攤位店員
+## 使用裝置:手機
+
+## 頁面功能
+
+### 收款頁 (booth/boothReceive.html)
+	- 顯示收款碼，讓遊客掃描付款
+    - 店員能看到今日的收款總點數
+    - 店員能看到今日的消費總比數
+    - 店員能看到所有的交易紀錄簡介
+        -點擊後跳出交易明細modal
+
+### 任務 (booth/boothGame.html)
+    - 顯示供遊客掃描集章的qrcode
+        -可以選擇是哪一項任務中的哪一個關卡，以顯示對應的qrCode
+
+### 攤販管理 (booth/boothSetting.html)
+	- 店員能夠查看並編輯攤位的基本資訊
+    
+    
+### 攤位個人帳號中心 (booth/boothAccount.html) 
+	- 攤位的基本資訊
