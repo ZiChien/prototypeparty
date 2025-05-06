@@ -13,6 +13,8 @@ alwaysApply: false
 
 在 [index.html](mdc:index.html) 中使用以下結構引入其他 HTML 頁面：
 
+### 手機頁面 (Mobile First)
+
 ```html
 <div>
     <div class="page-title">頁面標題 (Page Title)</div>
@@ -24,9 +26,36 @@ alwaysApply: false
 </div>
 ```
 
+### 桌面頁面 (Desktop First)
+
+```html
+<div>
+    <div class="page-title">頁面標題 (Page Title)</div>
+    <div class="desktop-container">
+        <div class="screen">
+            <iframe src="PageName.html"></iframe>
+        </div>
+    </div>
+</div>
+```
+
+## 頁面容器規則
+
+1. **phone-container**: 用於移動設備優先的頁面，尺寸為 390px × 844px
+2. **desktop-container**: 用於桌面設備優先的頁面，尺寸為 1380px × 844px
+
+## 頁面類型規則
+
+1. **遊客端頁面**: 全部使用 phone-container（移動設備優先）
+2. **商家端頁面**: 全部使用 phone-container（移動設備優先）
+3. **主辦端頁面**: 
+   - 點數管理頁面(paymentAdmin.html)使用 phone-container（移動設備優先）
+   - 其他主辦端頁面使用 desktop-container（桌面設備優先）
+
 ## 添加新頁面步驟
 
 1. 創建新的 HTML 頁面文件
 2. 在 [index.html](mdc:index.html) 中的適當 `devices-container` 區塊下添加新的 iframe 結構
-3. 確保新頁面使用正確的樣式和導航設計，與現有頁面保持一致
+3. 根據頁面類型選擇適當的容器（phone-container 或 desktop-container）
+4. 確保新頁面使用正確的樣式和導航設計，與現有頁面保持一致
 

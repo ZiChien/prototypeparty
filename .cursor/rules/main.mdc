@@ -20,7 +20,7 @@ alwaysApply: true
         
     2.商家端頁面需求 [booth.mdc](mdc:.cursor/rules/booth.mdc)
         ### 收款頁 (booth/boothReceive.html)
-        ### 收款紀錄 (booth/boothGame.html)
+        ### 任務頁 (booth/boothGame.html)
         ### 攤販管理 (booth/boothSetting.html)
         ### 攤位個人帳號中心 (booth/boothAccount.html)
 
