@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攤位頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen pb-20">
+    <!-- 頂部導航欄 -->
+    <header class="sticky top-0 z-10 bg-white shadow-sm">
+        <div class="flex justify-between items-center p-4">
+            <h1 class="text-xl font-semibold">攤位瀏覽</h1>
+        </div>
+    </header>
+
+    <!-- 攤位地圖區域 -->
+    <div class="relative w-full aspect-[16/9] bg-gray-100">
+        <img src="https://images.unsplash.com/photo-1577979749830-f1d742b96791?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+             alt="園遊會地圖" 
+             class="w-full h-full object-cover">
+        <!-- 地圖上的攤位標記 -->
+        <div class="absolute top-[30%] left-[20%] w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="openBoothDetails('booth1')">
+            <span>A1</span>
+        </div>
+        <div class="absolute top-[25%] left-[40%] w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="openBoothDetails('booth2')">
+            <span>B1</span>
+        </div>
+        <div class="absolute top-[40%] left-[60%] w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="openBoothDetails('booth3')">
+            <span>C1</span>
+        </div>
+        <div class="absolute top-[60%] left-[30%] w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="openBoothDetails('booth4')">
+            <span>D1</span>
+        </div>
+        <div class="absolute top-[70%] left-[50%] w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="openBoothDetails('booth5')">
+            <span>E1</span>
+        </div>
+    </div>
+
+    <!-- 攤位類別篩選器 -->
+    <div class="px-4 py-3">
+        <div class="flex overflow-x-auto space-x-2 py-2 no-scrollbar">
+            <button id="all-category" class="category-btn px-4 py-1.5 rounded-full bg-blue-500 text-white text-sm font-medium whitespace-nowrap">
+                全部
+            </button>
+            <button id="food-category" class="category-btn px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-sm font-medium whitespace-nowrap">
+                美食區
+            </button>
+            <button id="game-category" class="category-btn px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-sm font-medium whitespace-nowrap">
+                遊戲區
+            </button>
+            <button id="craft-category" class="category-btn px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-sm font-medium whitespace-nowrap">
+                文創區
+            </button>
+            <button id="performance-category" class="category-btn px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-sm font-medium whitespace-nowrap">
+                表演區
+            </button>
+        </div>
+    </div>
+
+    <!-- 攤位列表 -->
+    <div class="px-4">
+        <h2 class="text-lg font-semibold mb-3">攤位列表</h2>
+        
+        <!-- 攤位項目 -->
+        <div class="booth-item bg-white rounded-xl shadow-sm p-4 mb-3" onclick="openBoothDetails('booth1')">
+            <div class="flex items-start">
+                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                     alt="甜點天堂" 
+                     class="w-20 h-20 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-semibold text-lg">甜點天堂</h3>
+                        <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">美食區</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">位置: A1區</p>
+                    <p class="text-sm text-gray-600 mt-1">各式自製甜點，提供多樣化的選擇</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booth-item bg-white rounded-xl shadow-sm p-4 mb-3" onclick="openBoothDetails('booth2')">
+            <div class="flex items-start">
+                <img src="https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                     alt="飲料補給站" 
+                     class="w-20 h-20 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-semibold text-lg">飲料補給站</h3>
+                        <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">美食區</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">位置: B1區</p>
+                    <p class="text-sm text-gray-600 mt-1">新鮮調製的果汁與特調飲品</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booth-item bg-white rounded-xl shadow-sm p-4 mb-3" onclick="openBoothDetails('booth3')">
+            <div class="flex items-start">
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                     alt="夢幻投籃機" 
+                     class="w-20 h-20 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-semibold text-lg">夢幻投籃機</h3>
+                        <span class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">遊戲區</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">位置: C1區</p>
+                    <p class="text-sm text-gray-600 mt-1">挑戰投籃遊戲，高分可獲得精美禮品</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booth-item bg-white rounded-xl shadow-sm p-4 mb-3" onclick="openBoothDetails('booth4')">
+            <div class="flex items-start">
+                <img src="https://images.unsplash.com/photo-1543157145-f78c636d023d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                     alt="創意工作坊" 
+                     class="w-20 h-20 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-semibold text-lg">創意工作坊</h3>
+                        <span class="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">文創區</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">位置: D1區</p>
+                    <p class="text-sm text-gray-600 mt-1">手工皮革製作，打造獨一無二的小物</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booth-item bg-white rounded-xl shadow-sm p-4 mb-3" onclick="openBoothDetails('booth5')">
+            <div class="flex items-start">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                     alt="迷你音樂舞台" 
+                     class="w-20 h-20 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-semibold text-lg">迷你音樂舞台</h3>
+                        <span class="bg-yellow-100 text-yellow-600 text-xs px-2 py-1 rounded-full">表演區</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">位置: E1區</p>
+                    <p class="text-sm text-gray-600 mt-1">學生自由演出時段，展現音樂才華</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 攤位詳情Modal -->
+    <div id="booth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-md rounded-xl overflow-hidden">
+            <div class="relative">
+                <img id="modal-image" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                     alt="攤位圖片" 
+                     class="w-full h-48 object-cover">
+                <button onclick="closeBoothModal()" class="absolute top-4 right-4 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
+                    <i class="fas fa-times text-gray-600"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-start">
+                    <h3 id="modal-title" class="text-xl font-bold">攤位名稱</h3>
+                    <span id="modal-category" class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">類別</span>
+                </div>
+                
+                <div class="flex items-center mt-4 mb-2">
+                    <i class="fas fa-map-marker-alt text-gray-500 mr-2"></i>
+                    <p id="modal-location" class="text-sm text-gray-600">位置資訊</p>
+                </div>
+                
+                <div class="flex items-center mb-4">
+                    <i class="far fa-clock text-gray-500 mr-2"></i>
+                    <p id="modal-time" class="text-sm text-gray-600">營業時間</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-medium mb-2">攤位介紹</h4>
+                    <p id="modal-description" class="text-sm text-gray-600">攤位詳細介紹內容</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-medium mb-2">攤主資訊</h4>
+                    <p id="modal-owner" class="text-sm text-gray-600">攤主資訊</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 任務QR Code Modal -->
+    <div id="qrcode-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden p-4">
+            <div class="text-center mb-4">
+                <h3 class="text-xl font-bold mb-1">掃描任務QR Code</h3>
+                <p class="text-sm text-gray-600">掃描以完成「探索美食」任務</p>
+            </div>
+            
+            <div class="flex justify-center mb-4">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=booth-task-1" alt="任務QR Code" class="w-48 h-48">
+            </div>
+            
+            <button onclick="closeQRCodeModal()" class="w-full py-2.5 bg-gray-800 text-white font-medium rounded-lg hover:bg-gray-900 transition">
+                關閉
+            </button>
+        </div>
+    </div>
+
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200">
+        <div class="flex justify-around">
+            <a href="guestHome.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首頁</span>
+            </a>
+            <a href="guestBooth.html" class="flex flex-col items-center py-2 px-3 text-blue-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位</span>
+            </a>
+            <a href="guestGame.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="guestPayment.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-wallet text-xl"></i>
+                <span class="text-xs mt-1">支付</span>
+            </a>
+            <a href="guestAccount.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // 攤位類別篩選
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const boothItems = document.querySelectorAll('.booth-item');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 重置所有按鈕樣式
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                
+                // 設置當前按鈕樣式
+                this.classList.remove('bg-gray-200', 'text-gray-700');
+                this.classList.add('bg-blue-500', 'text-white');
+                
+                const category = this.id.replace('-category', '');
+                
+                // 篩選攤位
+                if (category === 'all') {
+                    boothItems.forEach(item => {
+                        item.classList.remove('hidden');
+                    });
+                } else {
+                    boothItems.forEach(item => {
+                        const boothCategory = item.querySelector('span').textContent.toLowerCase();
+                        if (category === 'food' && boothCategory.includes('美食')) {
+                            item.classList.remove('hidden');
+                        } else if (category === 'game' && boothCategory.includes('遊戲')) {
+                            item.classList.remove('hidden');
+                        } else if (category === 'craft' && boothCategory.includes('文創')) {
+                            item.classList.remove('hidden');
+                        } else if (category === 'performance' && boothCategory.includes('表演')) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // 攤位詳情Modal
+        const boothModal = document.getElementById('booth-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCategory = document.getElementById('modal-category');
+        const modalLocation = document.getElementById('modal-location');
+        const modalTime = document.getElementById('modal-time');
+        const modalDescription = document.getElementById('modal-description');
+        const modalOwner = document.getElementById('modal-owner');
+        const modalImage = document.getElementById('modal-image');
+        
+        function openBoothDetails(boothId) {
+            // 根據不同攤位ID設置不同的詳情內容
+            if (boothId === 'booth1') {
+                modalTitle.textContent = '甜點天堂';
+                modalCategory.textContent = '美食區';
+                modalCategory.className = 'bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full';
+                modalLocation.textContent = 'A1區 (中央廣場北側)';
+                modalTime.textContent = '10:00-17:00';
+                modalDescription.textContent = '提供多種手工製作的精緻甜點，包括馬卡龍、蛋糕、餅乾等。我們使用高品質原料，搭配創意的口味組合，每一口都是滿滿的幸福感。';
+                modalOwner.textContent = '班級: 高二3班 | 負責人: 王小明';
+                modalImage.src = 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (boothId === 'booth2') {
+                modalTitle.textContent = '飲料補給站';
+                modalCategory.textContent = '美食區';
+                modalCategory.className = 'bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full';
+                modalLocation.textContent = 'B1區 (中央廣場東側)';
+                modalTime.textContent = '10:00-17:00';
+                modalDescription.textContent = '現場新鮮調製的特色飲品，包括水果茶、氣泡飲、特調咖啡等。使用天然食材，無人工添加物，讓您在炎炎夏日中清涼一下。';
+                modalOwner.textContent = '班級: 高二5班 | 負責人: 李小花';
+                modalImage.src = 'https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (boothId === 'booth3') {
+                modalTitle.textContent = '夢幻投籃機';
+                modalCategory.textContent = '遊戲區';
+                modalCategory.className = 'bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full';
+                modalLocation.textContent = 'C1區 (操場區域)';
+                modalTime.textContent = '10:00-16:30';
+                modalDescription.textContent = '挑戰30秒內投中籃框的次數！根據投中次數獲得不同級別的獎品。最高紀錄可獲得神秘大獎！適合所有年齡段的訪客參與。';
+                modalOwner.textContent = '班級: 體育社 | 負責人: 張大力';
+                modalImage.src = 'https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (boothId === 'booth4') {
+                modalTitle.textContent = '創意工作坊';
+                modalCategory.textContent = '文創區';
+                modalCategory.className = 'bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full';
+                modalLocation.textContent = 'D1區 (藝術大樓前)';
+                modalTime.textContent = '10:30-16:00';
+                modalDescription.textContent = '提供皮革小物DIY體驗，在專業指導下完成屬於自己的鑰匙圈、小錢包等作品。所有材料和工具均由攤位提供，製作時間約30分鐘。';
+                modalOwner.textContent = '班級: 手作社 | 負責人: 陳美美';
+                modalImage.src = 'https://images.unsplash.com/photo-1543157145-f78c636d023d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (boothId === 'booth5') {
+                modalTitle.textContent = '迷你音樂舞台';
+                modalCategory.textContent = '表演區';
+                modalCategory.className = 'bg-yellow-100 text-yellow-600 text-xs px-2 py-1 rounded-full';
+                modalLocation.textContent = 'E1區 (中央廣場南側)';
+                modalTime.textContent = '11:00-16:00';
+                modalDescription.textContent = '開放式舞台供學生展示音樂才華。可以事先報名演出時段，或現場參與即興演出。提供基本樂器和音響設備。';
+                modalOwner.textContent = '班級: 音樂社 | 負責人: 林小音';
+                modalImage.src = 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            }
+            
+            boothModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeBoothModal() {
+            boothModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 點擊彈窗外部關閉
+        boothModal.addEventListener('click', function(e) {
+            if (e.target === boothModal) {
+                closeBoothModal();
+            }
+        });
+    </script>
+</body>
+</html> 

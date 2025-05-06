@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 min-h-screen pb-20">
+    <!-- 頂部用戶信息卡片 -->
+    <section class="bg-gradient-to-r from-gray-600 to-gray-800 text-white p-6 pb-20 rounded-b-3xl shadow-md">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-xl font-bold">個人中心</h1>
+        </div>
+        <div class="flex items-center">
+            <div class="w-20 h-20 bg-white rounded-full overflow-hidden shadow-md mr-4">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="用戶頭像" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h2 class="text-xl font-bold">陳小明</h2>
+                <p class="text-blue-100 mt-1">遊客 ID: #12345</p>
+                <div class="flex items-center mt-2 bg-white bg-opacity-20 rounded-full px-3 py-1">
+                    <i class="fas fa-medal text-yellow-300 mr-1"></i>
+                    <span class="text-sm">積分 1250</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用戶數據卡片 -->
+    <section class="px-6 -mt-10 mb-6">
+        <div class="bg-white rounded-xl shadow-md p-4 flex justify-between">
+            <div class="text-center flex-1 border-r border-gray-100">
+                <div class="text-lg font-bold text-blue-600">12</div>
+                <div class="text-xs text-gray-500">已參與活動</div>
+            </div>
+            <div class="text-center flex-1 border-r border-gray-100">
+                <div class="text-lg font-bold text-blue-600">8</div>
+                <div class="text-xs text-gray-500">已完成任務</div>
+            </div>
+            <div class="text-center flex-1">
+                <div class="text-lg font-bold text-blue-600">5</div>
+                <div class="text-xs text-gray-500">點數餘額</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能區塊 -->
+    <section class="px-6 mb-6">
+        <!-- 我的任務進度 -->
+        <div class="mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-semibold text-gray-800">任務進度</h3>
+                <a href="guestGame.html" class="text-xs text-blue-500">前往任務頁</a>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm">
+                <div class="mb-3">
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="text-sm font-medium">美食探索闖關</h4>
+                        <span class="text-xs text-orange-500">進行中 2/5</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-orange-500 h-2 rounded-full" style="width: 40%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="text-sm font-medium">遊戲挑戰闖關</h4>
+                        <span class="text-xs text-green-500">已完成 5/5</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 已報名的活動 -->
+        <div class="mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-semibold text-gray-800">已報名的活動</h3>
+                <button class="text-xs text-blue-500" onclick="showActivitiesModal()">查看全部</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm">
+                <div class="space-y-3">
+                    <div class="flex items-center" onclick="goToActivityDetail('activity1')">
+                        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                            alt="園遊會開幕式" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">園遊會開幕式</h4>
+                            <p class="text-xs text-gray-500">10月15日 09:00-10:00</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    <div class="flex items-center" onclick="goToActivityDetail('activity2')">
+                        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                            alt="才藝表演比賽" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">才藝表演比賽</h4>
+                            <p class="text-xs text-gray-500">10月15日 14:00-16:00</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交易記錄 -->
+        <div class="mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-semibold text-gray-800">交易記錄</h3>
+                <button class="text-xs text-blue-500" onclick="showOrderHistoryModal()">查看全部</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm">
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mr-3">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">甜點天堂</h4>
+                            <p class="text-xs text-gray-500">今天 12:30</p>
+                        </div>
+                        <span class="text-red-500 text-sm font-medium">-100</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500 mr-3">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">點數儲值</h4>
+                            <p class="text-xs text-gray-500">今天 11:15</p>
+                        </div>
+                        <span class="text-green-500 text-sm font-medium">+200</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 設定模態框 -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold">個人設定</h3>
+                    <button onclick="closeSettingsModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
+                        <i class="fas fa-times text-gray-500"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-user text-gray-400 w-6"></i>
+                            <span class="ml-3">個人資料</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-bell text-gray-400 w-6"></i>
+                            <span class="ml-3">通知設定</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-lock text-gray-400 w-6"></i>
+                            <span class="ml-3">隱私設定</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-globe text-gray-400 w-6"></i>
+                            <span class="ml-3">語言設定</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    <div class="flex justify-between items-center py-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-info-circle text-gray-400 w-6"></i>
+                            <span class="ml-3">關於我們</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 已報名活動模態框 -->
+    <div id="activities-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold">已報名的活動</h3>
+                    <button onclick="closeActivitiesModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
+                        <i class="fas fa-times text-gray-500"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="space-y-4">
+                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                            alt="園遊會開幕式" class="w-14 h-14 rounded-lg object-cover mr-3">
+                        <div class="flex-1">
+                            <h4 class="font-medium">園遊會開幕式</h4>
+                            <p class="text-xs text-gray-500 mt-1">10月15日 09:00-10:00</p>
+                            <p class="text-xs text-gray-500 mt-1">中央廣場，有精彩表演及摸彩活動</p>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">已報名</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                            alt="才藝表演比賽" class="w-14 h-14 rounded-lg object-cover mr-3">
+                        <div class="flex-1">
+                            <h4 class="font-medium">才藝表演比賽</h4>
+                            <p class="text-xs text-gray-500 mt-1">10月15日 14:00-16:00</p>
+                            <p class="text-xs text-gray-500 mt-1">活動中心，優勝者可獲得精美獎品</p>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">已報名</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                            alt="美食品嚐會" class="w-14 h-14 rounded-lg object-cover mr-3">
+                        <div class="flex-1">
+                            <h4 class="font-medium">美食品嚐會</h4>
+                            <p class="text-xs text-gray-500 mt-1">10月16日 12:00-14:00</p>
+                            <p class="text-xs text-gray-500 mt-1">美食區，限量品嚐各國特色小吃</p>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">已報名</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 交易記錄模態框 -->
+    <div id="order-history-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold">交易記錄</h3>
+                    <button onclick="closeOrderHistoryModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
+                        <i class="fas fa-times text-gray-500"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex mb-4">
+                    <button class="flex-1 py-2 text-center text-blue-500 border-b-2 border-blue-500 font-medium">全部</button>
+                    <button class="flex-1 py-2 text-center text-gray-500">支出</button>
+                    <button class="flex-1 py-2 text-center text-gray-500">收入</button>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center py-3 border-b border-gray-100">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mr-3">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">甜點天堂</h4>
+                            <p class="text-xs text-gray-500">今天 12:30</p>
+                        </div>
+                        <span class="text-red-500 text-sm font-medium">-100</span>
+                    </div>
+                    <div class="flex items-center py-3 border-b border-gray-100">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500 mr-3">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">點數儲值</h4>
+                            <p class="text-xs text-gray-500">今天 11:15</p>
+                        </div>
+                        <span class="text-green-500 text-sm font-medium">+200</span>
+                    </div>
+                    <div class="flex items-center py-3 border-b border-gray-100">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mr-3">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">夢幻投籃機</h4>
+                            <p class="text-xs text-gray-500">昨天 15:45</p>
+                        </div>
+                        <span class="text-red-500 text-sm font-medium">-50</span>
+                    </div>
+                    <div class="flex items-center py-3 border-b border-gray-100">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 mr-3">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">任務獎勵</h4>
+                            <p class="text-xs text-gray-500">昨天 14:20</p>
+                        </div>
+                        <span class="text-green-500 text-sm font-medium">+150</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 反饋模態框 -->
+    <div id="feedback-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl">
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold">意見反饋</h3>
+                    <button onclick="closeFeedbackModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
+                        <i class="fas fa-times text-gray-500"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">反饋類型</label>
+                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>功能建議</option>
+                        <option>問題回報</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">反饋內容</label>
+                    <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入您的反饋內容..."></textarea>
+                </div>
+                <button class="w-full py-3 bg-blue-500 text-white rounded-lg font-medium">
+                    提交反饋
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200">
+        <div class="flex justify-around">
+            <a href="guestHome.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首頁</span>
+            </a>
+            <a href="guestBooth.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位</span>
+            </a>
+            <a href="guestGame.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="guestPayment.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-wallet text-xl"></i>
+                <span class="text-xs mt-1">支付</span>
+            </a>
+            <a href="guestAccount.html" class="flex flex-col items-center py-2 px-3 text-blue-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // 設定模態框
+        function openSettingsModal() {
+            document.getElementById('settings-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSettingsModal() {
+            document.getElementById('settings-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 已報名活動模態框
+        function showActivitiesModal() {
+            document.getElementById('activities-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeActivitiesModal() {
+            document.getElementById('activities-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 交易記錄模態框
+        function showOrderHistoryModal() {
+            document.getElementById('order-history-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeOrderHistoryModal() {
+            document.getElementById('order-history-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 反饋模態框
+        function openFeedbackModal() {
+            document.getElementById('feedback-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeFeedbackModal() {
+            document.getElementById('feedback-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 幫助中心
+        function openHelpModal() {
+            // 實際應用中可以導航到幫助中心頁面
+            alert('這將打開幫助中心頁面');
+        }
+        
+        // 頁面導航
+        function goToPage(url) {
+            window.location.href = url;
+        }
+        
+        // 前往活動詳情
+        function goToActivityDetail(activityId) {
+            window.location.href = `guestHome.html?activity=${activityId}`;
+        }
+    </script>
+</body>
+
+</html> 

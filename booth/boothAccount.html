@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攤位帳號</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 頂部導航欄 -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">攤位帳號</h1>
+        </div>
+    </header>
+
+    <!-- 主要內容 -->
+    <main class="px-4 py-6 pb-20">
+        <!-- 攤位基本資訊 -->
+        <section class="mb-6">
+            <div class="bg-white rounded-xl shadow-sm p-6 flex flex-col items-center">
+                <div class="w-24 h-24 bg-gray-200 rounded-full overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" 
+                         alt="攤位照片" class="w-full h-full object-cover">
+                </div>
+                <h2 class="text-xl font-bold mb-1">美味小食攤</h2>
+                <div class="flex space-x-3">
+                    <div class="flex flex-col items-center">
+                        <p class="font-medium">5,280</p>
+                        <p class="text-gray-500 text-xs">總收款點數</p>
+                    </div>
+                    <div class="w-px bg-gray-200"></div>
+                    <div class="flex flex-col items-center">
+                        <p class="font-medium">78</p>
+                        <p class="text-gray-500 text-xs">總交易次數</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 攤位聯絡資訊 -->
+        <section class="mb-6">
+            <div class="bg-white rounded-xl shadow-sm p-5">
+                <h3 class="text-lg font-semibold mb-4">聯絡資訊</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-gray-500 text-xs">負責人</p>
+                        <p class="font-medium">張小明</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-500 text-xs">聯絡電話</p>
+                        <p class="font-medium">0912-345-678</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-500 text-xs">電子郵件</p>
+                        <p class="font-medium">booth123@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 快速功能 -->
+        <section class="mb-6">
+            <div class="bg-white rounded-xl shadow-sm p-5">
+                <h3 class="text-lg font-semibold mb-4">快速功能</h3>
+                
+                <div class="grid grid-cols-3 gap-3">
+                    <a href="boothReceive.html" class="flex flex-col items-center justify-center p-3 bg-gray-50 rounded-lg">
+                        <i class="fas fa-qrcode text-blue-500 text-xl mb-2"></i>
+                        <p class="text-xs font-medium">收款碼</p>
+                    </a>
+                    <a href="boothGame.html" class="flex flex-col items-center justify-center p-3 bg-gray-50 rounded-lg">
+                        <i class="fas fa-tasks text-blue-500 text-xl mb-2"></i>
+                        <p class="text-xs font-medium">集章任務</p>
+                    </a>
+                    <a href="boothSetting.html" class="flex flex-col items-center justify-center p-3 bg-gray-50 rounded-lg">
+                        <i class="fas fa-store text-blue-500 text-xl mb-2"></i>
+                        <p class="text-xs font-medium">攤位管理</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-2">
+        <div class="grid grid-cols-4 gap-1 max-w-md mx-auto">
+            <a href="boothReceive.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-qrcode text-xl"></i>
+                <span class="text-xs mt-1">收款</span>
+            </a>
+            <a href="boothGame.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="boothSetting.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位管理</span>
+            </a>
+            <a href="boothAccount.html" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-user-circle text-xl"></i>
+                <span class="text-xs mt-1">帳號</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html> 

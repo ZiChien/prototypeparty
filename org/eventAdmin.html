@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動設定</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 側邊導航欄 -->
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-white shadow-md fixed h-full">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold">園遊會管理</h1>
+                <p class="text-gray-500 text-sm">主辦方後台</p>
+            </div>
+            <nav class="mt-4">
+                <ul class="space-y-2 px-4">
+                    <li>
+                        <a href="eventAdmin.html" class="flex items-center p-3 text-blue-500 bg-blue-50 rounded-lg">
+                            <i class="fas fa-calendar-alt mr-3"></i>
+                            <span>活動設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boothAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-store mr-3"></i>
+                            <span>攤位設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="paymentAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-coins mr-3"></i>
+                            <span>點數管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="userAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-users mr-3"></i>
+                            <span>遊客管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="gameAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-gamepad mr-3"></i>
+                            <span>任務管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="absolute bottom-0 w-full p-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-500"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">管理員</p>
+                        <p class="text-xs text-gray-500">admin@example.com</p>
+                    </div>
+                </div>
+                <button class="mt-4 w-full py-2 bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-sign-out-alt mr-2"></i> 登出
+                </button>
+            </div>
+        </aside>
+
+        <!-- 主要內容區域 -->
+        <main class="flex-1 ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">活動設定</h2>
+                <button onclick="showAddEventModal()" class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i> 新增活動
+                </button>
+            </div>
+
+            <!-- 活動列表 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-4 border-b">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold">活動列表</h3>
+                        <div class="relative">
+                            <input type="text" placeholder="搜尋活動..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">活動名稱</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">時間</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">地點</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">報名狀態</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- 活動項目 1 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-200 mr-3">
+                                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                                                 class="w-full h-full object-cover" alt="開幕表演">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">開幕表演</div>
+                                            <div class="text-sm text-gray-500">音樂與舞蹈表演</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div>2023/06/10 10:00</div>
+                                    <div class="text-sm text-gray-500">至 11:30</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    中央舞台
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium">開放報名</span>
+                                        <span class="text-xs text-gray-500">48/100 人</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editEvent(1)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="deleteEvent(1)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- 活動項目 2 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-200 mr-3">
+                                            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                                                 class="w-full h-full object-cover" alt="趣味競賽">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">趣味競賽</div>
+                                            <div class="text-sm text-gray-500">親子接力遊戲</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div>2023/06/10 13:00</div>
+                                    <div class="text-sm text-gray-500">至 15:00</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    操場區域
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium">開放報名</span>
+                                        <span class="text-xs text-gray-500">32/50 人</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editEvent(2)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="deleteEvent(2)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- 活動項目 3 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-200 mr-3">
+                                            <img src="https://images.unsplash.com/photo-1594122230689-45899d9a6f25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                                                 class="w-full h-full object-cover" alt="頒獎典禮">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">頒獎典禮</div>
+                                            <div class="text-sm text-gray-500">闖關遊戲獲獎者頒獎</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div>2023/06/10 16:30</div>
+                                    <div class="text-sm text-gray-500">至 17:30</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    中央舞台
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium text-gray-400">未開放報名</span>
+                                        <span class="text-xs text-gray-500">0/150 人</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editEvent(3)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="deleteEvent(3)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4 border-t">
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-500">顯示 1 至 3 項，共 3 項</p>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">上一頁</button>
+                            <button class="px-3 py-1 bg-blue-50 border border-blue-500 text-blue-500 rounded-lg">1</button>
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">下一頁</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 新增活動 Modal -->
+    <div id="addEventModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">新增活動</h3>
+                <button onclick="closeAddEventModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="event-name">活動名稱</label>
+                    <input type="text" id="event-name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入活動名稱">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="event-desc">活動描述</label>
+                    <textarea id="event-desc" rows="3" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入活動描述"></textarea>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="event-image">活動圖片</label>
+                    <div class="flex items-center space-x-3">
+                        <div id="image-preview" class="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                            <i id="upload-icon" class="fas fa-image text-gray-400 text-2xl"></i>
+                            <img id="preview-img" src="" alt="預覽圖" class="w-full h-full object-cover hidden">
+                        </div>
+                        <div class="flex-1">
+                            <div class="relative">
+                                <input type="file" id="event-image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" onchange="previewImage(event)">
+                                <div class="bg-white px-4 py-2 border border-gray-300 rounded-lg text-sm flex items-center justify-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    <span>上傳圖片</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">建議尺寸: 1200 x 630 像素，檔案大小不超過 2MB</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="event-start">開始時間</label>
+                        <input type="datetime-local" id="event-start" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="event-end">結束時間</label>
+                        <input type="datetime-local" id="event-end" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="event-location">活動地點</label>
+                    <input type="text" id="event-location" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入活動地點">
+                </div>
+
+                <!-- 報名設定區塊 -->
+                <div class="border-t pt-4 mt-4">
+                    <h4 class="font-medium text-gray-800 mb-3">報名設定</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm font-medium text-gray-700" for="event-registration">開放報名</label>
+                            <div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out">
+                                <input type="checkbox" id="event-registration" class="absolute w-0 h-0 opacity-0">
+                                <label for="event-registration" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out" onclick="toggleRegistration()">
+                                    <span class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ease-in-out transform"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="registration-settings" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1" for="event-capacity">報名人數上限</label>
+                                <input type="number" id="event-capacity" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入人數上限" min="1" value="100">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1" for="registration-deadline">報名截止時間</label>
+                                <input type="datetime-local" id="registration-deadline" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1" for="registration-notes">報名須知</label>
+                                <textarea id="registration-notes" rows="2" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="報名相關注意事項"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end space-x-3">
+                <button onclick="closeAddEventModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">
+                    取消
+                </button>
+                <button onclick="saveEvent()" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    儲存活動
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isRegistrationOpen = false;
+        let selectedImage = null;
+        
+        // 新增活動Modal相關函數
+        function showAddEventModal() {
+            document.getElementById('addEventModal').classList.remove('hidden');
+            // 初始化報名設定區塊為隱藏
+            toggleRegistrationSettings();
+            // 重置圖片預覽
+            resetImagePreview();
+        }
+        
+        function closeAddEventModal() {
+            document.getElementById('addEventModal').classList.add('hidden');
+        }
+        
+        // 預覽上傳的圖片
+        function previewImage(event) {
+            const file = event.target.files[0];
+            selectedImage = file;
+            
+            if (file) {
+                const reader = new FileReader();
+                const previewImg = document.getElementById('preview-img');
+                const uploadIcon = document.getElementById('upload-icon');
+                
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    previewImg.classList.remove('hidden');
+                    uploadIcon.classList.add('hidden');
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // 重置圖片預覽
+        function resetImagePreview() {
+            const previewImg = document.getElementById('preview-img');
+            const uploadIcon = document.getElementById('upload-icon');
+            const fileInput = document.getElementById('event-image');
+            
+            previewImg.src = '';
+            previewImg.classList.add('hidden');
+            uploadIcon.classList.remove('hidden');
+            fileInput.value = '';
+            selectedImage = null;
+        }
+        
+        // 切換報名狀態
+        function toggleRegistration() {
+            const checkbox = document.getElementById('event-registration');
+            isRegistrationOpen = checkbox.checked;
+            
+            // 更新開關樣式
+            const toggleLabel = document.querySelector('.toggle-label');
+            const dot = document.querySelector('.dot');
+            
+            if (checkbox.checked) {
+                toggleLabel.classList.add('bg-blue-500');
+                toggleLabel.classList.remove('bg-gray-300');
+                dot.classList.add('translate-x-6');
+            } else {
+                toggleLabel.classList.remove('bg-blue-500');
+                toggleLabel.classList.add('bg-gray-300');
+                dot.classList.remove('translate-x-6');
+            }
+            
+            // 切換報名設定區塊的顯示
+            toggleRegistrationSettings();
+        }
+        
+        // 顯示/隱藏報名設定區塊
+        function toggleRegistrationSettings() {
+            const checkbox = document.getElementById('event-registration');
+            const settings = document.getElementById('registration-settings');
+            
+            if (checkbox.checked) {
+                settings.classList.remove('hidden');
+            } else {
+                settings.classList.add('hidden');
+            }
+        }
+        
+        // 儲存活動
+        function saveEvent() {
+            // 收集報名相關數據
+            const eventData = {
+                name: document.getElementById('event-name').value,
+                description: document.getElementById('event-desc').value,
+                image: selectedImage ? selectedImage.name : null,
+                startTime: document.getElementById('event-start').value,
+                endTime: document.getElementById('event-end').value,
+                location: document.getElementById('event-location').value,
+                registration: {
+                    isOpen: document.getElementById('event-registration').checked,
+                    capacity: document.getElementById('event-capacity').value,
+                    deadline: document.getElementById('registration-deadline').value,
+                    notes: document.getElementById('registration-notes').value
+                }
+            };
+            
+            // 模擬儲存操作
+            console.log('活動資料:', eventData);
+            alert('活動已儲存');
+            closeAddEventModal();
+        }
+        
+        // 編輯活動
+        function editEvent(id) {
+            // 模擬編輯操作
+            showAddEventModal();
+            // 在實際應用中，此處應該載入活動資料
+            
+            // 假設載入活動資料 (模擬)
+            setTimeout(() => {
+                // 填充基本資料
+                document.getElementById('event-name').value = ['開幕表演', '趣味競賽', '頒獎典禮'][id-1];
+                document.getElementById('event-desc').value = ['音樂與舞蹈表演', '親子接力遊戲', '闖關遊戲獲獎者頒獎'][id-1];
+                
+                // 設置報名資料
+                const checkbox = document.getElementById('event-registration');
+                checkbox.checked = id !== 3; // 前兩個是開放報名的
+                toggleRegistration();
+                
+                document.getElementById('event-capacity').value = id === 1 ? '100' : id === 2 ? '50' : '150';
+                
+                // 模擬載入圖片
+                const previewImg = document.getElementById('preview-img');
+                const uploadIcon = document.getElementById('upload-icon');
+                const imageSrc = id === 1 
+                    ? 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7' 
+                    : id === 2 
+                        ? 'https://images.unsplash.com/photo-1517649763962-0c623066013b'
+                        : 'https://images.unsplash.com/photo-1594122230689-45899d9a6f25';
+                
+                previewImg.src = imageSrc;
+                previewImg.classList.remove('hidden');
+                uploadIcon.classList.add('hidden');
+            }, 100);
+        }
+        
+        // 刪除活動
+        function deleteEvent(id) {
+            if (confirm('確定要刪除此活動嗎？')) {
+                // 模擬刪除操作
+                alert(`活動 ID: ${id} 已刪除`);
+            }
+        }
+        
+        // 初始化頁面時執行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 預設報名設定區塊隱藏
+            const settings = document.getElementById('registration-settings');
+            if (settings) {
+                settings.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html> 

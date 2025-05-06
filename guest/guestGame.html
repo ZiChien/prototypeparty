@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任務頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen pb-20">
+    <!-- 頂部導航欄 -->
+    <header class="sticky top-0 z-10 bg-white shadow-sm">
+        <div class="flex justify-between items-center p-4">
+            <h1 class="text-xl font-semibold">任務中心</h1>
+        </div>
+    </header>
+
+    <!-- 頂部掃描QR Code提示 -->
+    <div class="bg-blue-50 text-blue-700 p-3 mx-4 my-3 rounded-xl flex gap-4 items-center justify-between text-sm">
+        <div class="flex items-center">
+            <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+            <p>掃描攤位提供的QR Code來完成任務</p>
+        </div>
+        <button id="scan-qr-btn" class="w-10 h-10 p-10 flex items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
+            <i class="fas fa-qrcode text-3xl"></i>
+        </button>
+    </div>
+
+    <!-- 任務列表 -->
+    <div class="px-4 pb-4">
+        <!-- 美食探索闖關 -->
+        <div class="bg-white rounded-xl shadow-sm mb-4 overflow-hidden">
+            <div class="p-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="美食探索闖關" 
+                         class="w-12 h-12 rounded-full object-cover mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-lg">美食探索闖關</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center grow">
+                                <div class="w-full bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 40%"></div>
+                                </div>
+                                <span class="text-xs text-gray-500">2/5關</span>
+                            </div>
+                            <span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">進行中</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">參觀五個不同類型的美食攤位，收集美食經驗值</p>
+                
+                <!-- 關卡列表 -->
+                <div class="space-y-3">
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('task1')">
+                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="甜點天堂" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">甜點天堂</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">訪問甜點攤位並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">20分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('task2')">
+                        <img src="https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="飲料補給站" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">飲料補給站</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">訪問飲料攤位並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">20分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('task3')">
+                        <img src="https://images.unsplash.com/photo-1617196035154-421e3b688cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="日式小吃" 
+                             class="w-8 h-8 rounded-full object-cover mr-3 opacity-50">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">日式小吃</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">訪問日式小吃攤位並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">20分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('task4')">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="中式料理" 
+                             class="w-8 h-8 rounded-full object-cover mr-3 opacity-50">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">中式料理</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">訪問中式料理攤位並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">20分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('task5')">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="異國風味" 
+                             class="w-8 h-8 rounded-full object-cover mr-3 opacity-50">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">異國風味</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">訪問異國風味攤位並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">20分</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 美食探索闖關的完成獎勵區域 -->
+                <div class="mt-3 p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition cursor-pointer" onclick="showRewardRedeemModal('美食探索闖關', '200點園遊會幣 + 限定美食勳章', false)">
+                    <div class="flex items-start">
+                        <i class="fas fa-gift text-yellow-500 mt-1 mr-2"></i>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">完成獎勵</h4>
+                            <p class="text-xs text-gray-600">獲得200點園遊會幣 + 限定美食勳章</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-yellow-500"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 遊戲挑戰闖關 -->
+        <div class="bg-white rounded-xl shadow-sm mb-4 overflow-hidden">
+            <div class="p-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="遊戲挑戰闖關" 
+                         class="w-12 h-12 rounded-full object-cover mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-lg">遊戲挑戰闖關</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center grow">    
+                                <div class="w-full bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-purple-500 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-xs text-gray-500">5/5關</span>
+                            </div>
+                            <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full">已完成</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">挑戰五個遊戲攤位，展現你的遊戲技巧</p>
+                
+                <!-- 關卡列表 -->
+                <div class="space-y-3">
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('game1')">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="夢幻投籃機" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">夢幻投籃機</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">完成投籃遊戲並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">30分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('game2')">
+                        <img src="https://images.unsplash.com/photo-1558180077-09f158c76707?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="套圈圈" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">套圈圈</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">完成套圈圈遊戲並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">30分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('game3')">
+                        <img src="https://images.unsplash.com/photo-1560513852-bc38a35a977a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="彈珠台" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">彈珠台</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">完成彈珠台遊戲並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">30分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('game4')">
+                        <img src="https://images.unsplash.com/photo-1525351159099-81893194469e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="射擊遊戲" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">射擊遊戲</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">完成射擊遊戲並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">30分</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-2 rounded-lg bg-gray-50" onclick="openTaskDetail('game5')">
+                        <img src="https://images.unsplash.com/photo-1500621242946-fa406d7d56b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="釣魚遊戲" 
+                             class="w-8 h-8 rounded-full object-cover mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium">釣魚遊戲</h4>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-gray-500">完成釣魚遊戲並掃碼</p>
+                                <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">30分</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 遊戲挑戰闖關的完成獎勵區域 -->
+                <div class="mt-3 p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition cursor-pointer" onclick="showRewardRedeemModal('遊戲挑戰闖關', '250點園遊會幣 + 神秘遊戲禮包', true)">
+                    <div class="flex items-start">
+                        <i class="fas fa-gift text-yellow-500 mt-1 mr-2"></i>
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm">完成獎勵</h4>
+                            <p class="text-xs text-gray-600">獲得250點園遊會幣 + 神秘遊戲禮包</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-yellow-500"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200">
+        <div class="flex justify-around">
+            <a href="guestHome.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首頁</span>
+            </a>
+            <a href="guestBooth.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位</span>
+            </a>
+            <a href="guestGame.html" class="flex flex-col items-center py-2 px-3 text-blue-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="guestPayment.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-wallet text-xl"></i>
+                <span class="text-xs mt-1">支付</span>
+            </a>
+            <a href="guestAccount.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 任務詳情模態框 -->
+    <div id="task-detail-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-md rounded-xl overflow-hidden">
+            <div class="relative">
+                <img id="task-modal-image" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                     alt="任務圖片" 
+                     class="w-full h-48 object-cover">
+                <button onclick="closeTaskDetail()" class="absolute top-4 right-4 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
+                    <i class="fas fa-times text-gray-600"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-start">
+                    <h3 id="task-modal-title" class="text-xl font-bold">任務名稱</h3>
+                    <div class="flex items-center">
+                        <span id="task-modal-status" class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full mr-2">已完成</span>
+                        <span id="task-modal-points" class="bg-yellow-100 text-yellow-600 text-xs px-2 py-1 rounded-full">20分</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center mt-4 mb-2">
+                    <i class="fas fa-map-marker-alt text-gray-500 mr-2"></i>
+                    <p id="task-modal-location" class="text-sm text-gray-600">攤位位置</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-medium mb-2">任務介紹</h4>
+                    <p id="task-modal-description" class="text-sm text-gray-600">任務詳細介紹內容</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-medium mb-2">任務獎勵</h4>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-coins text-yellow-500 mr-2"></i>
+                        <span id="task-modal-reward">+20 園遊會幣</span>
+                    </div>
+                </div>
+                
+                <div id="completed-task-content" class="hidden">
+                    <div class="p-3 bg-green-50 rounded-lg mb-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-lg"></i>
+                            <div>
+                                <h4 class="font-medium text-sm">已完成此任務</h4>
+                                <p class="text-xs text-gray-600">完成時間: <span id="task-modal-complete-time">2024/07/15 13:45</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="closeTaskDetail()" class="w-full py-2.5 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition">
+                        關閉
+                    </button>
+                </div>
+                
+                <div id="incomplete-task-content" class="hidden">
+                    <button onclick="showScanModal()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition flex items-center justify-center">
+                        <i class="fas fa-qrcode mr-2"></i>
+                        掃描QR碼完成任務
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 掃描QR碼模態框 -->
+    <div id="scan-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 flex flex-col items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden mb-20">
+            <div class="relative">
+                <div class="w-full aspect-square bg-gray-900 flex items-center justify-center">
+                    <div class="w-4/5 h-4/5 border-2 border-white/70 relative">
+                        <div class="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-blue-500"></div>
+                        <div class="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-blue-500"></div>
+                        <div class="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-blue-500"></div>
+                        <div class="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-blue-500"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-white text-sm">瞄準QR碼</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="closeScanModal()" class="absolute top-4 right-4 bg-white/20 rounded-full w-8 h-8 flex items-center justify-center">
+                    <i class="fas fa-times text-white"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <p class="text-sm text-gray-600 mb-4 text-center">掃描攤位提供的QR碼以完成任務</p>
+                <button onclick="simulateSuccessScan()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+                    模擬掃描成功
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 掃描成功模態框 -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden p-4">
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-3xl text-green-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-1">任務完成！</h3>
+                <p class="text-sm text-gray-600" id="success-modal-message">恭喜完成「甜點天堂」任務</p>
+            </div>
+            
+            <div class="p-3 bg-yellow-50 rounded-lg mb-4">
+                <div class="flex items-start">
+                    <i class="fas fa-coins text-yellow-500 mt-1 mr-2"></i>
+                    <div>
+                        <h4 class="font-medium text-sm">任務獎勵</h4>
+                        <p class="text-xs text-gray-600" id="success-modal-reward">+20 園遊會幣</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="closeSuccessModal()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+                確定
+            </button>
+        </div>
+    </div>
+
+    <!-- 獎勵兌換模態框 -->
+    <div id="reward-redeem-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden">
+            <div class="p-6">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-gift text-2xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1" id="reward-redeem-title">任務獎勵兌換</h3>
+                    <p class="text-sm text-gray-600" id="reward-redeem-description">完成此任務系列可獲得豐厚獎勵</p>
+                </div>
+                
+                <div class="p-3 bg-yellow-50 rounded-lg mb-5">
+                    <div class="flex items-start">
+                        <i class="fas fa-award text-yellow-500 mt-1 mr-2"></i>
+                        <div>
+                            <h4 class="font-medium text-sm">獎勵內容</h4>
+                            <p class="text-xs text-gray-600" id="reward-redeem-content">200點園遊會幣 + 限定美食勳章</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="reward-not-complete" class="mb-5 p-3 bg-gray-50 rounded-lg hidden">
+                    <div class="flex items-start">
+                        <i class="fas fa-exclamation-circle text-gray-500 mt-1 mr-2"></i>
+                        <div>
+                            <h4 class="font-medium text-sm">尚未完成</h4>
+                            <p class="text-xs text-gray-600">請完成所有任務後再來兌換獎勵</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="reward-redeemable" class="hidden">
+                    <button id="redeem-btn" class="w-full py-3 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition mb-3">
+                        立即兌換
+                    </button>
+                </div>
+                
+                <div id="reward-redeemed" class="mb-5 p-3 bg-green-50 rounded-lg hidden">
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <div>
+                            <h4 class="font-medium text-sm">已兌換</h4>
+                            <p class="text-xs text-gray-600">兌換時間: <span id="reward-redeem-time">2024/07/15 15:30</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="closeRewardRedeemModal()" class="w-full py-2.5 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 兌換成功模態框 -->
+    <div id="redeem-success-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden p-5">
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-3xl text-green-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-1">獎勵兌換成功！</h3>
+                <p class="text-sm text-gray-600" id="redeem-success-message">恭喜您成功兌換獎勵</p>
+            </div>
+            
+            <div class="p-3 bg-yellow-50 rounded-lg mb-4">
+                <div class="flex items-start">
+                    <i class="fas fa-gift text-yellow-500 mt-1 mr-2"></i>
+                    <div>
+                        <h4 class="font-medium text-sm">已獲得</h4>
+                        <p class="text-xs text-gray-600" id="redeem-success-reward">200點園遊會幣 + 限定美食勳章</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="closeRedeemSuccessModal()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+                確定
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 任務詳情模態框
+        const taskDetailModal = document.getElementById('task-detail-modal');
+        const taskModalImage = document.getElementById('task-modal-image');
+        const taskModalTitle = document.getElementById('task-modal-title');
+        const taskModalStatus = document.getElementById('task-modal-status');
+        const taskModalPoints = document.getElementById('task-modal-points');
+        const taskModalLocation = document.getElementById('task-modal-location');
+        const taskModalDescription = document.getElementById('task-modal-description');
+        const taskModalReward = document.getElementById('task-modal-reward');
+        const taskModalCompleteTime = document.getElementById('task-modal-complete-time');
+        const completedTaskContent = document.getElementById('completed-task-content');
+        const incompleteTaskContent = document.getElementById('incomplete-task-content');
+        
+        // 掃描QR碼模態框
+        const scanModal = document.getElementById('scan-modal');
+        
+        // 掃描成功模態框
+        const successModal = document.getElementById('success-modal');
+        const successModalMessage = document.getElementById('success-modal-message');
+        const successModalReward = document.getElementById('success-modal-reward');
+        
+        // QR碼掃描按鈕
+        const scanQrBtn = document.getElementById('scan-qr-btn');
+        
+        // 獎勵兌換模態框
+        const rewardRedeemModal = document.getElementById('reward-redeem-modal');
+        const rewardRedeemTitle = document.getElementById('reward-redeem-title');
+        const rewardRedeemDescription = document.getElementById('reward-redeem-description');
+        const rewardRedeemContent = document.getElementById('reward-redeem-content');
+        const rewardNotComplete = document.getElementById('reward-not-complete');
+        const rewardRedeemable = document.getElementById('reward-redeemable');
+        const rewardRedeemed = document.getElementById('reward-redeemed');
+        const rewardRedeemTime = document.getElementById('reward-redeem-time');
+        const redeemBtn = document.getElementById('redeem-btn');
+        
+        // 兌換成功模態框
+        const redeemSuccessModal = document.getElementById('redeem-success-modal');
+        const redeemSuccessMessage = document.getElementById('redeem-success-message');
+        const redeemSuccessReward = document.getElementById('redeem-success-reward');
+        
+        // 打開任務詳情
+        function openTaskDetail(taskId) {
+            // 根據不同任務ID設置不同的詳情內容
+            if (taskId === 'task1' || taskId === 'task2') {
+                // 已完成的任務
+                const isTask1 = taskId === 'task1';
+                
+                taskModalTitle.textContent = isTask1 ? '甜點天堂' : '飲料補給站';
+                taskModalStatus.textContent = '已完成';
+                taskModalStatus.className = 'bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full mr-2';
+                taskModalPoints.textContent = '20分';
+                taskModalLocation.textContent = isTask1 ? 'A1區 (中央廣場北側)' : 'B1區 (中央廣場東側)';
+                taskModalDescription.textContent = isTask1 
+                    ? '訪問甜點攤位，品嚐美味甜點並完成打卡任務。' 
+                    : '訪問飲料攤位，嘗試特色飲品並完成打卡任務。';
+                taskModalReward.textContent = '+20 園遊會幣';
+                taskModalCompleteTime.textContent = isTask1 ? '2024/07/15 13:45' : '2024/07/15 14:20';
+                taskModalImage.src = isTask1 
+                    ? 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                    : 'https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                
+                completedTaskContent.classList.remove('hidden');
+                incompleteTaskContent.classList.add('hidden');
+            } else if (taskId === 'task3' || taskId === 'task4' || taskId === 'task5') {
+                // 未完成的任務
+                let title, location, description, imageSrc;
+                
+                if (taskId === 'task3') {
+                    title = '日式小吃';
+                    location = 'A3區 (美食區)';
+                    description = '訪問日式小吃攤位，體驗正宗的日式風味料理，完成任務可獲得園遊會幣獎勵。';
+                    imageSrc = 'https://images.unsplash.com/photo-1617196035154-421e3b688cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                } else if (taskId === 'task4') {
+                    title = '中式料理';
+                    location = 'A4區 (美食區)';
+                    description = '訪問中式料理攤位，品嚐傳統中式美食，完成任務可獲得園遊會幣獎勵。';
+                    imageSrc = 'https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                } else {
+                    title = '異國風味';
+                    location = 'A5區 (美食區)';
+                    description = '訪問異國風味攤位，體驗來自世界各地的特色美食，完成任務可獲得園遊會幣獎勵。';
+                    imageSrc = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                }
+                
+                taskModalTitle.textContent = title;
+                taskModalStatus.textContent = '進行中';
+                taskModalStatus.className = 'bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full mr-2';
+                taskModalPoints.textContent = '20分';
+                taskModalLocation.textContent = location;
+                taskModalDescription.textContent = description;
+                taskModalReward.textContent = '+20 園遊會幣';
+                taskModalImage.src = imageSrc;
+                
+                completedTaskContent.classList.add('hidden');
+                incompleteTaskContent.classList.remove('hidden');
+            } else if (taskId.startsWith('game')) {
+                // 遊戲任務
+                const gameNum = taskId.replace('game', '');
+                const isCompleted = true; // 所有遊戲任務都已完成
+                
+                let title, location, description, imageSrc;
+                
+                switch(gameNum) {
+                    case '1':
+                        title = '夢幻投籃機';
+                        location = 'C1區 (操場區域)';
+                        description = '挑戰30秒內投中籃框次數，完成遊戲並掃描QR碼獲得獎勵。';
+                        imageSrc = 'https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                        break;
+                    case '2':
+                        title = '套圈圈';
+                        location = 'C2區 (遊戲區)';
+                        description = '挑戰將圈套中獎品，完成遊戲並掃描QR碼獲得獎勵。';
+                        imageSrc = 'https://images.unsplash.com/photo-1558180077-09f158c76707?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                        break;
+                    case '3':
+                        title = '彈珠台';
+                        location = 'C3區 (遊戲區)';
+                        description = '挑戰彈珠台遊戲，讓彈珠進入高分區，完成遊戲並掃描QR碼獲得獎勵。';
+                        imageSrc = 'https://images.unsplash.com/photo-1560513852-bc38a35a977a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                        break;
+                    case '4':
+                        title = '射擊遊戲';
+                        location = 'C4區 (遊戲區)';
+                        description = '挑戰射擊遊戲，擊中目標獲得分數，完成遊戲並掃描QR碼獲得獎勵。';
+                        imageSrc = 'https://images.unsplash.com/photo-1525351159099-81893194469e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                        break;
+                    case '5':
+                        title = '釣魚遊戲';
+                        location = 'C5區 (遊戲區)';
+                        description = '挑戰釣魚遊戲，釣上獎品可獲得特別獎勵，完成遊戲並掃描QR碼獲得獎勵。';
+                        imageSrc = 'https://images.unsplash.com/photo-1500621242946-fa406d7d56b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                        break;
+                }
+                
+                taskModalTitle.textContent = title;
+                taskModalStatus.textContent = isCompleted ? '已完成' : '進行中';
+                taskModalStatus.className = isCompleted 
+                    ? 'bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full mr-2'
+                    : 'bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full mr-2';
+                taskModalPoints.textContent = '30分';
+                taskModalLocation.textContent = location;
+                taskModalDescription.textContent = description;
+                taskModalReward.textContent = '+30 園遊會幣';
+                taskModalImage.src = imageSrc;
+                
+                if (isCompleted) {
+                    taskModalCompleteTime.textContent = '2024/07/15 ' + (14 + parseInt(gameNum)) + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
+                    completedTaskContent.classList.remove('hidden');
+                    incompleteTaskContent.classList.add('hidden');
+                } else {
+                    completedTaskContent.classList.add('hidden');
+                    incompleteTaskContent.classList.remove('hidden');
+                }
+            }
+            
+            taskDetailModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 關閉任務詳情
+        function closeTaskDetail() {
+            taskDetailModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 點擊模態框外部關閉
+        taskDetailModal.addEventListener('click', function(e) {
+            if (e.target === taskDetailModal) {
+                closeTaskDetail();
+            }
+        });
+        
+        // 掃描QR碼功能
+        scanQrBtn.addEventListener('click', function() {
+            scanModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // 顯示掃描QR碼模態框
+        function showScanModal() {
+            closeTaskDetail();
+            scanModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 關閉掃描QR碼模態框
+        function closeScanModal() {
+            scanModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 點擊掃描QR碼模態框外部關閉
+        scanModal.addEventListener('click', function(e) {
+            if (e.target === scanModal) {
+                closeScanModal();
+            }
+        });
+        
+        // 模擬掃描成功
+        function simulateSuccessScan() {
+            closeScanModal();
+            
+            // 隨機選擇任務提示消息
+            const taskMessages = [
+                '恭喜完成「日式小吃」任務',
+                '恭喜完成「中式料理」任務',
+                '恭喜完成「異國風味」任務',
+                '恭喜完成「射擊遊戲」任務',
+                '恭喜完成「釣魚遊戲」任務'
+            ];
+            const randomIndex = Math.floor(Math.random() * taskMessages.length);
+            successModalMessage.textContent = taskMessages[randomIndex];
+            
+            // 隨機獎勵
+            const rewards = ['+20 園遊會幣', '+30 園遊會幣', '+50 園遊會幣'];
+            successModalReward.textContent = rewards[Math.floor(Math.random() * rewards.length)];
+            
+            successModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 關閉掃描成功模態框
+        function closeSuccessModal() {
+            successModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 點擊掃描成功模態框外部關閉
+        successModal.addEventListener('click', function(e) {
+            if (e.target === successModal) {
+                closeSuccessModal();
+            }
+        });
+        
+        // 顯示獎勵兌換模態框
+        function showRewardRedeemModal(title, reward, isCompleted) {
+            rewardRedeemTitle.textContent = `${title} 獎勵兌換`;
+            rewardRedeemDescription.textContent = `完成 ${title} 所有任務可獲得豐厚獎勵`;
+            rewardRedeemContent.textContent = reward;
+            
+            // 根據任務是否完成顯示不同內容
+            if (title === '美食探索闖關') {
+                // 假設美食探索闖關已經完成了 2/5
+                rewardNotComplete.classList.remove('hidden');
+                rewardRedeemable.classList.add('hidden');
+                rewardRedeemed.classList.add('hidden');
+            } else if (title === '遊戲挑戰闖關') {
+                // 假設遊戲挑戰闖關已全部完成 5/5，可以兌換獎勵
+                if (isCompleted) {
+                    rewardNotComplete.classList.add('hidden');
+                    rewardRedeemable.classList.remove('hidden');
+                    rewardRedeemed.classList.add('hidden');
+                } else {
+                    // 假設已經兌換過了
+                    rewardNotComplete.classList.add('hidden');
+                    rewardRedeemable.classList.add('hidden');
+                    rewardRedeemed.classList.remove('hidden');
+                }
+            }
+            
+            rewardRedeemModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // 兌換按鈕點擊事件
+            redeemBtn.onclick = function() {
+                // 隱藏獎勵兌換模態框
+                rewardRedeemModal.classList.add('hidden');
+                
+                // 顯示兌換成功模態框
+                redeemSuccessMessage.textContent = `恭喜您成功兌換「${title}」獎勵`;
+                redeemSuccessReward.textContent = reward;
+                redeemSuccessModal.classList.remove('hidden');
+                
+                // 更新獎勵狀態為已兌換
+                const now = new Date();
+                const timeStr = `${now.getFullYear()}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                rewardRedeemTime.textContent = timeStr;
+            };
+        }
+        
+        // 關閉獎勵兌換模態框
+        function closeRewardRedeemModal() {
+            rewardRedeemModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 點擊獎勵兌換模態框外部關閉
+        rewardRedeemModal.addEventListener('click', function(e) {
+            if (e.target === rewardRedeemModal) {
+                closeRewardRedeemModal();
+            }
+        });
+        
+        // 關閉兌換成功模態框
+        function closeRedeemSuccessModal() {
+            redeemSuccessModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 點擊兌換成功模態框外部關閉
+        redeemSuccessModal.addEventListener('click', function(e) {
+            if (e.target === redeemSuccessModal) {
+                closeRedeemSuccessModal();
+            }
+        });
+    </script>
+</body>
+</html> 

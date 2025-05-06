@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任務管理</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <!-- 側邊導航欄 -->
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-white shadow-md fixed h-full">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold">園遊會管理</h1>
+                <p class="text-gray-500 text-sm">主辦方後台</p>
+            </div>
+            <nav class="mt-4">
+                <ul class="space-y-2 px-4">
+                    <li>
+                        <a href="eventAdmin.html"
+                            class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-calendar-alt mr-3"></i>
+                            <span>活動設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boothAdmin.html"
+                            class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-store mr-3"></i>
+                            <span>攤位設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="paymentAdmin.html"
+                            class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-coins mr-3"></i>
+                            <span>點數管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="userAdmin.html"
+                            class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-users mr-3"></i>
+                            <span>遊客管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="gameAdmin.html" class="flex items-center p-3 text-blue-500 bg-blue-50 rounded-lg">
+                            <i class="fas fa-gamepad mr-3"></i>
+                            <span>任務管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="absolute bottom-0 w-full p-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-500"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">管理員</p>
+                        <p class="text-xs text-gray-500">admin@example.com</p>
+                    </div>
+                </div>
+                <button class="mt-4 w-full py-2 bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-sign-out-alt mr-2"></i> 登出
+                </button>
+            </div>
+        </aside>
+
+        <!-- 主要內容區域 -->
+        <main class="flex-1 ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">任務管理</h2>
+                <button onclick="showAddTaskModal()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i> 新增任務
+                </button>
+            </div>
+
+            <!-- 統計卡片 -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 mr-4">
+                            <i class="fas fa-tasks text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">總任務數</p>
+                            <p class="text-xl font-bold">5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-500 mr-4">
+                            <i class="fas fa-map-marker-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">總關卡數</p>
+                            <p class="text-xl font-bold">28</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-500 mr-4">
+                            <i class="fas fa-trophy text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">完成人數</p>
+                            <p class="text-xl font-bold">324</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 任務列表 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-4 border-b">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold">任務列表</h3>
+                        <div class="relative">
+                            <input type="text" placeholder="搜尋任務..."
+                                class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i
+                                class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    任務名稱</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    關卡數</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    完成條件</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    任務獎勵</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- 任務項目 1 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                alt="美食之旅" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">美食之旅</div>
+                                            <div class="text-sm text-gray-500">收集美食攤位章</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    8 個關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    完成至少 5 個關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    美食達人勳章 + 限定美食禮包
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editTask(1)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="viewTaskDetail(1)" class="text-gray-500 hover:text-gray-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="deleteTask(1)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 任務項目 2 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                alt="遊戲挑戰" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">遊戲挑戰</div>
+                                            <div class="text-sm text-gray-500">完成各種遊戲攤位</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    10 個關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    完成全部關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    遊戲大師勳章 + 神秘遊戲禮包
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editTask(2)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="viewTaskDetail(2)" class="text-gray-500 hover:text-gray-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="deleteTask(2)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 任務項目 3 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1617196035154-421e3b688cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                alt="文藝探索" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">文藝探索</div>
+                                            <div class="text-sm text-gray-500">參觀手工藝攤位</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    6 個關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    完成至少 4 個關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    文藝探索勳章 + 手工藝品禮包
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editTask(3)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="viewTaskDetail(3)" class="text-gray-500 hover:text-gray-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="deleteTask(3)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 任務項目 4 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                alt="環園巡禮" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">環園巡禮</div>
+                                            <div class="text-sm text-gray-500">參觀園區各個區域</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    4 個關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    完成全部關卡
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    環園巡禮勳章 + 紀念品禮包
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editTask(4)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="viewTaskDetail(4)" class="text-gray-500 hover:text-gray-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="deleteTask(4)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4 border-t">
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-500">顯示 1 至 4 項，共 5 項</p>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">上一頁</button>
+                            <button
+                                class="px-3 py-1 bg-blue-50 border border-blue-500 text-blue-500 rounded-lg">1</button>
+                            <button class="px-3 py-1 border rounded-lg">2</button>
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">下一頁</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 添加任務詳情Modal -->
+    <div id="taskDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-4xl w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">任務詳細資訊</h3>
+                <button onclick="closeTaskDetailModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 mr-4">
+                        <i class="fas fa-route" id="detail-task-icon"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium" id="detail-task-name">美食之旅</h4>
+                        <p class="text-gray-500 text-sm" id="detail-task-desc">收集美食攤位章</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <p class="text-gray-500 text-sm">關卡數</p>
+                        <p class="text-lg font-medium" id="detail-task-stages">8 個關卡</p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <p class="text-gray-500 text-sm">完成條件</p>
+                        <p class="text-lg font-medium" id="detail-task-condition">完成至少 5 個關卡</p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <p class="text-gray-500 text-sm">任務獎勵</p>
+                        <p class="text-lg font-medium" id="detail-task-points">美食達人勳章 + 限定美食禮包</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium mb-2">關卡列表</h4>
+                    <div class="border rounded-lg overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">關卡名稱
+                                    </th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">攤位</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">位置</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">完成人數
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200" id="detail-stages-list">
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-lg overflow-hidden mr-2">
+                                                <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                    alt="鹹酥雞攤位" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <div class="font-medium">鹹酥雞攤位</div>
+                                                <div class="text-xs text-gray-500">獲得 20 積分</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">美味小食攤</td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-0.5 bg-gray-100 rounded-full text-xs">A區</span>
+                                            <span class="ml-1 text-xs">第3排 - 5號</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">125 人</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-lg overflow-hidden mr-2">
+                                                <img src="https://images.unsplash.com/photo-1523867434884-28
+07c3f7ee572?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                    alt="烤香腸攤位" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <div class="font-medium">烤香腸攤位</div>
+                                                <div class="text-xs text-gray-500">獲得 15 積分</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">烤肉世界</td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-0.5 bg-gray-100 rounded-full text-xs">A區</span>
+                                            <span class="ml-1 text-xs">第2排 - 3號</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">98 人</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-lg overflow-hidden mr-2">
+                                                <img src="https://images.unsplash.com/photo-1543157145-f78c636d023d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                                    alt="創意飲料攤" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <div class="font-medium">創意飲料攤</div>
+                                                <div class="text-xs text-gray-500">獲得 10 積分</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">飲品天地</td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-0.5 bg-gray-100 rounded-full text-xs">B區</span>
+                                            <span class="ml-1 text-xs">第1排 - 2號</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">156 人</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium mb-2">任務完成統計</h4>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="mb-2 flex justify-between">
+                            <span class="text-sm text-gray-600">完成進度：178/856人</span>
+                            <span class="text-sm text-gray-600">20.8%</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-200 rounded-full">
+                            <div class="h-2 bg-blue-500 rounded-full" style="width: 20.8%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-3">
+                <button onclick="editTask(1)" class="px-4 py-2 bg-blue-500 text-white rounded-lg flex items-center">
+                    <i class="fas fa-edit mr-2"></i> 編輯任務
+                </button>
+                <button onclick="closeTaskDetailModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加新增/編輯任務Modal -->
+    <div id="taskModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full h-[80vh] overflow-y-auto p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold" id="taskModalTitle">新增任務</h3>
+                <button onclick="closeTaskModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-name">任務名稱</label>
+                    <input type="text" id="task-name"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="請輸入任務名稱">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-desc">任務描述</label>
+                    <textarea id="task-desc" rows="2"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="請輸入任務描述"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="task-reward">任務獎勵</label>
+                        <textarea id="task-reward" rows="2"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="請輸入任務獎勵描述"></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-image">任務圖片</label>
+                    <div
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg relative group">
+                        <div id="image-preview" class="hidden w-full h-full">
+                            <img id="preview-image" src="" alt="任務圖片" class="max-h-48 mx-auto">
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                <button type="button"
+                                    class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm"
+                                    onclick="document.getElementById('file-upload').click()">
+                                    更換圖片
+                                </button>
+                            </div>
+                        </div>
+                        <div id="upload-placeholder" class="space-y-1 text-center">
+                            <i class="fas fa-image text-gray-400 text-3xl"></i>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="file-upload"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                    <span>上傳圖片</span>
+                                    <input id="file-upload" name="file-upload" type="file" class="sr-only"
+                                        accept="image/*" onchange="handleImageUpload(event)">
+                                </label>
+                                <p class="pl-1">或拖曳圖片至此</p>
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF 最大 10MB</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-sm font-medium text-gray-700">關卡列表</label>
+                        <button class="text-blue-500 text-sm flex items-center" onclick="showAddStageSection()">
+                            <i class="fas fa-plus mr-1"></i> 新增關卡
+                        </button>
+                    </div>
+                    <div class="border rounded-lg overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">關卡名稱
+                                    </th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">攤位</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stages-list" class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">尚未添加關卡</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 新增關卡區域 (預設隱藏) -->
+                <div id="add-stage-section" class="border rounded-lg p-3 bg-gray-50 hidden">
+                    <h4 class="text-sm font-medium mb-2">新增關卡</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-name">關卡名稱</label>
+                            <input type="text" id="stage-name"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="例如: 鹹酥雞攤位">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-desc">關卡描述</label>
+                            <textarea id="stage-desc" rows="2"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="請輸入關卡描述"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-image">關卡圖片</label>
+                            <div class="mt-1 flex justify-center px-4 pt-3 pb-4 border-2 border-gray-300 border-dashed rounded-lg relative group">
+                                <div id="stage-image-preview" class="hidden w-full h-full">
+                                    <img id="stage-preview-image" src="" alt="關卡圖片" class="max-h-32 mx-auto">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                        <button type="button"
+                                            class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-lg text-xs"
+                                            onclick="document.getElementById('stage-file-upload').click()">
+                                            更換圖片
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="stage-upload-placeholder" class="space-y-1 text-center">
+                                    <i class="fas fa-image text-gray-400 text-xl"></i>
+                                    <div class="flex text-xs text-gray-600">
+                                        <label for="stage-file-upload"
+                                            class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                            <span>上傳圖片</span>
+                                            <input id="stage-file-upload" name="stage-file-upload" type="file" class="sr-only"
+                                                accept="image/*" onchange="handleStageImageUpload(event)">
+                                        </label>
+                                        <p class="pl-1">或拖曳圖片</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">PNG, JPG 最大 5MB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-area">關卡區域</label>
+                            <select id="stage-area"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">請選擇區域</option>
+                                <option value="A">A區 - 主舞台區</option>
+                                <option value="B">B區 - 美食區</option>
+                                <option value="C">C區 - 遊戲區</option>
+                                <option value="D">D區 - 文創區</option>
+                                <option value="E">E區 - 表演區</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-booth">選擇攤位</label>
+                            <div class="border rounded-lg p-2 bg-white">
+                                <div class="space-y-2 max-h-32 overflow-y-auto">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="booth-1" value="1" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                        <label for="booth-1" class="text-sm">美味小食攤</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="booth-2" value="2" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                        <label for="booth-2" class="text-sm">趣味遊戲屋</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="booth-3" value="3" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                        <label for="booth-3" class="text-sm">創意手作坊</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="booth-4" value="4" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                        <label for="booth-4" class="text-sm">飲品天地</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="booth-5" value="5" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                        <label for="booth-5" class="text-sm">烤肉世界</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-points">完成後獲得積分</label>
+                            <input type="number" id="stage-points" min="0"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="請輸入積分">
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-2 mt-3">
+                        <button onclick="hideAddStageSection()"
+                            class="px-3 py-1 border rounded-lg text-gray-700 text-sm">取消</button>
+                        <button onclick="addStage()"
+                            class="px-3 py-1 bg-blue-500 text-white rounded-lg text-sm">新增</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">完成條件設定</label>
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="completion-count" name="completion-type" class="mr-2" checked>
+                            <label for="completion-count" class="text-sm">指定數量</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="completion-specific" name="completion-type" class="mr-2">
+                            <label for="completion-specific" class="text-sm">指定關卡</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="completion-points" name="completion-type" class="mr-2">
+                            <label for="completion-points" class="text-sm">指定積分</label>
+                        </div>
+                    </div>
+                    <div id="completion-count-section">
+                        <div>
+                            <label class="block text-xs text-gray-700 mb-1" for="required-stages">需完成數量</label>
+                            <input type="number" id="required-stages"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="例如: 5">
+                        </div>
+                    </div>
+                    <div id="completion-points-section" class="hidden">
+                        <div>
+                            <label class="block text-xs text-gray-700 mb-1" for="required-points">最低需要積分</label>
+                            <input type="number" id="required-points" min="0"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="例如: 100">
+                        </div>
+                    </div>
+                    <div id="completion-specific-section" class="hidden">
+                        <div class="border rounded-lg p-3 bg-gray-50">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-medium">選擇關卡</h4>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="select-all-stages" 
+                                        class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500"
+                                        onchange="toggleAllStages()">
+                                    <label for="select-all-stages" class="text-sm text-gray-600">全選</label>
+                                </div>
+                            </div>
+                            <div class="space-y-2 max-h-48 overflow-y-auto" id="specific-stages-list">
+                                <!-- 關卡選擇列表將在這裡動態生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-3">
+                <button onclick="closeTaskModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">
+                    取消
+                </button>
+                <button onclick="saveTask()" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    儲存任務
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 當前選中的圖標和顏色
+        let selectedIcon = 'fa-route';
+        let selectedColor = 'blue';
+        let stagesList = [];
+        let currentImageUrl = '';
+        let selectedStages = new Set();
+        let currentStageImageUrl = ''; // 新增關卡圖片URL變數
+        
+        // 處理完成條件類型切換
+        document.querySelectorAll('input[name="completion-type"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.id === 'completion-count') {
+                    document.getElementById('completion-count-section').classList.remove('hidden');
+                    document.getElementById('completion-specific-section').classList.add('hidden');
+                    document.getElementById('completion-points-section').classList.add('hidden');
+                } else if (this.id === 'completion-specific') {
+                    document.getElementById('completion-count-section').classList.add('hidden');
+                    document.getElementById('completion-specific-section').classList.remove('hidden');
+                    document.getElementById('completion-points-section').classList.add('hidden');
+                    updateSpecificStagesList();
+                } else {
+                    document.getElementById('completion-count-section').classList.add('hidden');
+                    document.getElementById('completion-specific-section').classList.add('hidden');
+                    document.getElementById('completion-points-section').classList.remove('hidden');
+                }
+            });
+        });
+        
+        // 處理關卡圖片上傳
+        function handleStageImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 檢查檔案大小（最大 5MB）
+            if (file.size > 5 * 1024 * 1024) {
+                alert('圖片大小不能超過 5MB');
+                return;
+            }
+
+            // 檢查檔案類型
+            if (!file.type.match('image.*')) {
+                alert('請上傳圖片檔案');
+                return;
+            }
+
+            // 建立預覽
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentStageImageUrl = e.target.result;
+                document.getElementById('stage-preview-image').src = currentStageImageUrl;
+                document.getElementById('stage-image-preview').classList.remove('hidden');
+                document.getElementById('stage-upload-placeholder').classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // 更新指定關卡列表
+        function updateSpecificStagesList() {
+            const specificStagesList = document.getElementById('specific-stages-list');
+            if (stagesList.length === 0) {
+                specificStagesList.innerHTML = '<p class="text-sm text-gray-500 text-center">請先添加關卡</p>';
+                return;
+            }
+            
+            specificStagesList.innerHTML = stagesList.map(stage => `
+                <div class="flex items-center p-2 bg-white rounded-lg">
+                    <input type="checkbox" id="stage-${stage.id}" 
+                        class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500"
+                        ${selectedStages.has(stage.id) ? 'checked' : ''}
+                        onchange="toggleStageSelection(${stage.id})">
+                    <label for="stage-${stage.id}" class="text-sm">
+                        ${stage.name} (${stage.booths.map(booth => booth.name).join(', ')})
+                    </label>
+                </div>
+            `).join('');
+            
+            // 更新全選狀態
+            updateSelectAllState();
+        }
+        
+        // 切換關卡選擇
+        function toggleStageSelection(stageId) {
+            if (selectedStages.has(stageId)) {
+                selectedStages.delete(stageId);
+            } else {
+                selectedStages.add(stageId);
+            }
+            updateSelectAllState();
+        }
+        
+        // 切換全選
+        function toggleAllStages() {
+            const selectAll = document.getElementById('select-all-stages').checked;
+            if (selectAll) {
+                stagesList.forEach(stage => selectedStages.add(stage.id));
+            } else {
+                selectedStages.clear();
+            }
+            updateSpecificStagesList();
+        }
+        
+        // 更新全選狀態
+        function updateSelectAllState() {
+            const selectAll = document.getElementById('select-all-stages');
+            if (stagesList.length === 0) {
+                selectAll.checked = false;
+                selectAll.disabled = true;
+            } else {
+                selectAll.disabled = false;
+                selectAll.checked = selectedStages.size === stagesList.length;
+            }
+        }
+        
+        // 處理圖片上傳
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 檢查檔案大小（最大 10MB）
+            if (file.size > 10 * 1024 * 1024) {
+                alert('圖片大小不能超過 10MB');
+                return;
+            }
+
+            // 檢查檔案類型
+            if (!file.type.match('image.*')) {
+                alert('請上傳圖片檔案');
+                return;
+            }
+
+            // 建立預覽
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                currentImageUrl = e.target.result;
+                document.getElementById('preview-image').src = currentImageUrl;
+                document.getElementById('image-preview').classList.remove('hidden');
+                document.getElementById('upload-placeholder').classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 查看任務詳情
+        function viewTaskDetail(id) {
+            document.getElementById('taskDetailModal').classList.remove('hidden');
+
+            // 實際應用中此處應該載入任務資料
+            console.log(`查看任務詳情 ID: ${id}`);
+
+            // 模擬載入現有圖片
+            if (id === 1) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (id === 2) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (id === 3) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1617196035154-421e3b688cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (id === 4) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            }
+
+            if (currentImageUrl) {
+                document.getElementById('preview-image').src = currentImageUrl;
+                document.getElementById('image-preview').classList.remove('hidden');
+                document.getElementById('upload-placeholder').classList.add('hidden');
+            }
+        }
+
+        function closeTaskDetailModal() {
+            document.getElementById('taskDetailModal').classList.add('hidden');
+        }
+
+        // 新增/編輯任務Modal相關函數
+        function showAddTaskModal() {
+            document.getElementById('taskModalTitle').textContent = '新增任務';
+            document.getElementById('taskModal').classList.remove('hidden');
+            stagesList = [];
+            currentImageUrl = '';
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('upload-placeholder').classList.remove('hidden');
+            updateStagesList();
+        }
+
+        function editTask(id) {
+            document.getElementById('taskModalTitle').textContent = '編輯任務';
+            document.getElementById('taskModal').classList.remove('hidden');
+
+            // 實際應用中此處應該載入任務資料
+            console.log(`編輯任務 ID: ${id}`);
+
+            // 如果是從詳情頁來的，關閉詳情Modal
+            closeTaskDetailModal();
+
+            // 模擬載入現有圖片
+            if (id === 1) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (id === 2) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (id === 3) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1617196035154-421e3b688cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            } else if (id === 4) {
+                currentImageUrl = 'https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+            }
+
+            if (currentImageUrl) {
+                document.getElementById('preview-image').src = currentImageUrl;
+                document.getElementById('image-preview').classList.remove('hidden');
+                document.getElementById('upload-placeholder').classList.add('hidden');
+            }
+        }
+
+        function closeTaskModal() {
+            document.getElementById('taskModal').classList.add('hidden');
+        }
+
+        // 關卡管理相關函數
+        function showAddStageSection() {
+            document.getElementById('add-stage-section').classList.remove('hidden');
+        }
+
+        function hideAddStageSection() {
+            document.getElementById('add-stage-section').classList.add('hidden');
+            document.getElementById('stage-name').value = '';
+            document.getElementById('stage-desc').value = '';
+            document.getElementById('stage-points').value = '';
+            document.getElementById('stage-area').value = '';
+            document.getElementById('stage-row').value = '';
+            document.getElementById('stage-position').value = '';
+            // 重置圖片上傳
+            document.getElementById('stage-image-preview').classList.add('hidden');
+            document.getElementById('stage-upload-placeholder').classList.remove('hidden');
+            // 清除所有攤位選擇
+            document.querySelectorAll('input[type="checkbox"][id^="booth-"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            // 清除編輯狀態
+            delete document.getElementById('add-stage-section').dataset.editingStageId;
+        }
+
+        function addStage() {
+            const stageName = document.getElementById('stage-name').value;
+            const stageDesc = document.getElementById('stage-desc').value;
+            const stagePoints = parseInt(document.getElementById('stage-points').value) || 0;
+            const stageArea = document.getElementById('stage-area').value;
+            const stageRow = document.getElementById('stage-row').value;
+            const stagePosition = document.getElementById('stage-position').value;
+            
+            // 獲取選中的攤位
+            const selectedBooths = Array.from(document.querySelectorAll('input[type="checkbox"][id^="booth-"]:checked'))
+                .map(checkbox => ({
+                    id: checkbox.value,
+                    name: checkbox.nextElementSibling.textContent
+                }));
+            
+            if (!stageName || !stageDesc || selectedBooths.length === 0) {
+                alert('請填寫完整的關卡資訊');
+                return;
+            }
+
+            if (!stageArea) {
+                alert('請選擇關卡區域');
+                return;
+            }
+            
+            const editingStageId = document.getElementById('add-stage-section').dataset.editingStageId;
+            if (editingStageId) {
+                // 更新現有關卡
+                const stageIndex = stagesList.findIndex(s => s.id === parseInt(editingStageId));
+                if (stageIndex !== -1) {
+                    stagesList[stageIndex] = {
+                        ...stagesList[stageIndex],
+                        name: stageName,
+                        desc: stageDesc,
+                        points: stagePoints,
+                        booths: selectedBooths,
+                        imageUrl: currentStageImageUrl || stagesList[stageIndex].imageUrl,
+                        area: stageArea,
+                        row: stageRow,
+                        position: stagePosition
+                    };
+                }
+                // 清除編輯狀態
+                delete document.getElementById('add-stage-section').dataset.editingStageId;
+            } else {
+                // 新增關卡
+                stagesList.push({
+                    id: Date.now(), // 使用時間戳作為臨時ID
+                    name: stageName,
+                    desc: stageDesc,
+                    points: stagePoints,
+                    booths: selectedBooths,
+                    imageUrl: currentStageImageUrl || '',
+                    area: stageArea,
+                    row: stageRow,
+                    position: stagePosition
+                });
+            }
+            
+            // 清除圖片預覽狀態
+            currentStageImageUrl = '';
+            
+            updateStagesList();
+            hideAddStageSection();
+        }
+
+        function removeStage(id) {
+            stagesList = stagesList.filter(stage => stage.id !== id);
+            updateStagesList();
+        }
+
+        function updateStagesList() {
+            const stagesListElement = document.getElementById('stages-list');
+            
+            if (stagesList.length === 0) {
+                stagesListElement.innerHTML = `
+                    <tr>
+                        <td class="px-4 py-3 text-sm">尚未添加關卡</td>
+                        <td class="px-4 py-3 text-sm">-</td>
+                        <td class="px-4 py-3 text-sm">-</td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            stagesListElement.innerHTML = stagesList.map(stage => `
+                <tr>
+                    <td class="px-4 py-3 text-sm">
+                        <div class="flex items-start">
+                            ${stage.imageUrl ? `
+                                <div class="w-8 h-8 rounded overflow-hidden mr-2 flex-shrink-0">
+                                    <img src="${stage.imageUrl}" alt="${stage.name}" class="w-full h-full object-cover">
+                                </div>
+                            ` : `
+                                <div class="w-8 h-8 bg-gray-100 rounded flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-gray-400"></i>
+                                </div>
+                            `}
+                            <div class="flex-1">
+                                <div class="font-medium">${stage.name}</div>
+                                <div class="text-xs text-gray-500">${stage.desc}</div>
+                                <div class="text-xs text-blue-500 mt-1">完成後獲得 ${stage.points} 點積分</div>
+                                ${stage.area ? `
+                                    <div class="text-xs text-gray-500 mt-1">
+                                        <span class="px-2 py-0.5 bg-gray-100 rounded-full">${stage.area}區</span>
+                                        ${stage.row ? `<span class="ml-1">${stage.row}</span>` : ''}
+                                        ${stage.position ? `<span class="ml-1">${stage.position}</span>` : ''}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        <div class="space-y-1">
+                            ${stage.booths.map(booth => `
+                                <div class="text-sm">${booth.name}</div>
+                            `).join('')}
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        <div class="flex space-x-2">
+                            <button onclick="editStage(${stage.id})" class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="removeStage(${stage.id})" class="text-red-500 hover:text-red-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // 更新指定關卡列表
+            if (document.getElementById('completion-specific-section').classList.contains('hidden') === false) {
+                updateSpecificStagesList();
+            }
+        }
+
+        // 編輯關卡
+        function editStage(stageId) {
+            const stage = stagesList.find(s => s.id === stageId);
+            if (!stage) return;
+            
+            // 顯示編輯區域
+            document.getElementById('add-stage-section').classList.remove('hidden');
+            
+            // 填入現有資料
+            document.getElementById('stage-name').value = stage.name;
+            document.getElementById('stage-desc').value = stage.desc;
+            document.getElementById('stage-points').value = stage.points;
+            document.getElementById('stage-area').value = stage.area || '';
+            document.getElementById('stage-row').value = stage.row || '';
+            document.getElementById('stage-position').value = stage.position || '';
+            
+            // 設定已選擇的攤位
+            document.querySelectorAll('input[type="checkbox"][id^="booth-"]').forEach(checkbox => {
+                checkbox.checked = stage.booths.some(booth => booth.id === checkbox.value);
+            });
+            
+            // 載入圖片
+            if (stage.imageUrl) {
+                currentStageImageUrl = stage.imageUrl;
+                document.getElementById('stage-preview-image').src = currentStageImageUrl;
+                document.getElementById('stage-image-preview').classList.remove('hidden');
+                document.getElementById('stage-upload-placeholder').classList.add('hidden');
+            } else {
+                document.getElementById('stage-image-preview').classList.add('hidden');
+                document.getElementById('stage-upload-placeholder').classList.remove('hidden');
+            }
+            
+            // 儲存編輯中的關卡ID
+            document.getElementById('add-stage-section').dataset.editingStageId = stageId;
+        }
+        
+        // 儲存任務
+        function saveTask() {
+            const taskName = document.getElementById('task-name').value;
+            const taskDesc = document.getElementById('task-desc').value;
+            const taskReward = document.getElementById('task-reward').value;
+
+            if (!taskName || !taskDesc || !taskReward) {
+                alert('請填寫完整的任務資訊');
+                return;
+            }
+
+            if (stagesList.length === 0) {
+                alert('請至少添加一個關卡');
+                return;
+            }
+
+            // 模擬儲存操作
+            alert('任務已儲存');
+            closeTaskModal();
+        }
+
+        // 刪除任務
+        function deleteTask(id) {
+            if (confirm('確定要刪除此任務嗎？')) {
+                // 模擬刪除操作
+                alert(`任務 ID: ${id} 已刪除`);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攤位設定</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 側邊導航欄 -->
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-white shadow-md fixed h-full">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold">園遊會管理</h1>
+                <p class="text-gray-500 text-sm">主辦方後台</p>
+            </div>
+            <nav class="mt-4">
+                <ul class="space-y-2 px-4">
+                    <li>
+                        <a href="eventAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-calendar-alt mr-3"></i>
+                            <span>活動設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boothAdmin.html" class="flex items-center p-3 text-blue-500 bg-blue-50 rounded-lg">
+                            <i class="fas fa-store mr-3"></i>
+                            <span>攤位設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="paymentAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-coins mr-3"></i>
+                            <span>點數管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="userAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-users mr-3"></i>
+                            <span>遊客管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="gameAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-gamepad mr-3"></i>
+                            <span>任務管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="absolute bottom-0 w-full p-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-500"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">管理員</p>
+                        <p class="text-xs text-gray-500">admin@example.com</p>
+                    </div>
+                </div>
+                <button class="mt-4 w-full py-2 bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-sign-out-alt mr-2"></i> 登出
+                </button>
+            </div>
+        </aside>
+
+        <!-- 主要內容區域 -->
+        <main class="flex-1 ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">攤位設定</h2>
+                <button onclick="showAddBoothModal()" class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i> 新增攤位
+                </button>
+            </div>
+            <!-- 攤位列表 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-4 border-b">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold">攤位列表</h3>
+                        <div class="relative">
+                            <input type="text" placeholder="搜尋攤位..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">攤位名稱</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">攤位類型</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">位置</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">負責人</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- 攤位項目 1 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" 
+                                                 alt="攤位照片" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">美味小食攤</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">美食類</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    A區
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    張小明 (0912-345-678)
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editBooth(1)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="manageBoothAccount(1)" class="text-purple-500 hover:text-purple-700">
+                                            <i class="fas fa-user-cog"></i>
+                                        </button>
+                                        <button onclick="deleteBooth(1)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- 攤位項目 2 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80" 
+                                                 alt="攤位照片" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">趣味遊戲屋</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">遊戲類</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    B區
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    林小美 (0923-456-789)
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editBooth(2)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="manageBoothAccount(2)" class="text-purple-500 hover:text-purple-700">
+                                            <i class="fas fa-user-cog"></i>
+                                        </button>
+                                        <button onclick="deleteBooth(2)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- 攤位項目 3 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80" 
+                                                 alt="攤位照片" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">創意手作坊</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800">手工藝類</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    C區
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    王大華 (0934-567-890)
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="editBooth(3)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="manageBoothAccount(3)" class="text-purple-500 hover:text-purple-700">
+                                            <i class="fas fa-user-cog"></i>
+                                        </button>
+                                        <button onclick="deleteBooth(3)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4 border-t">
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-500">顯示 1 至 3 項，共 3 項</p>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">上一頁</button>
+                            <button class="px-3 py-1 bg-blue-50 border border-blue-500 text-blue-500 rounded-lg">1</button>
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">下一頁</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 新增/編輯攤位 Modal -->
+    <div id="boothModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold" id="boothModalTitle">新增攤位</h3>
+                <button onclick="closeBoothModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-name">攤位名稱</label>
+                        <input type="text" id="booth-name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入攤位名稱">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-type">攤位類型</label>
+                    <select id="booth-type" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="food">美食類</option>
+                        <option value="game">遊戲類</option>
+                        <option value="handcraft">手工藝類</option>
+                        <option value="merchandise">商品類</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-desc">攤位描述</label>
+                    <textarea id="booth-desc" rows="3" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請簡單描述攤位的主要販售內容或特色"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-area">區域</label>
+                        <input type="text" id="booth-area" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入區域">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-manager">負責人姓名</label>
+                        <input type="text" id="booth-manager" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入負責人姓名">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-phone">聯絡電話</label>
+                        <input type="text" id="booth-phone" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="例如: 0912-345-678">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="booth-email">電子郵件</label>
+                    <input type="email" id="booth-email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入電子郵件">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">攤位照片</label>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
+                            <img id="booth-current-image" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" 
+                                 alt="當前攤位照片" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1">
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50" onclick="document.getElementById('booth-image').click()">
+                                <i class="fas fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                <p class="text-gray-500 text-sm">點擊上傳新照片或拖放照片至此處</p>
+                                <p class="text-gray-400 text-xs mt-1">支援 JPG、PNG 格式，最大 5MB</p>
+                                <input type="file" id="booth-image" class="hidden" accept="image/*" onchange="previewNewImage(this)">
+                            </div>
+                            <div id="new-image-preview" class="mt-2 hidden">
+                                <p class="text-sm text-gray-500">新照片預覽：</p>
+                                <img id="preview-image" class="mt-2 w-32 h-32 object-cover rounded-lg" src="" alt="新照片預覽">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end space-x-3">
+                <button onclick="closeBoothModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">
+                    取消
+                </button>
+                <button onclick="saveBooth()" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    儲存攤位
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 攤位管理帳號 Modal -->
+    <div id="accountModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">管理攤位帳號</h3>
+                <button onclick="closeAccountModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-store text-gray-500"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium" id="account-booth-name">美味小食攤</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-medium">目前帳號</h4>
+                        <button onclick="showAddAccountForm()" class="text-blue-500 text-sm flex items-center">
+                            <i class="fas fa-plus mr-1"></i> 新增帳號
+                        </button>
+                    </div>
+                    
+                    <div class="border rounded-lg overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">帳號</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">角色</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">狀態</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-3">
+                                        <div>
+                                            <p class="font-medium">booth123@example.com</p>
+                                            <p class="text-xs text-gray-500">張小明</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">管理員</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">啟用</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-500 hover:text-blue-700">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-500 hover:text-red-700">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3">
+                                        <div>
+                                            <p class="font-medium">staff1@example.com</p>
+                                            <p class="text-xs text-gray-500">王小華</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">工作人員</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">啟用</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-500 hover:text-blue-700">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-500 hover:text-red-700">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 新增帳號表單 (預設隱藏) -->
+                <div id="addAccountForm" class="hidden bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-medium mb-3">新增帳號</h4>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1" for="account-email">電子郵件</label>
+                                <input type="email" id="account-email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入電子郵件">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1" for="account-name">姓名</label>
+                                <input type="text" id="account-name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入姓名">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1" for="account-role">角色</label>
+                                <select id="account-role" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="admin">管理員</option>
+                                    <option value="staff">工作人員</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1" for="account-status">狀態</label>
+                                <select id="account-status" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="active">啟用</option>
+                                    <option value="disabled">停用</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex justify-end space-x-2">
+                            <button onclick="hideAddAccountForm()" class="px-3 py-1 border rounded-lg text-gray-700 text-sm">取消</button>
+                            <button onclick="addAccount()" class="px-3 py-1 bg-blue-500 text-white rounded-lg text-sm">新增</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeAccountModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 攤位過濾功能
+        function filterBooths(type) {
+            // 更新篩選按鈕的樣式
+            const filterButtons = document.querySelectorAll('[onclick^="filterBooths"]');
+            filterButtons.forEach(button => {
+                if (button.getAttribute('onclick').includes(type)) {
+                    button.classList.remove('bg-gray-200', 'text-gray-700');
+                    button.classList.add('bg-blue-500', 'text-white');
+                } else {
+                    button.classList.remove('bg-blue-500', 'text-white');
+                    button.classList.add('bg-gray-200', 'text-gray-700');
+                }
+            });
+            
+            // 實際應用中此處應該根據選擇的類型過濾表格
+            console.log(`過濾類型: ${type}`);
+        }
+        
+        // 攤位Modal相關函數
+        function showAddBoothModal() {
+            document.getElementById('boothModalTitle').textContent = '新增攤位';
+            document.getElementById('boothModal').classList.remove('hidden');
+        }
+        
+        function closeBoothModal() {
+            document.getElementById('boothModal').classList.add('hidden');
+        }
+        
+        function saveBooth() {
+            // 模擬儲存操作
+            alert('攤位資料已儲存');
+            closeBoothModal();
+        }
+        
+        // 預覽新上傳的照片
+        function previewNewImage(input) {
+            const preview = document.getElementById('new-image-preview');
+            const previewImage = document.getElementById('preview-image');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    preview.classList.remove('hidden');
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        // 編輯攤位
+        function editBooth(id) {
+            document.getElementById('boothModalTitle').textContent = '編輯攤位';
+            document.getElementById('boothModal').classList.remove('hidden');
+            
+            // 實際應用中此處應該載入攤位資料
+            console.log(`編輯攤位 ID: ${id}`);
+            
+            // 重置新照片預覽
+            document.getElementById('new-image-preview').classList.add('hidden');
+            document.getElementById('booth-image').value = '';
+        }
+        
+        // 刪除攤位
+        function deleteBooth(id) {
+            if (confirm('確定要刪除此攤位嗎？')) {
+                // 模擬刪除操作
+                alert(`攤位 ID: ${id} 已刪除`);
+            }
+        }
+        
+        // 攤位帳號管理Modal相關函數
+        function manageBoothAccount(id) {
+            document.getElementById('accountModal').classList.remove('hidden');
+            
+            // 實際應用中此處應該載入攤位帳號資料
+            console.log(`管理攤位帳號 ID: ${id}`);
+        }
+        
+        function closeAccountModal() {
+            document.getElementById('accountModal').classList.add('hidden');
+            hideAddAccountForm();
+        }
+        
+        function showAddAccountForm() {
+            document.getElementById('addAccountForm').classList.remove('hidden');
+        }
+        
+        function hideAddAccountForm() {
+            document.getElementById('addAccountForm').classList.add('hidden');
+        }
+        
+        function addAccount() {
+            // 模擬新增帳號操作
+            alert('帳號已新增');
+            hideAddAccountForm();
+        }
+    </script>
+</body>
+</html> 

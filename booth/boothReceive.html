@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攤位收款</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 pb-20">
+    <!-- 頂部導航欄 -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">收款</h1>
+        </div>
+    </header>
+
+    <!-- 收款碼區域 -->
+    <section class="px-4 py-6 flex flex-col items-center">
+        <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-md flex flex-col items-center">
+            <h2 class="text-lg font-semibold mb-2">攤位收款碼</h2>
+            <p class="text-gray-500 text-sm mb-4">請遊客掃描以下 QR Code 進行付款</p>
+            
+            <div class="bg-white p-2 rounded-lg border-2 border-gray-200 mb-4">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=boothid123456" 
+                     alt="收款碼" class="w-48 h-48 mx-auto">
+            </div>
+            
+            <div class="flex space-x-3 w-full justify-center">
+                <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg flex items-center text-sm">
+                    <i class="fas fa-sync-alt mr-2"></i> 刷新
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 收款統計卡片 -->
+    <section class="px-4 py-2">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <p class="text-gray-500 text-xs">今日收款總額</p>
+                <p class="text-2xl font-bold">2,580 <span class="text-sm font-normal">點</span></p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <p class="text-gray-500 text-xs">今日交易次數</p>
+                <p class="text-2xl font-bold">32 <span class="text-sm font-normal">筆</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 交易紀錄列表 -->
+    <section class="px-4 py-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-semibold">交易紀錄</h2>
+            <button class="text-blue-500 text-sm">查看全部</button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm divide-y">
+            <!-- 交易項目 1 -->
+            <div class="p-4 flex justify-between items-center" onclick="openTransactionDetail(1)">
+                <div>
+                    <p class="font-medium">購買點心</p>
+                    <p class="text-gray-500 text-xs">5分鐘前</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-semibold">+150 點</p>
+                    <p class="text-xs text-green-500">成功</p>
+                </div>
+            </div>
+            
+            <!-- 交易項目 2 -->
+            <div class="p-4 flex justify-between items-center" onclick="openTransactionDetail(2)">
+                <div>
+                    <p class="font-medium">飲料</p>
+                    <p class="text-gray-500 text-xs">15分鐘前</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-semibold">+80 點</p>
+                    <p class="text-xs text-green-500">成功</p>
+                </div>
+            </div>
+            
+            <!-- 交易項目 3 -->
+            <div class="p-4 flex justify-between items-center" onclick="openTransactionDetail(3)">
+                <div>
+                    <p class="font-medium">手工藝品</p>
+                    <p class="text-gray-500 text-xs">40分鐘前</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-semibold">+250 點</p>
+                    <p class="text-xs text-green-500">成功</p>
+                </div>
+            </div>
+            
+            <!-- 交易項目 4 -->
+            <div class="p-4 flex justify-between items-center" onclick="openTransactionDetail(4)">
+                <div>
+                    <p class="font-medium">遊戲券</p>
+                    <p class="text-gray-500 text-xs">1小時前</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-semibold">+100 點</p>
+                    <p class="text-xs text-green-500">成功</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 交易明細 Modal -->
+    <div id="transactionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-md w-11/12 p-5">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">交易明細</h3>
+                <button onclick="closeTransactionDetail()" class="text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="transactionDetail" class="space-y-4">
+                <!-- 交易資訊 -->
+                <div>
+                    <p class="text-gray-500 text-sm">交易類型</p>
+                    <p class="font-medium text-lg" id="transTitle">購買點心</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <p class="text-gray-500 text-sm">交易時間</p>
+                        <p class="font-medium" id="transTime">2023/06/10 14:25</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">交易金額</p>
+                        <p class="font-medium text-lg" id="transAmount">150 點</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <p class="text-gray-500 text-sm">交易編號</p>
+                    <p class="font-medium text-sm" id="transId">TXN202306101425789</p>
+                </div>
+                
+                <div>
+                    <p class="text-gray-500 text-sm">付款人</p>
+                    <p class="font-medium" id="transUser">王小明 (遊客ID: G789456)</p>
+                </div>
+                
+                <div>
+                    <p class="text-gray-500 text-sm">交易狀態</p>
+                    <p class="font-medium text-green-500" id="transStatus">已完成</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-center">
+                <button onclick="closeTransactionDetail()" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg font-medium">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-2">
+        <div class="grid grid-cols-4 gap-1 max-w-md mx-auto">
+            <a href="boothReceive.html" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-qrcode text-xl"></i>
+                <span class="text-xs mt-1">收款</span>
+            </a>
+            <a href="boothGame.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="boothSetting.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位管理</span>
+            </a>
+            <a href="boothAccount.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-user-circle text-xl"></i>
+                <span class="text-xs mt-1">帳號</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // 交易明細Modal功能
+        function openTransactionDetail(id) {
+            const transactionData = {
+                1: {
+                    title: "購買點心",
+                    time: "2023/06/10 14:25",
+                    amount: "150 點",
+                    id: "TXN202306101425789",
+                    user: "王小明 (遊客ID: G789456)",
+                    status: "已完成"
+                },
+                2: {
+                    title: "飲料",
+                    time: "2023/06/10 14:15",
+                    amount: "80 點",
+                    id: "TXN202306101415456",
+                    user: "林小美 (遊客ID: G654123)",
+                    status: "已完成"
+                },
+                3: {
+                    title: "手工藝品",
+                    time: "2023/06/10 13:50",
+                    amount: "250 點",
+                    id: "TXN202306101350321",
+                    user: "張大華 (遊客ID: G321654)",
+                    status: "已完成"
+                },
+                4: {
+                    title: "遊戲券",
+                    time: "2023/06/10 13:30",
+                    amount: "100 點",
+                    id: "TXN202306101330987",
+                    user: "陳小玲 (遊客ID: G987654)",
+                    status: "已完成"
+                }
+            };
+            
+            const data = transactionData[id];
+            
+            // 更新Modal內容
+            document.getElementById('transTitle').textContent = data.title;
+            document.getElementById('transTime').textContent = data.time;
+            document.getElementById('transAmount').textContent = data.amount;
+            document.getElementById('transId').textContent = data.id;
+            document.getElementById('transUser').textContent = data.user;
+            document.getElementById('transStatus').textContent = data.status;
+            
+            // 顯示Modal
+            document.getElementById('transactionModal').classList.remove('hidden');
+        }
+        
+        function closeTransactionDetail() {
+            document.getElementById('transactionModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html> 

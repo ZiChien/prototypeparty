@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付頁面</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col h-screen pb-20">
+    <!-- 頂部導航欄 -->
+    <header class="px-4 py-3 bg-white shadow-sm flex justify-between items-center sticky top-0 z-10">
+        <div class="text-xl font-bold">支付中心</div>
+        <button class="text-gray-500">
+            <i class="fas fa-ellipsis-h"></i>
+        </button>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="flex-1 overflow-auto">
+        <!-- 點數卡片區域 -->
+        <section class="px-5 pt-6 pb-8 bg-gradient-to-br from-gray-600 to-gray-800 text-white rounded-b-3xl shadow-md">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-sm gray-100">園遊會點數</h2>
+                    <div class="text-3xl font-bold mt-1">$ 2,500</div>
+                </div>
+            </div>
+            
+            <!-- 收款碼顯示 -->
+            <div class="flex justify-center my-6">
+                <div class="w-40 h-40 bg-white p-2 rounded-lg">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=payment-code-123456" alt="收款碼" class="w-full h-full">
+                </div>
+            </div>
+            
+            <div class="flex">
+                <button class="w-full flex flex-col items-center py-3 bg-white bg-opacity-10 rounded-xl">
+                    <i class="fas fa-qrcode text-xl mb-1"></i>
+                    <span class="text-sm">掃碼付款</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 交易記錄區域 -->
+        <section class="px-5 py-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold">最近交易</h2>
+            </div>
+
+            <!-- 交易列表 -->
+            <div class="bg-white rounded-2xl shadow-sm divide-y divide-gray-100">
+                <!-- 交易項目 1 -->
+                <div class="p-4 flex items-center">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-medium">甜點天堂</div>
+                        <div class="text-xs text-gray-500">今天 12:30</div>
+                    </div>
+                    <div class="text-red-500 font-medium">-100</div>
+                </div>
+
+                <!-- 交易項目 2 -->
+                <div class="p-4 flex items-center">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 mr-3">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-medium">點數儲值</div>
+                        <div class="text-xs text-gray-500">今天 11:15</div>
+                    </div>
+                    <div class="text-green-500 font-medium">+200</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 導航欄 -->
+    <nav class="bg-white px-6 py-3 flex justify-between items-center border-t border-gray-200 fixed bottom-0 w-full">
+        <a href="guestHome.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-home text-lg"></i>
+            <span class="text-xs mt-1">首頁</span>
+        </a>
+        <a href="guestBooth.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-store text-lg"></i>
+            <span class="text-xs mt-1">攤位</span>
+        </a>
+        <a href="guestGame.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-tasks text-lg"></i>
+            <span class="text-xs mt-1">任務</span>
+        </a>
+        <a href="guestPayment.html" class="flex flex-col items-center text-blue-600">
+            <i class="fas fa-wallet text-lg"></i>
+            <span class="text-xs mt-1">支付</span>
+        </a>
+        <a href="guestAccount.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-user text-lg"></i>
+            <span class="text-xs mt-1">我的</span>
+        </a>
+    </nav>
+
+    <!-- 掃碼支付彈窗 -->
+    <div id="scanModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl w-5/6 max-w-md overflow-hidden">
+            <!-- 頂部與關閉按鈕 -->
+            <div class="flex justify-between items-center p-5 border-b border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800">掃描支付碼</h3>
+                <button id="closeModal" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- 主要內容區 -->
+            <div class="p-5">
+                <!-- 相機取景框 -->
+                <div class="relative mb-4">
+                    <div class="w-full aspect-square bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200 overflow-hidden">
+                        <div class="w-3/4 h-3/4 border-2 border-white border-opacity-60 rounded-lg relative">
+                            <!-- 取景框角落 -->
+                            <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-gray-800"></div>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-gray-800"></div>
+                            <div class="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-gray-800"></div>
+                            <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-gray-800"></div>
+                        </div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-camera text-3xl text-gray-400 mb-2"></i>
+                            <p class="text-gray-500 text-sm">將支付碼放入框內自動掃描</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 支付成功彈窗 -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl w-5/6 max-w-md overflow-hidden">
+            <div class="p-6 flex flex-col items-center">
+                <!-- 成功圖標 -->
+                <div class="w-16 h-16 rounded-full bg-green-100 text-green-500 flex items-center justify-center text-3xl mb-4">
+                    <i class="fas fa-check"></i>
+                </div>
+                
+                <!-- 成功訊息 -->
+                <h3 class="text-xl font-bold text-gray-800 mb-1">支付成功</h3>
+                <p class="text-gray-500 mb-4 text-center">您已成功支付 $75 給「甜點天堂」</p>
+                
+                <!-- 交易詳情 -->
+                <div class="w-full bg-gray-50 rounded-xl p-4 mb-6">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-500">交易編號</span>
+                        <span class="text-gray-800 font-medium">TX202305141523</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-500">交易時間</span>
+                        <span class="text-gray-800">2023-10-25 15:23</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">支付點數</span>
+                        <span class="text-red-500 font-medium">-75</span>
+                    </div>
+                </div>
+                <!-- 完成按鈕 -->
+                <button id="closeSuccessModal" class="w-full py-3 bg-gray-800 text-white rounded-xl font-medium">
+                    完成
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 模擬掃碼付款功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const scanButtons = document.querySelectorAll('button:has(.fa-qrcode)');
+            const scanModal = document.getElementById('scanModal');
+            const successModal = document.getElementById('successModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const closeSuccessModalBtn = document.getElementById('closeSuccessModal');
+            
+            // 點擊掃碼付款按鈕
+            scanButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    scanModal.classList.remove('hidden');
+                    
+                    // 模擬掃碼延遲後顯示成功
+                    setTimeout(function() {
+                        scanModal.classList.add('hidden');
+                        successModal.classList.remove('hidden');
+                    }, 3000);
+                });
+            });
+            
+            // 關閉掃碼模態窗
+            closeModalBtn.addEventListener('click', function() {
+                scanModal.classList.add('hidden');
+            });
+            
+            // 關閉成功模態窗
+            closeSuccessModalBtn.addEventListener('click', function() {
+                successModal.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html> 

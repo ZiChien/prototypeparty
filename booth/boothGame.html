@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攤位任務</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 頂部導航欄 -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">任務集章</h1>
+        </div>
+    </header>
+
+    <!-- 主要內容 -->
+    <main class="px-4 py-6 pb-20">
+
+        <!-- 任務選擇 -->
+        <section class="mb-6">
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <h3 class="text-md font-semibold mb-3">選擇任務</h3>
+                
+                <div class="space-y-2">
+                    <select id="task-selector" class="w-full p-2 border rounded-lg text-gray-700" onchange="updateQRCode()">
+                        <option value="task1">環保回收挑戰</option>
+                        <option value="task2">美食探索之旅</option>
+                        <option value="task3">藝術創作體驗</option>
+                        <option value="task4">運動競技大賽</option>
+                    </select>
+                </div>
+                
+                <div class="mt-4">
+                    <h4 class="text-sm font-medium mb-2">關卡選擇</h4>
+                    <div class="grid grid-cols-3 gap-2" id="checkpoint-selector">
+                        <button class="py-2 px-3 rounded-lg bg-blue-500 text-white text-sm font-medium checkpoint-btn" data-checkpoint="1" onclick="selectCheckpoint(1)">關卡 1</button>
+                        <button class="py-2 px-3 rounded-lg bg-gray-200 text-gray-700 text-sm font-medium checkpoint-btn" data-checkpoint="2" onclick="selectCheckpoint(2)">關卡 2</button>
+                        <button class="py-2 px-3 rounded-lg bg-gray-200 text-gray-700 text-sm font-medium checkpoint-btn" data-checkpoint="3" onclick="selectCheckpoint(3)">關卡 3</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QR Code 顯示 -->
+        <section>
+            <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                <h3 class="text-md font-semibold mb-2">集章任務 QR Code</h3>
+                <p class="text-gray-500 text-sm mb-4" id="qr-description">環保回收挑戰 - 關卡 1</p>
+                
+                <div class="bg-white p-2 rounded-lg border-2 border-gray-200 mb-4">
+                    <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=taskId:task1-checkpoint:1" 
+                         alt="集章QR碼" class="w-48 h-48 mx-auto">
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 text-center">請遊客掃描此QR Code完成集章</p>
+                
+                <div class="flex space-x-3 w-full justify-center">
+                    <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg flex items-center text-sm" onclick="updateQRCode()">
+                        <i class="fas fa-sync-alt mr-2"></i> 刷新
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 說明 Modal -->
+    <div id="helpModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-md w-11/12 p-5">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">集章任務說明</h3>
+                <button onclick="closeHelp()" class="text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <p class="text-gray-700">集章任務是園遊會的特色活動，遊客需要完成指定關卡來獲得點數和獎勵。</p>
+                
+                <div>
+                    <h4 class="font-medium mb-1">如何操作：</h4>
+                    <ol class="list-decimal list-inside text-gray-700 text-sm space-y-1">
+                        <li>從上方選擇您參與的任務類型</li>
+                        <li>選擇對應的關卡</li>
+                        <li>讓遊客掃描顯示的QR Code</li>
+                        <li>系統將自動記錄遊客的完成進度</li>
+                    </ol>
+                </div>
+                
+                <p class="text-gray-700 text-sm">若有任何問題，請聯繫主辦方工作人員。</p>
+            </div>
+            
+            <div class="mt-6 flex justify-center">
+                <button onclick="closeHelp()" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg font-medium">
+                    我明白了
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-2">
+        <div class="grid grid-cols-4 gap-1 max-w-md mx-auto">
+            <a href="boothReceive.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-qrcode text-xl"></i>
+                <span class="text-xs mt-1">收款</span>
+            </a>
+            <a href="boothGame.html" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="boothSetting.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位管理</span>
+            </a>
+            <a href="boothAccount.html" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-user-circle text-xl"></i>
+                <span class="text-xs mt-1">帳號</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // 當前選中的關卡
+        let currentCheckpoint = 1;
+        
+        // 更新QR碼
+        function updateQRCode() {
+            const taskSelector = document.getElementById('task-selector');
+            const selectedTask = taskSelector.value;
+            const taskName = taskSelector.options[taskSelector.selectedIndex].text;
+            
+            // 更新QR碼圖片
+            const qrCodeImg = document.getElementById('qr-code-img');
+            qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=taskId:${selectedTask}-checkpoint:${currentCheckpoint}`;
+            
+            // 更新描述文字
+            document.getElementById('qr-description').textContent = `${taskName} - 關卡 ${currentCheckpoint}`;
+        }
+        
+        // 選擇關卡
+        function selectCheckpoint(checkpoint) {
+            currentCheckpoint = checkpoint;
+            
+            // 更新按鈕樣式
+            const buttons = document.querySelectorAll('.checkpoint-btn');
+            buttons.forEach(btn => {
+                const btnCheckpoint = parseInt(btn.getAttribute('data-checkpoint'));
+                if (btnCheckpoint === checkpoint) {
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                    btn.classList.add('bg-blue-500', 'text-white');
+                } else {
+                    btn.classList.remove('bg-blue-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                }
+            });
+            
+            // 更新QR碼
+            updateQRCode();
+        }
+        
+        // 顯示說明Modal
+        function showHelp() {
+            document.getElementById('helpModal').classList.remove('hidden');
+        }
+        
+        // 關閉說明Modal
+        function closeHelp() {
+            document.getElementById('helpModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html> 

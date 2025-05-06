@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點數管理</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 頂部導航欄 -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">點數管理</h1>
+        </div>
+    </header>
+
+    <!-- 主要內容 -->
+    <main class="px-4 py-6 pb-20">
+        <!-- 點數統計卡片 -->
+        <section class="mb-6">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <p class="text-gray-500 text-xs">已發放點數總額</p>
+                    <p class="text-2xl font-bold">42,580 <span class="text-sm font-normal">點</span></p>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <p class="text-gray-500 text-xs">已消費點數總額</p>
+                    <p class="text-2xl font-bold">28,350 <span class="text-sm font-normal">點</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 儲值點數按鈕 -->
+        <section class="mb-6">
+            <button onclick="showTopupModal()" class="w-full bg-blue-500 text-white py-3 rounded-xl font-medium flex items-center justify-center">
+                <i class="fas fa-coins mr-2"></i> 儲值點數
+            </button>
+        </section>
+
+        <!-- 選項卡切換 -->
+        <section class="mb-4">
+            <div class="flex border-b">
+                <button onclick="switchTab('topup')" id="tab-topup" class="flex-1 py-3 border-b-2 border-blue-500 text-blue-500 font-medium">
+                    點數儲值紀錄
+                </button>
+                <button onclick="switchTab('booth')" id="tab-booth" class="flex-1 py-3 border-b-2 border-transparent text-gray-500 font-medium">
+                    各攤位收點統計
+                </button>
+            </div>
+        </section>
+
+        <!-- 點數儲值紀錄 -->
+        <section id="topup-records" class="space-y-4">
+            <!-- 儲值紀錄項目 1 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80" 
+                                 alt="用戶頭貼" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium">王小明 <span class="text-gray-500 text-xs">(遊客ID: G789456)</span></p>
+                            <p class="text-gray-500 text-xs mt-1">2023/06/10 09:35</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold text-blue-500">+500 點</p>
+                        <p class="text-xs text-green-500">成功</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 儲值紀錄項目 2 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1187&q=80" 
+                                 alt="用戶頭貼" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium">林小美 <span class="text-gray-500 text-xs">(遊客ID: G654123)</span></p>
+                            <p class="text-gray-500 text-xs mt-1">2023/06/10 10:15</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold text-blue-500">+1,000 點</p>
+                        <p class="text-xs text-green-500">成功</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 儲值紀錄項目 3 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80" 
+                                 alt="用戶頭貼" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium">張大華 <span class="text-gray-500 text-xs">(遊客ID: G321654)</span></p>
+                            <p class="text-gray-500 text-xs mt-1">2023/06/10 11:05</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold text-blue-500">+200 點</p>
+                        <p class="text-xs text-green-500">成功</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="w-full py-3 bg-gray-100 text-gray-700 rounded-lg font-medium">
+                載入更多紀錄
+            </button>
+        </section>
+
+        <!-- 各攤位收點統計 (預設隱藏) -->
+        <section id="booth-statistics" class="space-y-4 hidden">
+            <!-- 統計項目 1 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" 
+                                 alt="攤位照片" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium">美味小食攤</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold">5,280 點</p>
+                        <p class="text-xs text-gray-500">總收款額</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-2">
+                    <div class="flex justify-between items-center text-sm">
+                        <p class="text-gray-600">交易次數</p>
+                        <p class="font-medium">78 筆</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 統計項目 2 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80" 
+                                 alt="攤位照片" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium">趣味遊戲屋</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold">4,350 點</p>
+                        <p class="text-xs text-gray-500">總收款額</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-2">
+                    <div class="flex justify-between items-center text-sm">
+                        <p class="text-gray-600">交易次數</p>
+                        <p class="font-medium">62 筆</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 統計項目 3 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80" 
+                                 alt="攤位照片" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium">創意手作坊</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold">3,520 點</p>
+                        <p class="text-xs text-gray-500">總收款額</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-2">
+                    <div class="flex justify-between items-center text-sm">
+                        <p class="text-gray-600">交易次數</p>
+                        <p class="font-medium">45 筆</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="w-full py-3 bg-gray-100 text-gray-700 rounded-lg font-medium">
+                載入更多攤位
+            </button>
+        </section>
+    </main>
+
+    <!-- 儲值點數 Modal -->
+    <div id="topupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-md w-11/12 p-5">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">儲值點數</h3>
+                <button onclick="closeTopupModal()" class="text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="topup-amount">儲值金額</label>
+                    <input type="number" id="topup-amount" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="請輸入儲值金額">
+                </div>
+                
+                <div>
+                    <p class="text-sm font-medium text-gray-700 mb-1">快捷金額</p>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="setTopupAmount(100)" class="py-2 bg-gray-100 text-gray-700 rounded-lg text-sm">
+                            100 點
+                        </button>
+                        <button onclick="setTopupAmount(200)" class="py-2 bg-gray-100 text-gray-700 rounded-lg text-sm">
+                            200 點
+                        </button>
+                        <button onclick="setTopupAmount(500)" class="py-2 bg-gray-100 text-gray-700 rounded-lg text-sm">
+                            500 點
+                        </button>
+                        <button onclick="setTopupAmount(1000)" class="py-2 bg-gray-100 text-gray-700 rounded-lg text-sm">
+                            1,000 點
+                        </button>
+                        <button onclick="setTopupAmount(2000)" class="py-2 bg-gray-100 text-gray-700 rounded-lg text-sm">
+                            2,000 點
+                        </button>
+                        <button onclick="setTopupAmount(5000)" class="py-2 bg-gray-100 text-gray-700 rounded-lg text-sm">
+                            5,000 點
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <p class="text-sm font-medium text-gray-700 mb-1">掃描遊客QR Code</p>
+                    <div class="relative border-2 border-dashed border-gray-300 rounded-lg overflow-hidden cursor-pointer" style="height: 200px;" onclick="simulateQRScan()">
+                        <div class="absolute inset-0 bg-gray-900 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-qrcode text-gray-400 text-4xl mb-2"></i>
+                                <p class="text-gray-400 text-sm">點擊開始掃描</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-48 h-48 border-4 border-blue-500 rounded-lg animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="guest-info" class="bg-gray-50 p-3 rounded-lg hidden">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">王小明</p>
+                            <p class="text-gray-500 text-xs">遊客ID: G789456</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end space-x-3">
+                <button onclick="closeTopupModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">
+                    取消
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 儲值成功 Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-md w-11/12 p-5">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">儲值成功</h3>
+                <p class="text-gray-600 mb-4">已成功為王小明儲值 <span id="success-amount" class="font-semibold text-blue-500">0</span> 點</p>
+                <button onclick="closeSuccessModal()" class="w-full py-2 bg-blue-500 text-white rounded-lg">
+                    完成
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 切換選項卡
+        function switchTab(tab) {
+            const topupTab = document.getElementById('tab-topup');
+            const boothTab = document.getElementById('tab-booth');
+            const topupRecords = document.getElementById('topup-records');
+            const boothStatistics = document.getElementById('booth-statistics');
+            
+            if (tab === 'topup') {
+                topupTab.classList.add('border-blue-500', 'text-blue-500');
+                topupTab.classList.remove('border-transparent', 'text-gray-500');
+                boothTab.classList.remove('border-blue-500', 'text-blue-500');
+                boothTab.classList.add('border-transparent', 'text-gray-500');
+                
+                topupRecords.classList.remove('hidden');
+                boothStatistics.classList.add('hidden');
+            } else {
+                boothTab.classList.add('border-blue-500', 'text-blue-500');
+                boothTab.classList.remove('border-transparent', 'text-gray-500');
+                topupTab.classList.remove('border-blue-500', 'text-blue-500');
+                topupTab.classList.add('border-transparent', 'text-gray-500');
+                
+                boothStatistics.classList.remove('hidden');
+                topupRecords.classList.add('hidden');
+            }
+        }
+        
+        // 儲值Modal相關函數
+        function showTopupModal() {
+            document.getElementById('topupModal').classList.remove('hidden');
+        }
+        
+        function closeTopupModal() {
+            document.getElementById('topupModal').classList.add('hidden');
+            document.getElementById('guest-info').classList.add('hidden');
+            document.getElementById('topup-amount').value = '';
+        }
+        
+        function setTopupAmount(amount) {
+            document.getElementById('topup-amount').value = amount;
+        }
+        
+        // 模擬掃描QR碼
+        function simulateQRScan() {
+            const amount = document.getElementById('topup-amount').value;
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('請輸入有效的儲值金額');
+                return;
+            }
+            
+            // 顯示掃描動畫
+            const scanArea = document.querySelector('.border-dashed');
+            scanArea.classList.add('animate-pulse');
+            
+            // 模擬掃描過程
+            setTimeout(() => {
+                scanArea.classList.remove('animate-pulse');
+                document.getElementById('guest-info').classList.remove('hidden');
+                // 自動處理儲值
+                processTopup();
+            }, 1500);
+        }
+        
+        // 處理儲值
+        function processTopup() {
+            const amount = document.getElementById('topup-amount').value;
+            
+            // 顯示成功 modal
+            document.getElementById('success-amount').textContent = amount;
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('topupModal').classList.add('hidden');
+        }
+        
+        // 關閉成功 modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('guest-info').classList.add('hidden');
+            document.getElementById('topup-amount').value = '';
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊客管理</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 側邊導航欄 -->
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-white shadow-md fixed h-full">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold">園遊會管理</h1>
+                <p class="text-gray-500 text-sm">主辦方後台</p>
+            </div>
+            <nav class="mt-4">
+                <ul class="space-y-2 px-4">
+                    <li>
+                        <a href="eventAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-calendar-alt mr-3"></i>
+                            <span>活動設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boothAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-store mr-3"></i>
+                            <span>攤位設定</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="paymentAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-coins mr-3"></i>
+                            <span>點數管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="userAdmin.html" class="flex items-center p-3 text-blue-500 bg-blue-50 rounded-lg">
+                            <i class="fas fa-users mr-3"></i>
+                            <span>遊客管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="gameAdmin.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-gamepad mr-3"></i>
+                            <span>任務管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="absolute bottom-0 w-full p-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-500"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">管理員</p>
+                        <p class="text-xs text-gray-500">admin@example.com</p>
+                    </div>
+                </div>
+                <button class="mt-4 w-full py-2 bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-sign-out-alt mr-2"></i> 登出
+                </button>
+            </div>
+        </aside>
+
+        <!-- 主要內容區域 -->
+        <main class="flex-1 ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">遊客管理</h2>
+                <div class="flex space-x-3">
+                    <div class="relative">
+                        <input type="text" placeholder="搜尋遊客..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 統計卡片 -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 mr-4">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">總遊客數</p>
+                            <p class="text-xl font-bold">1,258</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-500 mr-4">
+                            <i class="fas fa-user-check text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">今日新增</p>
+                            <p class="text-xl font-bold">126</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-500 mr-4">
+                            <i class="fas fa-ban text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">黑名單數量</p>
+                            <p class="text-xl font-bold">3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 遊客列表 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-4 border-b">
+                    <h3 class="text-lg font-semibold">遊客列表</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">遊客資訊</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">註冊時間</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">點數餘額</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">完成任務</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">狀態</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- 遊客項目 1 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" 
+                                                 alt="用戶頭像" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">王小明</div>
+                                            <div class="text-sm text-gray-500">ID: G789456</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    2023/06/09 08:15
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    1,250 點
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    3/5
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">正常</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="viewUser(1)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="blacklistUser(1)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-ban"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- 遊客項目 2 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" 
+                                                 alt="用戶頭像" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">林小美</div>
+                                            <div class="text-sm text-gray-500">ID: G654123</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    2023/06/09 09:32
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    3,580 點
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    5/5
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">正常</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="viewUser(2)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="blacklistUser(2)" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-ban"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- 遊客項目 3 (黑名單狀態) -->
+                            <tr class="bg-red-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" 
+                                                 alt="用戶頭像" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <div class="font-medium">陳大華</div>
+                                            <div class="text-sm text-gray-500">ID: G321654</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    2023/06/09 10:45
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    120 點
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    1/5
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">黑名單</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex space-x-3">
+                                        <button onclick="viewUser(3)" class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button onclick="removeFromBlacklist(3)" class="text-green-500 hover:text-green-700">
+                                            <i class="fas fa-user-check"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4 border-t">
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-500">顯示 1 至 3 項，共 1,258 項</p>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">上一頁</button>
+                            <button class="px-3 py-1 bg-blue-50 border border-blue-500 text-blue-500 rounded-lg">1</button>
+                            <button class="px-3 py-1 border rounded-lg">2</button>
+                            <button class="px-3 py-1 border rounded-lg">3</button>
+                            <button class="px-3 py-1 border rounded-lg">...</button>
+                            <button class="px-3 py-1 border rounded-lg">126</button>
+                            <button class="px-3 py-1 border rounded-lg">下一頁</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 查看遊客詳情 Modal -->
+    <div id="userDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">遊客詳細資訊</h3>
+                <button onclick="closeUserDetailModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full overflow-hidden mr-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" 
+                             alt="用戶頭像" class="w-full h-full object-cover" id="detail-user-avatar">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium" id="detail-user-name">王小明</h4>
+                        <p class="text-gray-500 text-sm" id="detail-user-id">遊客ID: G789456</p>
+                        <p class="text-gray-500 text-sm" id="detail-user-time">註冊時間: 2023/06/09 08:15</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <p class="text-gray-500 text-sm">點數餘額</p>
+                        <p class="text-lg font-medium" id="detail-user-points">1,250 點</p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <p class="text-gray-500 text-sm">完成任務</p>
+                        <p class="text-lg font-medium" id="detail-user-tasks">3/5</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-medium mb-2">支付紀錄</h4>
+                    <div class="border rounded-lg overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">時間</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">交易類型</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">金額</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">餘額</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">2023/06/10 10:15</td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">儲值</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-green-600">+500</td>
+                                    <td class="px-4 py-3 text-sm">1,250</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">2023/06/10 11:22</td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">消費</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-red-600">-150</td>
+                                    <td class="px-4 py-3 text-sm">850</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm">2023/06/10 13:05</td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">消費</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-red-600">-100</td>
+                                    <td class="px-4 py-3 text-sm">750</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-between">
+                <button onclick="blacklistUserFromDetail()" class="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center">
+                    <i class="fas fa-ban mr-2"></i> 加入黑名單
+                </button>
+                <button onclick="closeUserDetailModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 查看遊客詳情
+        function viewUser(id) {
+            document.getElementById('userDetailModal').classList.remove('hidden');
+            
+            // 實際應用中此處應該載入遊客資料
+            console.log(`查看遊客 ID: ${id}`);
+        }
+        
+        function closeUserDetailModal() {
+            document.getElementById('userDetailModal').classList.add('hidden');
+        }
+        
+        // 加入黑名單
+        function blacklistUser(id) {
+            if (confirm('確定要將此遊客加入黑名單嗎？')) {
+                // 模擬加入黑名單操作
+                alert(`遊客 ID: ${id} 已加入黑名單`);
+            }
+        }
+        
+        // 從詳情頁加入黑名單
+        function blacklistUserFromDetail() {
+            if (confirm('確定要將此遊客加入黑名單嗎？')) {
+                // 模擬加入黑名單操作
+                alert('遊客已加入黑名單');
+                closeUserDetailModal();
+            }
+        }
+        
+        // 從黑名單移除
+        function removeFromBlacklist(id) {
+            if (confirm('確定要將此遊客從黑名單中移除嗎？')) {
+                // 模擬移除黑名單操作
+                alert(`遊客 ID: ${id} 已從黑名單中移除`);
+            }
+        }
+    </script>
+</body>
+</html> 

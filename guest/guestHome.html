@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>園遊會首頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 min-h-screen pb-20">
+    <!-- 頂部導航欄 -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="flex justify-between items-center p-4">
+            <h1 class="text-xl font-semibold">夏日園遊會</h1>
+        </div>
+    </header>
+
+    <!-- 主視覺banner -->
+    <div class="relative h-48 overflow-hidden rounded-b-lg">
+        <img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="園遊會主視覺" class="w-full h-full object-cover">
+    </div>
+
+    <!-- 活動資訊區塊 -->
+    <div class="p-4 mb-4 bg-white rounded-xl mx-4 -mt-6 shadow-sm relative z-10">
+        <div class="flex items-center mb-2">
+            <h1 class="font-semibold">2025 夏日園遊會</h1>
+        </div>
+        <p class="text-sm text-gray-600 mb-2">時間：上午10:00 - 下午5:00</p>
+        <p class="text-sm text-gray-600 mb-2">地點：中央廣場及周邊區域</p>
+        <p class="text-sm text-gray-600">活動說明：20多個特色攤位、表演活動及互動遊戲</p>
+    </div>
+
+    <!-- 主辦方公告 -->
+    <div class="px-4 mb-6">
+        <div class="flex justify-between items-center mb-3">
+            <h3 class="font-semibold text-gray-800">最新公告</h3>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm mb-3">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h4 class="font-medium">下午2點特別表演變更通知</h4>
+                    <p class="text-xs text-gray-500 mt-1">10分鐘前</p>
+                </div>
+                <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">重要</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">因天氣因素，原定下午2點的戶外表演將移至中央舞台進行，請各位遊客留意。</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h4 class="font-medium">園遊會幣兌換處已開放</h4>
+                    <p class="text-xs text-gray-500 mt-1">1小時前</p>
+                </div>
+                <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">一般</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">園遊會幣兌換處位於入口處右側，每100元可兌換150點園遊會幣。</p>
+        </div>
+    </div>
+
+    <!-- 任務進度簡介 -->
+    <div class="px-4 mb-6">
+        <div class="flex justify-between items-center mb-3">
+            <h3 class="font-semibold text-gray-800">任務進度</h3>
+            <a href="guestGame.html" class="text-xs text-blue-500">查看更多</a>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm">
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                    <i class="fas fa-star text-orange-500"></i>
+                </div>
+                <div class="grow">
+                    <h4 class="font-medium">美食闖關賽</h4>
+                    <div class="mt-1 w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-orange-500 h-2 rounded-full" style="width: 40%"></div>
+                    </div>
+                    <!-- 進度可能是過幾關、得到多少分數-->
+                    <p class="text-xs text-gray-500 mt-1">進度: 2/5關</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                    <i class="fas fa-gamepad text-purple-500"></i>
+                </div>
+                <div class="grow">
+                    <h4 class="font-medium">遊戲大挑戰</h4>
+                    <div class="mt-1 w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-purple-500 h-2 rounded-full" style="width: 60%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">進度: 3/5關</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 活動標籤頁 -->
+    <div class="px-4">
+        <div class="border-b border-gray-200">
+            <nav class="-mb-px flex">
+                <button id="all-events-tab"
+                    class="tab-btn w-1/2 py-3 text-center border-b-2 border-blue-500 font-medium text-blue-600">
+                    今日活動
+                </button>
+                <button id="registered-events-tab"
+                    class="tab-btn w-1/2 py-3 text-center border-b-2 border-transparent font-medium text-gray-500">
+                    已報名活動
+                </button>
+            </nav>
+        </div>
+
+        <!-- 活動列表 -->
+        <div id="all-events" class="tab-content py-4">
+            <div class="text-gray-500 text-sm mb-2">7月15日 (星期一)</div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm mb-3" onclick="openEventDetails('event1')">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="text-center mr-3">
+                            <p class="text-sm font-bold text-gray-800">10:30</p>
+                            <p class="text-xs text-gray-500">AM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">開幕儀式</h4>
+                            <p class="text-xs text-gray-500 mt-1">中央舞台 | 30分鐘</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm mb-3" onclick="openEventDetails('event2')">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="text-center mr-3">
+                            <p class="text-sm font-bold text-gray-800">12:00</p>
+                            <p class="text-xs text-gray-500">PM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">美食品嚐會</h4>
+                            <p class="text-xs text-gray-500 mt-1">美食區 | 1小時</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm" onclick="openEventDetails('event3')">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="text-center mr-3">
+                            <p class="text-sm font-bold text-gray-800">2:00</p>
+                            <p class="text-xs text-gray-500">PM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">樂團表演</h4>
+                            <p class="text-xs text-gray-500 mt-1">中央舞台 | 45分鐘</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 已報名活動 -->
+        <div id="registered-events" class="tab-content py-4 hidden">
+            <div class="bg-white p-4 rounded-xl shadow-sm mb-3" onclick="openEventDetails('registered1')">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="text-center mr-3">
+                            <p class="text-sm font-bold text-gray-800">2:00</p>
+                            <p class="text-xs text-gray-500">PM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">樂團表演</h4>
+                            <p class="text-xs text-gray-500 mt-1">中央舞台 | 45分鐘</p>
+                        </div>
+                    </div>
+                    <span class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">已報名</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm" onclick="openEventDetails('registered2')">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="text-center mr-3">
+                            <p class="text-sm font-bold text-gray-800">4:00</p>
+                            <p class="text-xs text-gray-500">PM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">手作工作坊</h4>
+                            <p class="text-xs text-gray-500 mt-1">文創區 | 1.5小時</p>
+                        </div>
+                    </div>
+                    <span class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">已報名</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 活動詳情彈窗 -->
+    <div id="event-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 max-w-md rounded-xl overflow-hidden">
+            <div class="relative">
+                <img id="modal-image"
+                    src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="活動圖片" class="w-full h-48 object-cover">
+                <button onclick="closeEventModal()"
+                    class="absolute top-4 right-4 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
+                    <i class="fas fa-times text-gray-600"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <h3 id="modal-title" class="text-xl font-bold mb-2">活動標題</h3>
+                <div class="flex items-center mb-4">
+                    <i class="far fa-calendar-alt text-gray-500 mr-2"></i>
+                    <p id="modal-time" class="text-sm text-gray-600">時間資訊</p>
+                </div>
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-map-marker-alt text-gray-500 mr-2"></i>
+                    <p id="modal-location" class="text-sm text-gray-600">地點資訊</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-medium mb-2">活動介紹</h4>
+                    <p id="modal-description" class="text-sm text-gray-600">活動詳細介紹內容</p>
+                </div>
+                
+                <!-- 新增報名說明區塊 -->
+                <div id="registration-info-section" class="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        <h4 class="font-medium">報名說明</h4>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-users text-gray-500 mr-2 w-5 text-center"></i>
+                        <div>
+                            <p class="text-sm text-gray-600">報名人數</p>
+                            <p id="modal-capacity" class="text-sm font-medium">50/100 人</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="far fa-clock text-gray-500 mr-2 w-5 text-center"></i>
+                        <div>
+                            <p class="text-sm text-gray-600">截止時間</p>
+                            <p id="modal-deadline" class="text-sm font-medium">7月14日 晚上23:59</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-1">
+                        <i class="fas fa-exclamation-circle text-gray-500 mr-2 w-5 text-center self-start mt-0.5"></i>
+                        <div>
+                            <p class="text-sm text-gray-600">注意事項</p>
+                            <p id="modal-notes" class="text-sm">請攜帶報名確認通知，入場前請出示給工作人員核對。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="register-button"
+                    class="w-full py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+                    報名活動
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部導航欄 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200">
+        <div class="flex justify-around">
+            <a href="guestHome.html" class="flex flex-col items-center py-2 px-3 text-blue-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首頁</span>
+            </a>
+            <a href="guestBooth.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">攤位</span>
+            </a>
+            <a href="guestGame.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-tasks text-xl"></i>
+                <span class="text-xs mt-1">任務</span>
+            </a>
+            <a href="guestPayment.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-wallet text-xl"></i>
+                <span class="text-xs mt-1">支付</span>
+            </a>
+            <a href="guestAccount.html" class="flex flex-col items-center py-2 px-3 text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // 標籤頁切換
+        const allEventsTab = document.getElementById('all-events-tab');
+        const registeredEventsTab = document.getElementById('registered-events-tab');
+        const allEvents = document.getElementById('all-events');
+        const registeredEvents = document.getElementById('registered-events');
+
+        allEventsTab.addEventListener('click', function () {
+            allEventsTab.classList.remove('text-gray-500', 'border-transparent');
+            allEventsTab.classList.add('text-blue-600', 'border-blue-500');
+            registeredEventsTab.classList.remove('text-blue-600', 'border-blue-500');
+            registeredEventsTab.classList.add('text-gray-500', 'border-transparent');
+            allEvents.classList.remove('hidden');
+            registeredEvents.classList.add('hidden');
+        });
+
+        registeredEventsTab.addEventListener('click', function () {
+            registeredEventsTab.classList.remove('text-gray-500', 'border-transparent');
+            registeredEventsTab.classList.add('text-blue-600', 'border-blue-500');
+            allEventsTab.classList.remove('text-blue-600', 'border-blue-500');
+            allEventsTab.classList.add('text-gray-500', 'border-transparent');
+            registeredEvents.classList.remove('hidden');
+            allEvents.classList.add('hidden');
+        });
+
+        // 活動詳情彈窗
+        const eventModal = document.getElementById('event-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalTime = document.getElementById('modal-time');
+        const modalLocation = document.getElementById('modal-location');
+        const modalDescription = document.getElementById('modal-description');
+        const modalImage = document.getElementById('modal-image');
+        const registerButton = document.getElementById('register-button');
+        const modalCapacity = document.getElementById('modal-capacity');
+        const modalDeadline = document.getElementById('modal-deadline');
+        const modalNotes = document.getElementById('modal-notes');
+        const registrationInfoSection = document.getElementById('registration-info-section');
+
+        function openEventDetails(eventId) {
+            // 根據不同活動ID設置不同的詳情內容
+            if (eventId === 'event1') {
+                modalTitle.textContent = '開幕儀式';
+                modalTime.textContent = '7月15日 上午10:30-11:00';
+                modalLocation.textContent = '中央舞台';
+                modalDescription.textContent = '園遊會正式開幕！由校長和主辦單位致詞，並有精彩的舞蹈表演揭開序幕。';
+                modalImage.src = 'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                
+                // 設定報名資訊
+                modalCapacity.textContent = '不限人數';
+                modalDeadline.textContent = '無需報名，自由入場';
+                modalNotes.textContent = '活動開始前10分鐘開放入場，請準時參加。';
+                
+                // 設定註冊按鈕
+                registerButton.textContent = '報名活動';
+                registerButton.classList.remove('bg-gray-400');
+                registerButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                
+                // 顯示報名說明區塊
+                registrationInfoSection.classList.remove('hidden');
+            } else if (eventId === 'event2') {
+                modalTitle.textContent = '美食品嚐會';
+                modalTime.textContent = '7月15日 中午12:00-13:00';
+                modalLocation.textContent = '美食區';
+                modalDescription.textContent = '體驗各國美食的絕佳機會！參與者可以品嚐來自不同攤位的特色小吃，並為最佳美食投票。';
+                modalImage.src = 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                
+                // 設定報名資訊
+                modalCapacity.textContent = '68/100 人';
+                modalDeadline.textContent = '7月15日 上午11:30前';
+                modalNotes.textContent = '參加者需自備餐具，活動需收取50點園遊會幣作為品嚐費用。';
+                
+                // 設定註冊按鈕
+                registerButton.textContent = '報名活動';
+                registerButton.classList.remove('bg-gray-400');
+                registerButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                
+                // 顯示報名說明區塊
+                registrationInfoSection.classList.remove('hidden');
+            } else if (eventId === 'registered1' || eventId === 'event3') {
+                modalTitle.textContent = '樂團表演';
+                modalTime.textContent = '7月15日 下午2:00-2:45';
+                modalLocation.textContent = '中央舞台';
+                modalDescription.textContent = '由學生樂團帶來的精彩音樂表演，包含多首流行歌曲和原創作品。';
+                modalImage.src = 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                
+                // 設定報名資訊
+                modalCapacity.textContent = '152/200 人';
+                modalDeadline.textContent = '7月15日 下午1:30前';
+                modalNotes.textContent = '座位有限，報名成功者請提前15分鐘入場，逾時不保留座位。';
+                
+                // 設定註冊按鈕
+                if (eventId === 'registered1') {
+                    registerButton.textContent = '已報名';
+                    registerButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                    registerButton.classList.add('bg-gray-400');
+                } else {
+                    registerButton.textContent = '報名活動';
+                    registerButton.classList.remove('bg-gray-400');
+                    registerButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                }
+                
+                // 顯示報名說明區塊
+                registrationInfoSection.classList.remove('hidden');
+            } else if (eventId === 'registered2') {
+                modalTitle.textContent = '手作工作坊';
+                modalTime.textContent = '7月15日 下午4:00-5:30';
+                modalLocation.textContent = '文創區';
+                modalDescription.textContent = '跟著專業指導老師學習製作精美的手工藝品，每位參與者都能帶走自己的作品。工作坊名額有限，請提前報名。';
+                modalImage.src = 'https://images.unsplash.com/photo-1560421683-6856ea585c78?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                
+                // 設定報名資訊
+                modalCapacity.textContent = '30/30 人 (已額滿)';
+                modalDeadline.textContent = '7月14日 晚上23:59 (已截止)';
+                modalNotes.textContent = '請攜帶報名確認通知，需支付100點園遊會幣作為材料費用。請穿著適合手工藝製作的服裝。';
+                
+                // 設定註冊按鈕
+                registerButton.textContent = '已報名';
+                registerButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                registerButton.classList.add('bg-gray-400');
+                
+                // 顯示報名說明區塊
+                registrationInfoSection.classList.remove('hidden');
+            }
+
+            eventModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEventModal() {
+            eventModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 點擊彈窗外部關閉
+        eventModal.addEventListener('click', function (e) {
+            if (e.target === eventModal) {
+                closeEventModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
