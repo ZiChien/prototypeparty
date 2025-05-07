@@ -44,7 +44,7 @@
                         <a href="userAdmin.html"
                             class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
                             <i class="fas fa-users mr-3"></i>
-                            <span>遊客管理</span>
+                            <span>用戶管理</span>
                         </a>
                     </li>
                     <li>
@@ -79,46 +79,6 @@
                     class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
                     <i class="fas fa-plus mr-2"></i> 新增任務
                 </button>
-            </div>
-
-            <!-- 統計卡片 -->
-            <div class="grid grid-cols-4 gap-4 mb-6">
-                <div class="bg-white rounded-xl shadow-sm p-4">
-                    <div class="flex items-center">
-                        <div
-                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 mr-4">
-                            <i class="fas fa-tasks text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 text-xs">總任務數</p>
-                            <p class="text-xl font-bold">5</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm p-4">
-                    <div class="flex items-center">
-                        <div
-                            class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-500 mr-4">
-                            <i class="fas fa-map-marker-alt text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 text-xs">總關卡數</p>
-                            <p class="text-xl font-bold">28</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm p-4">
-                    <div class="flex items-center">
-                        <div
-                            class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-500 mr-4">
-                            <i class="fas fa-trophy text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 text-xs">完成人數</p>
-                            <p class="text-xl font-bold">324</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- 任務列表 -->
@@ -199,7 +159,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
-                                            <img src="https://images.unsplash.com/photo-1578898394441-9f72a0712e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                            <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                                                 alt="遊戲挑戰" class="w-full h-full object-cover">
                                         </div>
                                         <div>
@@ -231,96 +191,8 @@
                                     </div>
                                 </td>
                             </tr>
-
-                            <!-- 任務項目 3 -->
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
-                                            <img src="https://images.unsplash.com/photo-1617196035154-421e3b688cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                                alt="文藝探索" class="w-full h-full object-cover">
-                                        </div>
-                                        <div>
-                                            <div class="font-medium">文藝探索</div>
-                                            <div class="text-sm text-gray-500">參觀手工藝攤位</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    6 個關卡
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    完成至少 4 個關卡
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    文藝探索勳章 + 手工藝品禮包
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex space-x-3">
-                                        <button onclick="editTask(3)" class="text-blue-500 hover:text-blue-700">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button onclick="viewTaskDetail(3)" class="text-gray-500 hover:text-gray-700">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button onclick="deleteTask(3)" class="text-red-500 hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <!-- 任務項目 4 -->
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-lg overflow-hidden mr-3">
-                                            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                                alt="環園巡禮" class="w-full h-full object-cover">
-                                        </div>
-                                        <div>
-                                            <div class="font-medium">環園巡禮</div>
-                                            <div class="text-sm text-gray-500">參觀園區各個區域</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    4 個關卡
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    完成全部關卡
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    環園巡禮勳章 + 紀念品禮包
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex space-x-3">
-                                        <button onclick="editTask(4)" class="text-blue-500 hover:text-blue-700">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button onclick="viewTaskDetail(4)" class="text-gray-500 hover:text-gray-700">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button onclick="deleteTask(4)" class="text-red-500 hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="p-4 border-t">
-                    <div class="flex items-center justify-between">
-                        <p class="text-sm text-gray-500">顯示 1 至 4 項，共 5 項</p>
-                        <div class="flex space-x-1">
-                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">上一頁</button>
-                            <button
-                                class="px-3 py-1 bg-blue-50 border border-blue-500 text-blue-500 rounded-lg">1</button>
-                            <button class="px-3 py-1 border rounded-lg">2</button>
-                            <button class="px-3 py-1 border rounded-lg disabled:opacity-50">下一頁</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>
@@ -393,7 +265,6 @@
                                     <td class="px-4 py-3 text-sm">美味小食攤</td>
                                     <td class="px-4 py-3 text-sm">
                                         <div class="flex items-center">
-                                            <span class="px-2 py-0.5 bg-gray-100 rounded-full text-xs">A區</span>
                                             <span class="ml-1 text-xs">第3排 - 5號</span>
                                         </div>
                                     </td>
@@ -416,7 +287,6 @@
                                     <td class="px-4 py-3 text-sm">烤肉世界</td>
                                     <td class="px-4 py-3 text-sm">
                                         <div class="flex items-center">
-                                            <span class="px-2 py-0.5 bg-gray-100 rounded-full text-xs">A區</span>
                                             <span class="ml-1 text-xs">第2排 - 3號</span>
                                         </div>
                                     </td>
@@ -438,7 +308,6 @@
                                     <td class="px-4 py-3 text-sm">飲品天地</td>
                                     <td class="px-4 py-3 text-sm">
                                         <div class="flex items-center">
-                                            <span class="px-2 py-0.5 bg-gray-100 rounded-full text-xs">B區</span>
                                             <span class="ml-1 text-xs">第1排 - 2號</span>
                                         </div>
                                     </td>
@@ -476,254 +345,286 @@
 
     <!-- 添加新增/編輯任務Modal -->
     <div id="taskModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white rounded-xl max-w-2xl w-full h-[80vh] overflow-y-auto p-6">
-            <div class="flex justify-between items-center mb-4">
+        <div class="bg-white rounded-xl w-[1000px] h-[90vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-6 border-b">
                 <h3 class="text-xl font-bold" id="taskModalTitle">新增任務</h3>
                 <button onclick="closeTaskModal()" class="text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-name">任務名稱</label>
-                    <input type="text" id="task-name"
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="請輸入任務名稱">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-desc">任務描述</label>
-                    <textarea id="task-desc" rows="2"
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="請輸入任務描述"></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1" for="task-reward">任務獎勵</label>
-                        <textarea id="task-reward" rows="2"
-                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="請輸入任務獎勵描述"></textarea>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-image">任務圖片</label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg relative group">
-                        <div id="image-preview" class="hidden w-full h-full">
-                            <img id="preview-image" src="" alt="任務圖片" class="max-h-48 mx-auto">
-                            <div
-                                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <button type="button"
-                                    class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm"
-                                    onclick="document.getElementById('file-upload').click()">
-                                    更換圖片
-                                </button>
+            <!-- Modal Content -->
+            <div class="flex-1 flex overflow-hidden">
+                <!-- Left Panel - 基本資訊 -->
+                <div class="w-[400px] border-r p-6 overflow-y-auto">
+                    <div class="space-y-6">
+                        <!-- 任務基本資訊 -->
+                        <div>
+                            <h4 class="text-lg font-medium mb-4">基本資訊</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-name">任務名稱</label>
+                                    <input type="text" id="task-name"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="請輸入任務名稱">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" for="task-desc">任務描述</label>
+                                    <textarea id="task-desc" rows="3"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="請輸入任務描述"></textarea>
+                                </div>
                             </div>
                         </div>
-                        <div id="upload-placeholder" class="space-y-1 text-center">
-                            <i class="fas fa-image text-gray-400 text-3xl"></i>
-                            <div class="flex text-sm text-gray-600">
-                                <label for="file-upload"
-                                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                    <span>上傳圖片</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only"
-                                        accept="image/*" onchange="handleImageUpload(event)">
-                                </label>
-                                <p class="pl-1">或拖曳圖片至此</p>
-                            </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, GIF 最大 10MB</p>
-                        </div>
-                    </div>
-                </div>
 
-
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <label class="block text-sm font-medium text-gray-700">關卡列表</label>
-                        <button class="text-blue-500 text-sm flex items-center" onclick="showAddStageSection()">
-                            <i class="fas fa-plus mr-1"></i> 新增關卡
-                        </button>
-                    </div>
-                    <div class="border rounded-lg overflow-hidden">
-                        <table class="min-w-full">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">關卡名稱
-                                    </th>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">攤位</th>
-                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody id="stages-list" class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-4 py-3 text-sm">尚未添加關卡</td>
-                                    <td class="px-4 py-3 text-sm">-</td>
-                                    <td class="px-4 py-3 text-sm">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 新增關卡區域 (預設隱藏) -->
-                <div id="add-stage-section" class="border rounded-lg p-3 bg-gray-50 hidden">
-                    <h4 class="text-sm font-medium mb-2">新增關卡</h4>
-                    <div class="space-y-3">
+                        <!-- 任務圖片 -->
                         <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-name">關卡名稱</label>
-                            <input type="text" id="stage-name"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="例如: 鹹酥雞攤位">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-desc">關卡描述</label>
-                            <textarea id="stage-desc" rows="2"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="請輸入關卡描述"></textarea>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-image">關卡圖片</label>
-                            <div class="mt-1 flex justify-center px-4 pt-3 pb-4 border-2 border-gray-300 border-dashed rounded-lg relative group">
-                                <div id="stage-image-preview" class="hidden w-full h-full">
-                                    <img id="stage-preview-image" src="" alt="關卡圖片" class="max-h-32 mx-auto">
+                            <h4 class="text-lg font-medium mb-4">任務圖片</h4>
+                            <div class="border-2 border-gray-300 border-dashed rounded-lg relative group">
+                                <div id="image-preview" class="hidden w-full h-full">
+                                    <img id="preview-image" src="" alt="任務圖片" class="max-h-48 mx-auto">
                                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
                                         <button type="button"
-                                            class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-lg text-xs"
-                                            onclick="document.getElementById('stage-file-upload').click()">
+                                            class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm"
+                                            onclick="document.getElementById('file-upload').click()">
                                             更換圖片
                                         </button>
                                     </div>
                                 </div>
-                                <div id="stage-upload-placeholder" class="space-y-1 text-center">
-                                    <i class="fas fa-image text-gray-400 text-xl"></i>
-                                    <div class="flex text-xs text-gray-600">
-                                        <label for="stage-file-upload"
+                                <div id="upload-placeholder" class="p-6 text-center">
+                                    <i class="fas fa-image text-gray-400 text-3xl mb-2"></i>
+                                    <div class="flex text-sm text-gray-600 justify-center">
+                                        <label for="file-upload"
                                             class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                                             <span>上傳圖片</span>
-                                            <input id="stage-file-upload" name="stage-file-upload" type="file" class="sr-only"
-                                                accept="image/*" onchange="handleStageImageUpload(event)">
+                                            <input id="file-upload" name="file-upload" type="file" class="sr-only"
+                                                accept="image/*" onchange="handleImageUpload(event)">
                                         </label>
-                                        <p class="pl-1">或拖曳圖片</p>
+                                        <p class="pl-1">或拖曳圖片至此</p>
                                     </div>
-                                    <p class="text-xs text-gray-500">PNG, JPG 最大 5MB</p>
+                                    <p class="text-xs text-gray-500 mt-1">PNG, JPG, GIF 最大 10MB</p>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- 任務獎勵 -->
                         <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-area">關卡區域</label>
-                            <select id="stage-area"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">請選擇區域</option>
-                                <option value="A">A區 - 主舞台區</option>
-                                <option value="B">B區 - 美食區</option>
-                                <option value="C">C區 - 遊戲區</option>
-                                <option value="D">D區 - 文創區</option>
-                                <option value="E">E區 - 表演區</option>
-                            </select>
+                            <h4 class="text-lg font-medium mb-4">任務獎勵</h4>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1" for="task-reward">獎勵內容</label>
+                                <textarea id="task-reward" rows="3"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="請輸入任務獎勵描述"></textarea>
+                            </div>
                         </div>
+
+                        <!-- 完成條件 -->
                         <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-booth">選擇攤位</label>
-                            <div class="border rounded-lg p-2 bg-white">
-                                <div class="space-y-2 max-h-32 overflow-y-auto">
+                            <h4 class="text-lg font-medium mb-4">完成條件</h4>
+                            <div class="space-y-4">
+                                <div class="flex flex-wrap gap-3">
                                     <div class="flex items-center">
-                                        <input type="checkbox" id="booth-1" value="1" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
-                                        <label for="booth-1" class="text-sm">美味小食攤</label>
+                                        <input type="radio" id="completion-none" name="completion-type" class="mr-2">
+                                        <label for="completion-none" class="text-sm">不指定</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input type="checkbox" id="booth-2" value="2" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
-                                        <label for="booth-2" class="text-sm">趣味遊戲屋</label>
+                                        <input type="radio" id="completion-count" name="completion-type" class="mr-2" checked>
+                                        <label for="completion-count" class="text-sm">指定數量</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input type="checkbox" id="booth-3" value="3" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
-                                        <label for="booth-3" class="text-sm">創意手作坊</label>
+                                        <input type="radio" id="completion-specific" name="completion-type" class="mr-2">
+                                        <label for="completion-specific" class="text-sm">指定關卡</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input type="checkbox" id="booth-4" value="4" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
-                                        <label for="booth-4" class="text-sm">飲品天地</label>
+                                        <input type="radio" id="completion-points" name="completion-type" class="mr-2">
+                                        <label for="completion-points" class="text-sm">指定積分</label>
                                     </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="booth-5" value="5" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
-                                        <label for="booth-5" class="text-sm">烤肉世界</label>
+                                </div>
+
+                                <!-- 完成條件設定區域 -->
+                                <div id="completion-count-section">
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1" for="required-stages">需完成數量</label>
+                                        <input type="number" id="required-stages"
+                                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="例如: 5">
+                                    </div>
+                                </div>
+
+                                <div id="completion-points-section" class="hidden">
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1" for="required-points">最低需要積分</label>
+                                        <input type="number" id="required-points" min="0"
+                                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="例如: 100">
+                                    </div>
+                                </div>
+
+                                <div id="completion-specific-section" class="hidden">
+                                    <div class="border rounded-lg p-3 bg-gray-50">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-sm font-medium">選擇關卡</h4>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="select-all-stages" 
+                                                    class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500"
+                                                    onchange="toggleAllStages()">
+                                                <label for="select-all-stages" class="text-sm text-gray-600">全選</label>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-2 max-h-48 overflow-y-auto" id="specific-stages-list">
+                                            <!-- 關卡選擇列表將在這裡動態生成 -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1" for="stage-points">完成後獲得積分</label>
-                            <input type="number" id="stage-points" min="0"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="請輸入積分">
-                        </div>
-                    </div>
-                    <div class="flex justify-end space-x-2 mt-3">
-                        <button onclick="hideAddStageSection()"
-                            class="px-3 py-1 border rounded-lg text-gray-700 text-sm">取消</button>
-                        <button onclick="addStage()"
-                            class="px-3 py-1 bg-blue-500 text-white rounded-lg text-sm">新增</button>
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">完成條件設定</label>
-                    <div class="flex items-center space-x-3 mb-2">
-                        <div class="flex items-center">
-                            <input type="radio" id="completion-count" name="completion-type" class="mr-2" checked>
-                            <label for="completion-count" class="text-sm">指定數量</label>
+                <!-- Right Panel - 關卡管理 -->
+                <div class="flex-1 p-6 overflow-y-auto">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-medium">關卡管理</h4>
+                            <button class="text-blue-500 text-sm flex items-center" onclick="showAddStageSection()">
+                                <i class="fas fa-plus mr-1"></i> 新增關卡
+                            </button>
                         </div>
-                        <div class="flex items-center">
-                            <input type="radio" id="completion-specific" name="completion-type" class="mr-2">
-                            <label for="completion-specific" class="text-sm">指定關卡</label>
+
+                        <!-- 關卡列表 -->
+                        <div class="border rounded-lg overflow-hidden">
+                            <table class="min-w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">關卡名稱</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">授權攤位</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">完成後獲得積分</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="stages-list" class="divide-y divide-gray-200">
+                                    <!-- 關卡列表將在這裡動態生成 -->
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="flex items-center">
-                            <input type="radio" id="completion-points" name="completion-type" class="mr-2">
-                            <label for="completion-points" class="text-sm">指定積分</label>
-                        </div>
-                    </div>
-                    <div id="completion-count-section">
-                        <div>
-                            <label class="block text-xs text-gray-700 mb-1" for="required-stages">需完成數量</label>
-                            <input type="number" id="required-stages"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="例如: 5">
-                        </div>
-                    </div>
-                    <div id="completion-points-section" class="hidden">
-                        <div>
-                            <label class="block text-xs text-gray-700 mb-1" for="required-points">最低需要積分</label>
-                            <input type="number" id="required-points" min="0"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="例如: 100">
-                        </div>
-                    </div>
-                    <div id="completion-specific-section" class="hidden">
-                        <div class="border rounded-lg p-3 bg-gray-50">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="text-sm font-medium">選擇關卡</h4>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="select-all-stages" 
-                                        class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500"
-                                        onchange="toggleAllStages()">
-                                    <label for="select-all-stages" class="text-sm text-gray-600">全選</label>
+
+                        <!-- 新增關卡表單 -->
+                        <div id="add-stage-section" class="border rounded-lg p-4 bg-gray-50 hidden">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-lg font-medium">新增關卡</h4>
+                                <button onclick="hideAddStageSection()" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" for="stage-name">關卡名稱</label>
+                                    <input type="text" id="stage-name"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="例如: 鹹酥雞攤位">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" for="stage-points">完成後獲得積分</label>
+                                    <input type="number" id="stage-points" min="0"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="請輸入積分">
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" for="stage-desc">關卡描述</label>
+                                    <textarea id="stage-desc" rows="2"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="請輸入關卡描述"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" for="stage-area">關卡區域</label>
+                                    <div class="relative">
+                                        <input type="text" id="stage-area"
+                                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="例如: A區、B區、主舞台區">
+                                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                    <p class="mt-1 text-xs text-gray-500">可輸入任意區域名稱，建議包含區號</p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">關卡圖片</label>
+                                    <div class="mt-1 flex justify-center px-4 pt-3 pb-4 border-2 border-gray-300 border-dashed rounded-lg relative group">
+                                        <div id="stage-image-preview" class="hidden w-full h-full">
+                                            <img id="stage-preview-image" src="" alt="關卡圖片" class="max-h-32 mx-auto">
+                                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                                <button type="button"
+                                                    class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-lg text-xs"
+                                                    onclick="document.getElementById('stage-file-upload').click()">
+                                                    更換圖片
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div id="stage-upload-placeholder" class="space-y-1 text-center">
+                                            <i class="fas fa-image text-gray-400 text-xl"></i>
+                                            <div class="flex text-xs text-gray-600">
+                                                <label for="stage-file-upload"
+                                                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                                    <span>上傳圖片</span>
+                                                    <input id="stage-file-upload" name="stage-file-upload" type="file" class="sr-only"
+                                                        accept="image/*" onchange="handleStageImageUpload(event)">
+                                                </label>
+                                                <p class="pl-1">或拖曳圖片</p>
+                                            </div>
+                                            <p class="text-xs text-gray-500">PNG, JPG 最大 5MB</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">選擇攤位</label>
+                                    <div class="border rounded-lg p-3 bg-white">
+                                        <div class="grid grid-cols-2 gap-2 max-h-32 overflow-y-auto">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="booth-1" value="1" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                                <label for="booth-1" class="text-sm">美味小食攤</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="booth-2" value="2" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                                <label for="booth-2" class="text-sm">趣味遊戲屋</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="booth-3" value="3" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                                <label for="booth-3" class="text-sm">創意手作坊</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="booth-4" value="4" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                                <label for="booth-4" class="text-sm">飲品天地</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="booth-5" value="5" class="mr-2 h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+                                                <label for="booth-5" class="text-sm">烤肉世界</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="space-y-2 max-h-48 overflow-y-auto" id="specific-stages-list">
-                                <!-- 關卡選擇列表將在這裡動態生成 -->
+                            <div class="flex justify-end space-x-2 mt-4">
+                                <button onclick="hideAddStageSection()"
+                                    class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">取消</button>
+                                <button onclick="addStage()"
+                                    class="px-4 py-2 bg-blue-500 text-white rounded-lg">新增關卡</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-6 flex justify-end space-x-3">
-                <button onclick="closeTaskModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">
-                    取消
-                </button>
-                <button onclick="saveTask()" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
-                    儲存任務
-                </button>
+            <!-- Modal Footer -->
+            <div class="p-6 border-t bg-gray-50">
+                <div class="flex justify-end space-x-3">
+                    <button onclick="closeTaskModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700">
+                        取消
+                    </button>
+                    <button onclick="saveTask()" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                        儲存任務
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -732,15 +633,54 @@
         // 當前選中的圖標和顏色
         let selectedIcon = 'fa-route';
         let selectedColor = 'blue';
-        let stagesList = [];
-        let currentImageUrl = '';
+        let stagesList = [
+            {
+                id: 1,
+                name: '美食探索',
+                desc: '收集美食攤位印章',
+                points: 20,
+                imageUrl: 'https://images.unsplash.com/photo-1562967916-eb82221dfb92?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80',
+                area: 'B',
+                booths: [
+                    { id: '1', name: '美味小食攤' },
+                    { id: '5', name: '烤肉世界' }
+                ]
+            },
+            {
+                id: 2,
+                name: '遊戲闖關',
+                desc: '完成遊戲攤位挑戰',
+                points: 30,
+                imageUrl: 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                area: 'C',
+                booths: [
+                    { id: '2', name: '趣味遊戲屋' }
+                ]
+            },
+            {
+                id: 3,
+                name: '手作體驗',
+                desc: '參與手作工藝製作',
+                points: 25,
+                imageUrl: 'https://images.unsplash.com/photo-1543157145-f78c636d023d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80',
+                area: 'D',
+                booths: [
+                    { id: '3', name: '創意手作坊' }
+                ]
+            }
+        ];
         let selectedStages = new Set();
-        let currentStageImageUrl = ''; // 新增關卡圖片URL變數
+        let currentImageUrl = '';
+        let currentStageImageUrl = '';
         
         // 處理完成條件類型切換
         document.querySelectorAll('input[name="completion-type"]').forEach(radio => {
             radio.addEventListener('change', function() {
-                if (this.id === 'completion-count') {
+                if (this.id === 'completion-none') {
+                    document.getElementById('completion-count-section').classList.add('hidden');
+                    document.getElementById('completion-specific-section').classList.add('hidden');
+                    document.getElementById('completion-points-section').classList.add('hidden');
+                } else if (this.id === 'completion-count') {
                     document.getElementById('completion-count-section').classList.remove('hidden');
                     document.getElementById('completion-specific-section').classList.add('hidden');
                     document.getElementById('completion-points-section').classList.add('hidden');
@@ -953,8 +893,6 @@
             document.getElementById('stage-desc').value = '';
             document.getElementById('stage-points').value = '';
             document.getElementById('stage-area').value = '';
-            document.getElementById('stage-row').value = '';
-            document.getElementById('stage-position').value = '';
             // 重置圖片上傳
             document.getElementById('stage-image-preview').classList.add('hidden');
             document.getElementById('stage-upload-placeholder').classList.remove('hidden');
@@ -971,8 +909,6 @@
             const stageDesc = document.getElementById('stage-desc').value;
             const stagePoints = parseInt(document.getElementById('stage-points').value) || 0;
             const stageArea = document.getElementById('stage-area').value;
-            const stageRow = document.getElementById('stage-row').value;
-            const stagePosition = document.getElementById('stage-position').value;
             
             // 獲取選中的攤位
             const selectedBooths = Array.from(document.querySelectorAll('input[type="checkbox"][id^="booth-"]:checked'))
@@ -1003,9 +939,7 @@
                         points: stagePoints,
                         booths: selectedBooths,
                         imageUrl: currentStageImageUrl || stagesList[stageIndex].imageUrl,
-                        area: stageArea,
-                        row: stageRow,
-                        position: stagePosition
+                        area: stageArea
                     };
                 }
                 // 清除編輯狀態
@@ -1019,9 +953,7 @@
                     points: stagePoints,
                     booths: selectedBooths,
                     imageUrl: currentStageImageUrl || '',
-                    area: stageArea,
-                    row: stageRow,
-                    position: stagePosition
+                    area: stageArea
                 });
             }
             
@@ -1046,6 +978,7 @@
                         <td class="px-4 py-3 text-sm">尚未添加關卡</td>
                         <td class="px-4 py-3 text-sm">-</td>
                         <td class="px-4 py-3 text-sm">-</td>
+                        <td class="px-4 py-3 text-sm">-</td>
                     </tr>
                 `;
                 return;
@@ -1067,12 +1000,9 @@
                             <div class="flex-1">
                                 <div class="font-medium">${stage.name}</div>
                                 <div class="text-xs text-gray-500">${stage.desc}</div>
-                                <div class="text-xs text-blue-500 mt-1">完成後獲得 ${stage.points} 點積分</div>
                                 ${stage.area ? `
                                     <div class="text-xs text-gray-500 mt-1">
                                         <span class="px-2 py-0.5 bg-gray-100 rounded-full">${stage.area}區</span>
-                                        ${stage.row ? `<span class="ml-1">${stage.row}</span>` : ''}
-                                        ${stage.position ? `<span class="ml-1">${stage.position}</span>` : ''}
                                     </div>
                                 ` : ''}
                             </div>
@@ -1083,6 +1013,12 @@
                             ${stage.booths.map(booth => `
                                 <div class="text-sm">${booth.name}</div>
                             `).join('')}
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        <div class="flex items-center">
+                            <span class="text-blue-500 font-medium">${stage.points}</span>
+                            <span class="text-gray-500 ml-1">點</span>
                         </div>
                     </td>
                     <td class="px-4 py-3 text-sm">
@@ -1117,8 +1053,6 @@
             document.getElementById('stage-desc').value = stage.desc;
             document.getElementById('stage-points').value = stage.points;
             document.getElementById('stage-area').value = stage.area || '';
-            document.getElementById('stage-row').value = stage.row || '';
-            document.getElementById('stage-position').value = stage.position || '';
             
             // 設定已選擇的攤位
             document.querySelectorAll('input[type="checkbox"][id^="booth-"]').forEach(checkbox => {
@@ -1156,7 +1090,55 @@
                 return;
             }
 
+            // 獲取完成條件
+            let completionCondition = null;
+            const completionType = document.querySelector('input[name="completion-type"]:checked').id;
+            
+            if (completionType === 'completion-none') {
+                completionCondition = {
+                    type: 'none',
+                    value: null
+                };
+            } else if (completionType === 'completion-count') {
+                const count = parseInt(document.getElementById('required-stages').value);
+                if (!count && count !== 0) {
+                    alert('請填寫需完成的關卡數量');
+                    return;
+                }
+                completionCondition = {
+                    type: 'count',
+                    value: count
+                };
+            } else if (completionType === 'completion-specific') {
+                if (selectedStages.size === 0) {
+                    alert('請選擇需要完成的關卡');
+                    return;
+                }
+                completionCondition = {
+                    type: 'specific',
+                    value: Array.from(selectedStages)
+                };
+            } else {
+                const points = parseInt(document.getElementById('required-points').value);
+                if (!points && points !== 0) {
+                    alert('請填寫需要達到的積分');
+                    return;
+                }
+                completionCondition = {
+                    type: 'points',
+                    value: points
+                };
+            }
+
             // 模擬儲存操作
+            console.log('儲存任務', {
+                name: taskName,
+                desc: taskDesc,
+                reward: taskReward,
+                stages: stagesList,
+                completionCondition: completionCondition
+            });
+            
             alert('任務已儲存');
             closeTaskModal();
         }
@@ -1168,6 +1150,11 @@
                 alert(`任務 ID: ${id} 已刪除`);
             }
         }
+
+        // 頁面載入時更新關卡列表
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStagesList();
+        });
     </script>
 </body>
 
