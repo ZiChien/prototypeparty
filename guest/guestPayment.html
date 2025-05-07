@@ -20,9 +20,9 @@
     <main class="flex-1 overflow-auto">
         <!-- 點數卡片區域 -->
         <section class="px-5 pt-6 pb-8 bg-gradient-to-br from-gray-600 to-gray-800 text-white rounded-b-3xl shadow-md">
-            <div class="flex justify-between items-center mb-6">
+            <div class="flex justify-center items-center mb-6">
                 <div>
-                    <h2 class="text-sm gray-100">園遊會點數</h2>
+                    <h2 class="text-sm gray-100 text-center">園遊會點數</h2>
                     <div class="text-3xl font-bold mt-1">$ 2,500</div>
                 </div>
             </div>
@@ -134,6 +134,77 @@
         </div>
     </div>
 
+    <!-- 金額選擇彈窗 -->
+    <div id="amountModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl w-5/6 max-w-md overflow-hidden">
+            <!-- 頂部與關閉按鈕 -->
+            <div class="flex justify-between items-center p-5 border-b border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800">設定支付金額</h3>
+                <button id="closeAmountModal" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- 主要內容區 -->
+            <div class="p-5">
+                <!-- 商家名稱 -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-medium mb-2">
+                        收款商家
+                    </label>
+                    <div class="p-3 bg-gray-50 rounded-xl flex items-center">
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg overflow-hidden mr-3">
+                            <img 
+                                src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                                alt="甜點天堂"
+                                class="w-full h-full object-cover" 
+                            />
+                        </div>
+                        <div class="font-medium">甜點天堂</div>
+                    </div>
+                </div>
+                
+                <!-- 金額輸入 -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-medium mb-2">
+                        支付金額
+                    </label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3 text-xl font-bold">$</span>
+                        <input 
+                            type="number" 
+                            id="paymentAmount"
+                            class="w-full pl-10 pr-4 py-3 text-xl font-bold rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                            value="50"
+                            min="1"
+                        />
+                    </div>
+                </div>
+                
+                <!-- 快速選擇金額 -->
+                <div class="flex gap-2 mb-6">
+                    <button data-amount="50" class="amount-btn flex-1 py-2 rounded-lg bg-gray-800 text-white">
+                        $50
+                    </button>
+                    <button data-amount="100" class="amount-btn flex-1 py-2 rounded-lg bg-gray-100 text-gray-800">
+                        $100
+                    </button>
+                    <button data-amount="200" class="amount-btn flex-1 py-2 rounded-lg bg-gray-100 text-gray-800">
+                        $200
+                    </button>
+                    <button data-amount="500" class="amount-btn flex-1 py-2 rounded-lg bg-gray-100 text-gray-800">
+                        $500
+                    </button>
+                </div>
+                
+                <!-- 確認按鈕 -->
+                <button id="confirmPayment" class="w-full py-3 bg-gray-800 text-white rounded-xl font-medium">
+                    確認支付
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 支付成功彈窗 -->
     <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
         <div class="bg-white rounded-2xl w-5/6 max-w-md overflow-hidden">
@@ -145,21 +216,21 @@
                 
                 <!-- 成功訊息 -->
                 <h3 class="text-xl font-bold text-gray-800 mb-1">支付成功</h3>
-                <p class="text-gray-500 mb-4 text-center">您已成功支付 $75 給「甜點天堂」</p>
+                <p id="successMessage" class="text-gray-500 mb-4 text-center">您已成功支付 $75 給「甜點天堂」</p>
                 
                 <!-- 交易詳情 -->
                 <div class="w-full bg-gray-50 rounded-xl p-4 mb-6">
                     <div class="flex justify-between mb-2">
                         <span class="text-gray-500">交易編號</span>
-                        <span class="text-gray-800 font-medium">TX202305141523</span>
+                        <span id="transactionId" class="text-gray-800 font-medium">TX202305141523</span>
                     </div>
                     <div class="flex justify-between mb-2">
                         <span class="text-gray-500">交易時間</span>
-                        <span class="text-gray-800">2023-10-25 15:23</span>
+                        <span id="transactionDate" class="text-gray-800">2023-10-25 15:23</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-500">支付點數</span>
-                        <span class="text-red-500 font-medium">-75</span>
+                        <span id="transactionAmount" class="text-red-500 font-medium">-75</span>
                     </div>
                 </div>
                 <!-- 完成按鈕 -->
@@ -175,26 +246,75 @@
         document.addEventListener('DOMContentLoaded', function() {
             const scanButtons = document.querySelectorAll('button:has(.fa-qrcode)');
             const scanModal = document.getElementById('scanModal');
+            const amountModal = document.getElementById('amountModal');
             const successModal = document.getElementById('successModal');
             const closeModalBtn = document.getElementById('closeModal');
+            const closeAmountModalBtn = document.getElementById('closeAmountModal');
             const closeSuccessModalBtn = document.getElementById('closeSuccessModal');
+            const confirmPaymentBtn = document.getElementById('confirmPayment');
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const paymentAmountInput = document.getElementById('paymentAmount');
+            
+            // 快速選擇金額按鈕
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const amount = this.getAttribute('data-amount');
+                    paymentAmountInput.value = amount;
+                    
+                    // 重置所有按鈕樣式
+                    amountBtns.forEach(b => {
+                        b.classList.remove('bg-gray-800', 'text-white');
+                        b.classList.add('bg-gray-100', 'text-gray-800');
+                    });
+                    
+                    // 設置當前按鈕樣式
+                    this.classList.remove('bg-gray-100', 'text-gray-800');
+                    this.classList.add('bg-gray-800', 'text-white');
+                });
+            });
             
             // 點擊掃碼付款按鈕
             scanButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     scanModal.classList.remove('hidden');
                     
-                    // 模擬掃碼延遲後顯示成功
+                    // 模擬掃碼延遲後顯示金額選擇視窗
                     setTimeout(function() {
                         scanModal.classList.add('hidden');
-                        successModal.classList.remove('hidden');
+                        amountModal.classList.remove('hidden');
                     }, 3000);
                 });
+            });
+            
+            // 確認支付按鈕
+            confirmPaymentBtn.addEventListener('click', function() {
+                const amount = paymentAmountInput.value;
+                const merchant = "甜點天堂"; // 固定攤位名稱
+                
+                // 生成交易ID和時間
+                const now = new Date();
+                const transactionId = 'TX' + now.getTime().toString().slice(-10);
+                const formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                
+                // 更新成功訊息
+                document.getElementById('successMessage').textContent = `您已成功支付 $${amount} 給「${merchant}」`;
+                document.getElementById('transactionId').textContent = transactionId;
+                document.getElementById('transactionDate').textContent = formattedDate;
+                document.getElementById('transactionAmount').textContent = `-${amount}`;
+                
+                // 關閉金額選擇視窗並顯示成功視窗
+                amountModal.classList.add('hidden');
+                successModal.classList.remove('hidden');
             });
             
             // 關閉掃碼模態窗
             closeModalBtn.addEventListener('click', function() {
                 scanModal.classList.add('hidden');
+            });
+            
+            // 關閉金額選擇模態窗
+            closeAmountModalBtn.addEventListener('click', function() {
+                amountModal.classList.add('hidden');
             });
             
             // 關閉成功模態窗

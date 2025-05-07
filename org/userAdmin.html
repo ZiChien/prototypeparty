@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>遊客管理</title>
+    <title>用戶管理</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -38,7 +38,7 @@
                     <li>
                         <a href="userAdmin.html" class="flex items-center p-3 text-blue-500 bg-blue-50 rounded-lg">
                             <i class="fas fa-users mr-3"></i>
-                            <span>遊客管理</span>
+                            <span>用戶管理</span>
                         </a>
                     </li>
                     <li>
@@ -68,10 +68,10 @@
         <!-- 主要內容區域 -->
         <main class="flex-1 ml-64 p-8">
             <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-bold">遊客管理</h2>
+                <h2 class="text-2xl font-bold">用戶管理</h2>
                 <div class="flex space-x-3">
                     <div class="relative">
-                        <input type="text" placeholder="搜尋遊客..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" placeholder="搜尋用戶..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                             <i class="fas fa-users text-xl"></i>
                         </div>
                         <div>
-                            <p class="text-gray-500 text-xs">總遊客數</p>
+                            <p class="text-gray-500 text-xs">總用戶數</p>
                             <p class="text-xl font-bold">1,258</p>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                 <div class="bg-white rounded-xl shadow-sm p-4">
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-500 mr-4">
-                            <i class="fas fa-user-check text-xl"></i>
+                            <i class="fas fa-user-plus text-xl"></i>
                         </div>
                         <div>
                             <p class="text-gray-500 text-xs">今日新增</p>
@@ -114,25 +114,25 @@
                 </div>
             </div>
 
-            <!-- 遊客列表 -->
+            <!-- 用戶列表 -->
             <div class="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div class="p-4 border-b">
-                    <h3 class="text-lg font-semibold">遊客列表</h3>
+                    <h3 class="text-lg font-semibold">用戶列表</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="min-w-full">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">遊客資訊</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">用戶資訊</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">註冊時間</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">點數餘額</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">完成任務</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">狀態</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">身分/狀態</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <!-- 遊客項目 1 -->
+                            <!-- 用戶項目 1 -->
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -155,22 +155,28 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     3/5
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-6 py-4">
+                                    <div class="mb-1">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">遊客</span>
+                                    </div>
                                     <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">正常</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex space-x-3">
-                                        <button onclick="viewUser(1)" class="text-blue-500 hover:text-blue-700">
+                                        <button onclick="viewUser(1)" class="text-blue-500 hover:text-blue-700" title="查看詳情">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button onclick="blacklistUser(1)" class="text-red-500 hover:text-red-700">
+                                        <button onclick="editUser(1)" class="text-blue-500 hover:text-blue-700" title="編輯用戶">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="blacklistUser(1)" class="text-red-500 hover:text-red-700" title="加入黑名單">
                                             <i class="fas fa-ban"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                             
-                            <!-- 遊客項目 2 -->
+                            <!-- 用戶項目 2 -->
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -193,22 +199,29 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     5/5
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-6 py-4">
+                                    <div class="mb-1">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">遊客</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-amber-100 text-amber-800">攤販</span>
+                                    </div>
                                     <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">正常</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex space-x-3">
-                                        <button onclick="viewUser(2)" class="text-blue-500 hover:text-blue-700">
+                                        <button onclick="viewUser(2)" class="text-blue-500 hover:text-blue-700" title="查看詳情">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button onclick="blacklistUser(2)" class="text-red-500 hover:text-red-700">
+                                        <button onclick="editUser(2)" class="text-blue-500 hover:text-blue-700" title="編輯用戶">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="blacklistUser(2)" class="text-red-500 hover:text-red-700" title="加入黑名單">
                                             <i class="fas fa-ban"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                             
-                            <!-- 遊客項目 3 (黑名單狀態) -->
+                            <!-- 用戶項目 3 (黑名單狀態) -->
                             <tr class="bg-red-50">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -231,15 +244,22 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     1/5
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-6 py-4">
+                                    <div class="mb-1">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">遊客</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800">主辦方</span>
+                                    </div>
                                     <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">黑名單</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex space-x-3">
-                                        <button onclick="viewUser(3)" class="text-blue-500 hover:text-blue-700">
+                                        <button onclick="viewUser(3)" class="text-blue-500 hover:text-blue-700" title="查看詳情">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button onclick="removeFromBlacklist(3)" class="text-green-500 hover:text-green-700">
+                                        <button onclick="editUser(3)" class="text-blue-500 hover:text-blue-700" title="編輯用戶">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button onclick="removeFromBlacklist(3)" class="text-green-500 hover:text-green-700" title="移出黑名單">
                                             <i class="fas fa-user-check"></i>
                                         </button>
                                     </div>
@@ -266,11 +286,11 @@
         </main>
     </div>
 
-    <!-- 查看遊客詳情 Modal -->
+    <!-- 查看用戶詳情 Modal -->
     <div id="userDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-xl max-w-2xl w-full p-6">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">遊客詳細資訊</h3>
+                <h3 class="text-xl font-bold">用戶詳細資訊</h3>
                 <button onclick="closeUserDetailModal()" class="text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
@@ -284,8 +304,16 @@
                     </div>
                     <div>
                         <h4 class="text-lg font-medium" id="detail-user-name">王小明</h4>
-                        <p class="text-gray-500 text-sm" id="detail-user-id">遊客ID: G789456</p>
+                        <p class="text-gray-500 text-sm" id="detail-user-id">用戶ID: G789456</p>
                         <p class="text-gray-500 text-sm" id="detail-user-time">註冊時間: 2023/06/09 08:15</p>
+                    </div>
+                </div>
+                
+                <!-- 用戶角色顯示 -->
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <p class="text-gray-500 text-sm mb-2">用戶身分</p>
+                    <div id="detail-user-roles">
+                        <span class="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-800 mr-2">遊客</span>
                     </div>
                 </div>
                 
@@ -344,53 +372,200 @@
             </div>
             
             <div class="mt-6 flex justify-between">
-                <button onclick="blacklistUserFromDetail()" class="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center">
-                    <i class="fas fa-ban mr-2"></i> 加入黑名單
+                <div>
+                    <button onclick="blacklistUserFromDetail()" class="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center">
+                        <i class="fas fa-ban mr-2"></i> 加入黑名單
+                    </button>
+                </div>
+                <div class="flex space-x-3">
+                    <button onclick="editUserFromDetail()" class="px-4 py-2 bg-blue-500 text-white rounded-lg flex items-center">
+                        <i class="fas fa-edit mr-2"></i> 編輯資料
+                    </button>
+                    <button onclick="closeUserDetailModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg">
+                        關閉
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 編輯用戶 Modal -->
+    <div id="userEditModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">編輯用戶資料</h3>
+                <button onclick="closeUserEditModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
                 </button>
-                <button onclick="closeUserDetailModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg">
-                    關閉
+            </div>
+            
+            <div class="space-y-6">
+                <!-- 用戶基本資訊 -->
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full overflow-hidden mr-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" 
+                             alt="用戶頭像" class="w-full h-full object-cover" id="edit-user-avatar">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium" id="edit-user-name">王小明</h4>
+                        <p class="text-gray-500 text-sm" id="edit-user-id">用戶ID: G789456</p>
+                    </div>
+                </div>
+                
+                <!-- 用戶名稱 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        用戶名稱
+                    </label>
+                    <input
+                        type="text"
+                        id="edit-user-name-input"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="請輸入用戶名稱"
+                    >
+                </div>
+                
+                <!-- 用戶身分選擇 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        用戶身分 (可多選)
+                    </label>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input
+                                type="checkbox"
+                                id="role-guest"
+                                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                            >
+                            <label for="role-guest" class="ml-2 text-gray-700">
+                                遊客 - 可參與活動、完成任務、消費點數
+                            </label>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input
+                                type="checkbox"
+                                id="role-booth"
+                                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                            >
+                            <label for="role-booth" class="ml-2 text-gray-700">
+                                攤販 - 可管理攤位、收款、發佈任務
+                            </label>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input
+                                type="checkbox"
+                                id="role-organizer"
+                                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                            >
+                            <label for="role-organizer" class="ml-2 text-gray-700">
+                                主辦方 - 可管理整個園遊會
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="edit-booth-warning" class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 hidden">
+                    <p class="text-sm text-yellow-700">
+                        注意：若勾選「攤販」身分，請確保在攤位管理中設置對應的攤位。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end space-x-3">
+                <button 
+                    onclick="closeUserEditModal()"
+                    class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg"
+                >
+                    取消
+                </button>
+                <button 
+                    onclick="saveUserEdit()"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg flex items-center"
+                >
+                    <i class="fas fa-save mr-2"></i>
+                    儲存變更
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        // 查看遊客詳情
+        // 查看用戶詳情
         function viewUser(id) {
             document.getElementById('userDetailModal').classList.remove('hidden');
-            
-            // 實際應用中此處應該載入遊客資料
-            console.log(`查看遊客 ID: ${id}`);
+            // 實際應用中此處應該載入用戶資料
+            console.log(`查看用戶 ID: ${id}`);
         }
         
         function closeUserDetailModal() {
             document.getElementById('userDetailModal').classList.add('hidden');
         }
         
+        // 編輯用戶
+        function editUser(id) {
+            document.getElementById('userEditModal').classList.remove('hidden');
+            // 實際應用中此處應該載入用戶資料
+            console.log(`編輯用戶 ID: ${id}`);
+        }
+        
+        function editUserFromDetail() {
+            closeUserDetailModal();
+            editUser(currentUserId);
+        }
+        
+        function closeUserEditModal() {
+            document.getElementById('userEditModal').classList.add('hidden');
+        }
+        
+        // 儲存用戶編輯
+        function saveUserEdit() {
+            // 檢查是否至少選擇一個角色
+            const guestRole = document.getElementById('role-guest').checked;
+            const boothRole = document.getElementById('role-booth').checked;
+            const organizerRole = document.getElementById('role-organizer').checked;
+            
+            if (!guestRole && !boothRole && !organizerRole) {
+                alert('請至少選擇一個身分');
+                return;
+            }
+            
+            // 實際應用中此處應該儲存用戶資料
+            console.log('儲存用戶編輯');
+            closeUserEditModal();
+        }
+        
         // 加入黑名單
         function blacklistUser(id) {
-            if (confirm('確定要將此遊客加入黑名單嗎？')) {
+            if (confirm('確定要將此用戶加入黑名單嗎？')) {
                 // 模擬加入黑名單操作
-                alert(`遊客 ID: ${id} 已加入黑名單`);
+                alert(`用戶 ID: ${id} 已加入黑名單`);
             }
         }
         
         // 從詳情頁加入黑名單
         function blacklistUserFromDetail() {
-            if (confirm('確定要將此遊客加入黑名單嗎？')) {
+            if (confirm('確定要將此用戶加入黑名單嗎？')) {
                 // 模擬加入黑名單操作
-                alert('遊客已加入黑名單');
+                alert('用戶已加入黑名單');
                 closeUserDetailModal();
             }
         }
         
         // 從黑名單移除
         function removeFromBlacklist(id) {
-            if (confirm('確定要將此遊客從黑名單中移除嗎？')) {
+            if (confirm('確定要將此用戶從黑名單中移除嗎？')) {
                 // 模擬移除黑名單操作
-                alert(`遊客 ID: ${id} 已從黑名單中移除`);
+                alert(`用戶 ID: ${id} 已從黑名單中移除`);
             }
         }
+        
+        // 監聽攤販角色選擇
+        document.getElementById('role-booth').addEventListener('change', function(e) {
+            const warning = document.getElementById('edit-booth-warning');
+            warning.classList.toggle('hidden', !e.target.checked);
+        });
     </script>
 </body>
 </html> 
