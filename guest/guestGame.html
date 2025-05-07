@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="bg-gray-50 text-gray-900 min-h-screen pb-20">
     <!-- 頂部導航欄 -->
     <header class="sticky top-0 z-10 bg-white shadow-sm">
@@ -16,13 +18,13 @@
     </header>
 
     <!-- 頂部掃描QR Code提示 -->
-    <div class="bg-blue-50 p-3 mx-4 my-3 rounded-xl flex items-center justify-between">
-        <div class="flex items-center text-blue-700 text-sm">
-            <i class="fas fa-info-circle mr-2"></i>
-            <span>掃描攤位提供的QR Code來完成任務</span>
+    <div class="bg-blue-50 text-blue-700 p-3 mx-4 my-3 rounded-xl flex gap-4 items-center justify-between text-sm">
+        <div class="flex items-center">
+            <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+            <p>掃描攤位提供的QR Code來完成任務</p>
         </div>
-        <button id="scan-qr-btn" class="w-10 h-10 flex items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
-            <i class="fas fa-qrcode text-xl"></i>
+        <button id="scan-qr-btn" class="w-10 h-10 p-10 flex items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
+            <i class="fas fa-qrcode text-3xl"></i>
         </button>
     </div>
 
@@ -32,9 +34,8 @@
         <div class="bg-white rounded-xl shadow-sm overflow-hidden">
             <!-- 任務封面 -->
             <div class="relative h-40">
-                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                     alt="美食探索" 
-                     class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="美食探索" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                     <div class="text-white">
                         <h3 class="text-xl font-bold">美食探索</h3>
@@ -42,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 任務進度 -->
             <div class="p-4">
                 <div class="flex justify-between items-center mb-2">
@@ -60,9 +61,8 @@
                     <!-- 已完成的關卡 -->
                     <div class="relative group" onclick="openTaskDetail('stage1')">
                         <div class="w-full pb-[100%] rounded-full bg-gray-100 shadow-sm relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                 alt="鹹酥雞攤位" 
-                                 class="absolute inset-0 w-full h-full object-cover opacity-40">
+                            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                                alt="鹹酥雞攤位" class="absolute inset-0 w-full h-full object-cover opacity-40">
                             <div class="absolute inset-0 flex items-center justify-center bg-black/10">
                                 <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
                                     <i class="fas fa-check text-white text-lg"></i>
@@ -76,9 +76,8 @@
 
                     <div class="relative group" onclick="openTaskDetail('stage4')">
                         <div class="w-full pb-[100%] rounded-full bg-gray-100 shadow-sm relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                 alt="中式料理" 
-                                 class="absolute inset-0 w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                                alt="中式料理" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="mt-2 text-center">
                             <span class="text-xs font-medium">中式料理</span>
@@ -87,9 +86,8 @@
 
                     <div class="relative group" onclick="openTaskDetail('stage5')">
                         <div class="w-full pb-[100%] rounded-full bg-gray-100 shadow-sm relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                 alt="異國風味" 
-                                 class="absolute inset-0 w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                                alt="異國風味" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="mt-2 text-center">
                             <span class="text-xs font-medium">異國風味</span>
@@ -98,9 +96,8 @@
 
                     <div class="relative group" onclick="openTaskDetail('stage6')">
                         <div class="w-full pb-[100%] rounded-full bg-gray-100 shadow-sm relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                 alt="夢幻投籃機" 
-                                 class="absolute inset-0 w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                                alt="夢幻投籃機" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="mt-2 text-center">
                             <span class="text-xs font-medium">夢幻投籃機</span>
@@ -109,9 +106,8 @@
 
                     <div class="relative group" onclick="openTaskDetail('stage7')">
                         <div class="w-full pb-[100%] rounded-full bg-gray-100 shadow-sm relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1558180077-09f158c76707?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                 alt="套圈圈" 
-                                 class="absolute inset-0 w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1558180077-09f158c76707?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                                alt="套圈圈" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="mt-2 text-center">
                             <span class="text-xs font-medium">套圈圈</span>
@@ -120,9 +116,8 @@
 
                     <div class="relative group" onclick="openTaskDetail('stage9')">
                         <div class="w-full pb-[100%] rounded-full bg-gray-100 shadow-sm relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1525351159099-81893194469e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                 alt="射擊遊戲" 
-                                 class="absolute inset-0 w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1525351159099-81893194469e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                                alt="射擊遊戲" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="mt-2 text-center">
                             <span class="text-xs font-medium">射擊遊戲</span>
@@ -132,7 +127,8 @@
 
                 <!-- 任務獎勵 -->
                 <div class="mt-6">
-                    <button onclick="showRedeemModal()" class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-xl flex items-center justify-center transition">
+                    <button onclick="showRedeemModal()"
+                        class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-xl flex items-center justify-center transition">
                         <i class="fas fa-gift mr-2"></i>
                         兌換任務獎勵
                     </button>
@@ -168,11 +164,13 @@
     </nav>
 
     <!-- 任務詳情模態框 -->
-    <div id="task-detail-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div id="task-detail-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white w-11/12 max-w-md rounded-xl overflow-hidden">
             <div class="relative">
                 <img id="task-modal-image" src="" alt="任務圖片" class="w-full h-48 object-cover">
-                <button onclick="closeTaskDetail()" class="absolute top-4 right-4 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
+                <button onclick="closeTaskDetail()"
+                    class="absolute top-4 right-4 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
                     <i class="fas fa-times text-gray-600"></i>
                 </button>
             </div>
@@ -193,7 +191,8 @@
                         <span id="task-modal-reward"></span>
                     </div>
                 </div>
-                <button onclick="showScanModal()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition flex items-center justify-center">
+                <button onclick="showScanModal()"
+                    class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition flex items-center justify-center">
                     <i class="fas fa-qrcode mr-2"></i>
                     掃描QR碼完成任務
                 </button>
@@ -202,7 +201,8 @@
     </div>
 
     <!-- 掃描QR碼模態框 -->
-    <div id="scan-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 flex flex-col items-center justify-center hidden">
+    <div id="scan-modal"
+        class="fixed inset-0 bg-black bg-opacity-75 z-50 flex flex-col items-center justify-center hidden">
         <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden mb-20">
             <div class="relative">
                 <div class="w-full aspect-square bg-gray-900 flex items-center justify-center">
@@ -216,13 +216,15 @@
                         </div>
                     </div>
                 </div>
-                <button onclick="closeScanModal()" class="absolute top-4 right-4 bg-white/20 rounded-full w-8 h-8 flex items-center justify-center">
+                <button onclick="closeScanModal()"
+                    class="absolute top-4 right-4 bg-white/20 rounded-full w-8 h-8 flex items-center justify-center">
                     <i class="fas fa-times text-white"></i>
                 </button>
             </div>
             <div class="p-4">
                 <p class="text-sm text-gray-600 mb-4 text-center">掃描攤位提供的QR碼以完成任務</p>
-                <button onclick="simulateSuccessScan()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+                <button onclick="simulateSuccessScan()"
+                    class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
                     模擬掃描成功
                 </button>
             </div>
@@ -248,7 +250,8 @@
                     </div>
                 </div>
             </div>
-            <button onclick="closeSuccessModal()" class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+            <button onclick="closeSuccessModal()"
+                class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
                 確定
             </button>
         </div>
@@ -264,19 +267,20 @@
                     <!-- 兌換券標題區 -->
                     <div class="bg-white rounded-xl shadow-lg p-4 text-center relative">
                         <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
-                            <div class="w-16 h-16 rounded-full bg-yellow-500 border-4 border-white flex items-center justify-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-yellow-500 border-4 border-white flex items-center justify-center">
                                 <i class="fas fa-gift text-2xl text-white"></i>
                             </div>
                         </div>
                         <h3 class="text-xl font-bold mt-6 mb-1">美食探索獎勵券</h3>
                         <p class="text-sm text-gray-600">恭喜完成美食探索任務！</p>
-                        
+
                         <!-- 虛線分隔 -->
                         <div class="my-4 border-t border-dashed border-gray-200 relative">
                             <div class="absolute -left-10 -mt-2 w-4 h-4 rounded-full bg-gray-100"></div>
                             <div class="absolute -right-10 -mt-2 w-4 h-4 rounded-full bg-gray-100"></div>
                         </div>
-                        
+
                         <!-- 獎勵內容 -->
                         <div class="space-y-3">
                             <div class="flex items-center justify-center">
@@ -298,7 +302,8 @@
 
                     <!-- 底部按鈕 -->
                     <div class="mt-6">
-                        <button onclick="closeVoucherModal()" class="w-full py-3 bg-gray-100 text-gray-600 font-medium rounded-xl hover:bg-gray-200 transition">
+                        <button onclick="closeVoucherModal()"
+                            class="w-full py-3 bg-gray-100 text-gray-600 font-medium rounded-xl hover:bg-gray-200 transition">
                             關閉
                         </button>
                     </div>
@@ -311,26 +316,26 @@
     <div id="redeem-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white w-11/12 max-w-sm rounded-xl overflow-hidden">
             <div class="relative">
-                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                     alt="美食探索" 
-                     class="w-full h-40 object-cover">
+                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="美食探索" class="w-full h-40 object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                     <div class="text-white">
                         <h3 class="text-xl font-bold">美食探索獎勵</h3>
                         <p class="text-sm opacity-90">完成指定關卡即可兌換</p>
                     </div>
                 </div>
-                <button onclick="closeRedeemModal()" class="absolute top-4 right-4 bg-white/20 rounded-full w-8 h-8 flex items-center justify-center">
+                <button onclick="closeRedeemModal()"
+                    class="absolute top-4 right-4 bg-white/20 rounded-full w-8 h-8 flex items-center justify-center">
                     <i class="fas fa-times text-white"></i>
                 </button>
             </div>
-            
+
             <div class="p-4">
                 <div class="mb-4">
                     <h4 class="font-medium mb-2">任務說明</h4>
                     <p class="text-sm text-gray-600">完成任意5個關卡即可獲得豐厚獎勵，目前進度：2/6</p>
                 </div>
-                
+
                 <div class="p-3 bg-yellow-50 rounded-lg mb-6">
                     <div class="flex items-start">
                         <i class="fas fa-award text-yellow-500 mt-1 mr-2"></i>
@@ -343,8 +348,8 @@
 
                 <!-- 滑動解鎖區域 -->
                 <div id="slide-to-unlock" class="relative h-12 bg-gray-100 rounded-full mb-4 select-none touch-none">
-                    <div class="absolute inset-y-0 left-0 w-12 bg-blue-500 rounded-full cursor-grab active:cursor-grabbing" 
-                         id="slider-thumb">
+                    <div class="absolute inset-y-0 left-0 w-12 bg-blue-500 rounded-full cursor-grab active:cursor-grabbing"
+                        id="slider-thumb">
                         <div class="h-full flex items-center justify-center text-white">
                             <i class="fas fa-chevron-right"></i>
                         </div>
@@ -365,18 +370,18 @@
         const taskModalLocation = document.getElementById('task-modal-location');
         const taskModalDescription = document.getElementById('task-modal-description');
         const taskModalReward = document.getElementById('task-modal-reward');
-        
+
         // 掃描QR碼模態框
         const scanModal = document.getElementById('scan-modal');
-        
+
         // 掃描成功模態框
         const successModal = document.getElementById('success-modal');
         const successModalMessage = document.getElementById('success-modal-message');
         const successModalReward = document.getElementById('success-modal-reward');
-        
+
         // QR碼掃描按鈕
         const scanQrBtn = document.getElementById('scan-qr-btn');
-        
+
         // 兌換獎勵相關功能
         const redeemModal = document.getElementById('redeem-modal');
         const sliderThumb = document.getElementById('slider-thumb');
@@ -384,13 +389,13 @@
         let isDragging = false;
         let startX;
         let sliderLeft;
-        
+
         // 打開任務詳情
         function openTaskDetail(taskId) {
             // 根據不同任務ID設置不同的詳情內容
             let title, location, description, imageSrc, reward;
-            
-            switch(taskId) {
+
+            switch (taskId) {
                 case 'stage1':
                     title = '鹹酥雞攤位';
                     location = 'A1區 (中央廣場北側)';
@@ -434,67 +439,67 @@
                     reward = '+30 園遊會幣';
                     break;
             }
-            
+
             taskModalTitle.textContent = title;
             taskModalLocation.textContent = location;
             taskModalDescription.textContent = description;
             taskModalImage.src = imageSrc;
             taskModalReward.textContent = reward;
-            
+
             taskDetailModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-        
+
         // 關閉任務詳情
         function closeTaskDetail() {
             taskDetailModal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-        
+
         // 點擊模態框外部關閉
-        taskDetailModal.addEventListener('click', function(e) {
+        taskDetailModal.addEventListener('click', function (e) {
             if (e.target === taskDetailModal) {
                 closeTaskDetail();
             }
         });
-        
+
         // 掃描QR碼功能
-        scanQrBtn.addEventListener('click', function() {
+        scanQrBtn.addEventListener('click', function () {
             scanModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         });
-        
+
         // 顯示掃描QR碼模態框
         function showScanModal() {
             closeTaskDetail();
             scanModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-        
+
         // 關閉掃描QR碼模態框
         function closeScanModal() {
             scanModal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-        
+
         // 點擊掃描QR碼模態框外部關閉
-        scanModal.addEventListener('click', function(e) {
+        scanModal.addEventListener('click', function (e) {
             if (e.target === scanModal) {
                 closeScanModal();
             }
         });
-        
+
         // 生成兌換券編號
         function generateVoucherNumber() {
             const timestamp = new Date().getTime().toString().slice(-8);
             const random = Math.random().toString(36).substring(2, 6).toUpperCase();
             return `SF${timestamp}${random}`;
         }
-        
+
         // 模擬掃描成功（關卡完成）
         function simulateSuccessScan() {
             closeScanModal();
-            
+
             // 設置關卡完成獎勵內容
             const taskMessages = [
                 '恭喜完成「中式料理」任務',
@@ -502,21 +507,21 @@
                 '恭喜完成「射擊遊戲」任務'
             ];
             const rewards = ['+20 園遊會幣', '+30 園遊會幣'];
-            
+
             successModalMessage.textContent = taskMessages[Math.floor(Math.random() * taskMessages.length)];
             successModalReward.textContent = rewards[Math.floor(Math.random() * rewards.length)];
-            
+
             successModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-        
+
         // 顯示獎勵兌換券
         function showVoucherModal() {
             document.getElementById('voucher-number').textContent = generateVoucherNumber();
             document.getElementById('voucher-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-        
+
         // 關閉獎勵兌換券
         function closeVoucherModal() {
             document.getElementById('voucher-modal').classList.add('hidden');
@@ -561,15 +566,15 @@
 
         function drag(e) {
             if (!isDragging) return;
-            
+
             e.preventDefault();
             const x = (e.type === 'mousemove') ? e.clientX : e.touches[0].clientX;
             const walk = x - startX;
             const newLeft = sliderLeft + walk;
-            
+
             const container = sliderThumb.parentElement;
             const maxLeft = container.offsetWidth - sliderThumb.offsetWidth;
-            
+
             if (newLeft < 0) {
                 sliderThumb.style.left = '0px';
             } else if (newLeft > maxLeft) {
@@ -582,11 +587,11 @@
 
         function stopDragging() {
             if (!isDragging) return;
-            
+
             isDragging = false;
             const maxLeft = sliderThumb.parentElement.offsetWidth - sliderThumb.offsetWidth;
             const currentLeft = sliderThumb.offsetLeft;
-            
+
             if (currentLeft < maxLeft) {
                 // 如果未滑到底，回彈到起始位置
                 sliderThumb.style.left = '0px';
@@ -597,7 +602,7 @@
             sliderText.textContent = '獎勵兌換成功！';
             sliderText.classList.add('text-green-500');
             sliderThumb.classList.add('bg-green-500');
-            
+
             // 延遲關閉模態框並顯示兌換券
             setTimeout(() => {
                 closeRedeemModal();
@@ -606,7 +611,7 @@
         }
 
         // 點擊模態框外部關閉
-        redeemModal.addEventListener('click', function(e) {
+        redeemModal.addEventListener('click', function (e) {
             if (e.target === redeemModal) {
                 closeRedeemModal();
             }
@@ -619,11 +624,12 @@
         }
 
         // 點擊掃描成功模態框外部關閉
-        successModal.addEventListener('click', function(e) {
+        successModal.addEventListener('click', function (e) {
             if (e.target === successModal) {
                 closeSuccessModal();
             }
         });
     </script>
 </body>
-</html> 
+
+</html>
